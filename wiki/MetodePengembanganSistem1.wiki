@@ -1,0 +1,7 @@
+Dalam pengembangan sistem ini kami menggunakan metode incremental.
+
+Pada model ini, requirement software dipecah menjadi beberapa fungsi-fungsi atau bagian-bagian. Sebuah daftar kegiatan project akan dibuat dengan maksud mengetahui tiap-tiap fungsi yang harus dilakukan dalam tiap unit. Masing-masing unit fungsional diimplementasikan dalam sebuah penambahan dan produk akhirnya dikembangkan setelah keseluruhan unit fungsional diimplementasikan dalam proses pengembangannya.
+Masing-masing penambahan pada tiap unit terdiri dari 3 fase: design, implementasi, dan analisis. Proses pengembangan ini akan terus diulang sampai keseluruhan akitivitas dalam daftar aktivitas diimplementasikan.
+Kekurangan dari model ini bahwa model ini hanya dapat diimplementasikan pada project berskala besar, karena dalam prosesnya project yang dikerjakan harus dibagi dalam beberapa unit.
+
+Sehingga disini kami menjalankan progres berdasarkan modul-modul yang ada.
