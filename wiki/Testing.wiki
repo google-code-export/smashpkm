@@ -1,0 +1,1 @@
+Untuk melakukan testing akan dilaksanakan setelah setiap modul selesai dikembangkan dan sesuai dengan deadline dari setiap modul yang telah ditentukan pada pembagian tugas.
