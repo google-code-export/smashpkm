@@ -4,6 +4,42 @@ GUI tersebut antaralain :
 
 *Pengguna (Mahasiswa)
 
-#Login
+1.Login
 
 [https://picasaweb.google.com/105682788719655231843/October102011]
+
+2.Registrasi
+
+[https://picasaweb.google.com/105682788719655231843/October10201102]
+
+[https://picasaweb.google.com/105682788719655231843/October10201103]
+
+3.Pengaturan Profil
+
+[https://picasaweb.google.com/105682788719655231843/October10201104]
+
+[https://picasaweb.google.com/105682788719655231843/October10201105]
+
+4.Pengaturan Password
+
+[https://picasaweb.google.com/105682788719655231843/October10201106]
+
+[https://picasaweb.google.com/105682788719655231843/October10201107]
+
+5.Halaman Utama Pengguna
+
+[https://picasaweb.google.com/105682788719655231843/October10201108]
+
+6.Halaman Status Mahasiswa
+
+[https://picasaweb.google.com/105682788719655231843/October10201109]
+
+7.Halaman Beasiswa Tersedia
+
+[https://picasaweb.google.com/105682788719655231843/October10201110]
+
+8.Halaman Daftar Beasiswa
+
+[https://picasaweb.google.com/105682788719655231843/October10201111]
+
+*Admin (TU)
