@@ -1,19 +1,19 @@
 =Use Case=
 Secara umum, aplikasi ini mempunyai kurang lebih sebanyak 14 use case didalamnya antara lain :
 
-#Login
-#Melihat beasiswa yang tersedia
-#Melihat status
-#Membuat akun pengguna
-#Membuat post
-#Mendaftar akun
-#Mendaftar beasiswa
-#Mengatur profil pribadi
-#Menghapus aku pengguna
-#Menghapus post
-#Merubah akun pengguna
-#Merubah post
-#Rekapitulasi
+# Login
+# Melihat beasiswa yang tersedia
+# Melihat status
+# Membuat akun pengguna
+# Membuat post
+# Mendaftar akun
+# Mendaftar beasiswa
+# Mengatur profil pribadi
+# Menghapus aku pengguna
+# Menghapus post
+# Merubah akun pengguna
+# Merubah post
+# Rekapitulasi
 
 
 untuk lebih detail. use case dari aplikasi ini dapat diunduh di
