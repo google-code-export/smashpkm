@@ -1,0 +1,6 @@
+=GUI=
+GUI dari aplikasi ini terbagi menjadi 2 bagian, yaitu GUI untuk user pengguna(Mahasiswa) dan GUI untuk admin(TU)
+GUI tersebut antaralain :
+
+#1Login
+[https://picasaweb.google.com/105682788719655231843/October102011]
