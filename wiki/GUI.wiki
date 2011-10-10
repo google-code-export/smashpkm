@@ -3,5 +3,7 @@ GUI dari aplikasi ini terbagi menjadi 2 bagian, yaitu GUI untuk user pengguna(Ma
 GUI tersebut antaralain :
 
 *Pengguna (Mahasiswa)
+
 #Login
+
 [https://picasaweb.google.com/105682788719655231843/October102011]
