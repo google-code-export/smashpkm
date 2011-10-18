@@ -11,9 +11,37 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>test</title>
     </head>
     <body>
-        <h1>Hello Worldesfsfa!</h1>
+        <h1>login</h1>
+        <form method='post' action='SimpanRegistrasi'>
+            <fieldset>
+                <table border=2 tbcolor="white">
+                    <tr>
+                        <td>
+            nrp:
+                        </td>
+                        <td>
+            <input type=text name='nama' />
+                        </td>
+                    </tr>
+                    <tr>
+
+                    <td>
+            password:
+                    </td>
+                    <td>
+            <input type=text name='nrp'/>
+            </td>
+                </table>
+            <input type='submit' value='Login'/>
+            </fieldset>
+        </form>
+            <br>
+            <form method='post' action='Registrasi.jsp'>
+              <input type='submit' value='Daftar Sekarang' >
+
+        </form>
     </body>
 </html>
