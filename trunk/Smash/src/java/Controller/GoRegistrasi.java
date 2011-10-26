@@ -3,14 +3,17 @@
  * and open the template in the editor.
  */
 
-package Model;
+package Controller;
 
 /**
  *
  * @author yosua
  */
 
+import Model.KoneksiDB;
+import Model.ModelDB;
 import javax.servlet.http.HttpServletRequest;
+
 
 
 /**
@@ -20,7 +23,8 @@ import javax.servlet.http.HttpServletRequest;
 public class GoRegistrasi {
 
     HttpServletRequest request;
-    public String halaman;
+    public String pesan="";
+
 
     public GoRegistrasi(HttpServletRequest request){
     
@@ -34,29 +38,45 @@ public class GoRegistrasi {
     String nrp=request.getParameter("nrp");
     String password=request.getParameter("password");
     KoneksiDB kondb=new KoneksiDB();
-    Registrasi reg=new Registrasi(kondb.getConnection());
+    ModelDB reg=new ModelDB(kondb.getConnection());
     
-    halaman="index.jsp";
-
+    if(nrp.length()>=1){
     try{
-    reg.insertReg(nama,nrp,password);}
-    catch(Exception ex){
-        
-         
-         halaman="Registrasi.jsp";
-    }
-    finally{
-    kondb.CloseConnection();}
-    return halaman;
-    }
+    reg.insertReg(nama,nrp,password);
 
-    public String pesan(){
-    String pesan;
-    pesan="";
-    if(halaman.equals("Registrasi.jsp")){
-    pesan="Maaf,nrp telah digunakan";}
-    return pesan;
-    } }
+    return "HalamanUtamaPengguna.jsp";
+
+    }
+    catch(Exception ex){
+        setPesan("maaf, NRP telah digunakan");
+        return "Registrasi.jsp";
+
+
+    }finally{
+    kondb.CloseConnection();}
+
+    }else{
+    setPesan("");
+    return "Registrasi.jsp";}}
+    
+    
+
+
+    public void setPesan(String pesan){
+     this.pesan=pesan;
+     }
+
+    public String getPesan(){
+
+    return pesan;}
+
+    
+
+
+
+
+
+}
 
 
 

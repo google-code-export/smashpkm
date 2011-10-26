@@ -10,7 +10,7 @@
 
 <html>
     <head>
-        <script type="text/javascript">
+        <script type='text/javascript'>
 
 function pencocokanPassword() {
 var spasi = " "; 
@@ -22,12 +22,25 @@ var nrp= document.myForm.nrp.value;
 
 
 if ((password == '') || (passwordUlangi == '')||(nama=='')||(nrp='')  ){
-alert('Isikan seluruh form sesuai data anda');
+document.getElementById('pesan').innerHTML = 'Isikan seluruh form sesuai data anda';
+
+//alert('Isikan seluruh form sesuai data anda');
 return false;
+
+
 }
 
 if (document.myForm.password.value.indexOf(spasi) > -1) {
-alert('Password tidak boleh mengandung spasi');
+alert('password tidak boleh mengandung spasi');
+
+
+return false;
+
+}
+if (document.myForm.nrp.value.indexOf(spasi) > -1) {
+alert('nrp tidak boleh mengandung spasi');
+
+
 return false;
 
 }
@@ -41,10 +54,14 @@ return false;
 }</script> 
     </head>
     <body>
+        <p><font size="3" id='pesan'> </font></p>
        <h1>Registrasi</h1>
-        <form method='post' name="myForm" onsubmit='return pencocokanPassword()' action='SimpanRegistrasi'>
+       
+        <form method='post' name="myForm" onsubmit='return pencocokanPassword()' action='Dispatcher?page=goRegistrasi'>
+
             <fieldset>
                 <table border=2>
+                    
             <tr>
             <td>
             nama:

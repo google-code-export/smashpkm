@@ -19,18 +19,18 @@
        <fieldset>     
             <table border="0.1">
                 <tr><td>
-            <form method='post' action='Registrasi.jsp'>
-              <input type='submit' value='Daftar Sekarang' >
+            <form method='post' action='StatusMahasiswa.jsp'>
+              <input type='submit' value='Status Mahasiswa' >
         </form>
                     </td> </tr>
                     <tr><td>
-            <form method='post' action='Registrasi.jsp'>
-              <input type='submit' value='Daftar Sekarang' >
+            <form method='post' action='Dispatcher?page=pengaturanAkun'>
+              <input type='submit' value='Pengaturan Akun' >
         </form>
                     </td> </tr>
                     <tr><td>
-            <form method='post' action='Registrasi.jsp'>
-              <input type='submit' value='Daftar Sekarang' >
+            <form method='post' action='BeasiswaYangTersedia.jsp'>
+              <input type='submit' value='Beasiswa yang Tersedia' >
         </form>
                     </td> </tr>
                 <tr><td>
@@ -39,8 +39,13 @@
         </form>
                     </td> </tr>
                 <tr><td>
-            <form method='post' action='Registrasi.jsp'>
-              <input type='submit' value='Daftar Sekarang' >
+            <form method='post' action='DaftarBeasiswa.jsp'>
+              <input type='submit' value='Daftar Beasiswa' >
+        </form>
+                    </td> </tr>
+                 <tr><td>
+            <form method='post' action='Logout.jsp'>
+              <input type='submit' value='Logout' >
         </form>
                     </td> </tr>
             </table>
