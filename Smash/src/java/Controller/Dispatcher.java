@@ -12,7 +12,6 @@ package Controller;
  * @author yosua
  */
 
-import Model.GoRegistrasi;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -22,10 +21,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import Model.KoneksiDB;
-import Model.Registrasi;
 import java.io.PrintWriter;
-import javax.servlet.http.HttpSession;
+
 
 
 
@@ -33,51 +30,47 @@ import javax.servlet.http.HttpSession;
  *
  * @author yosua
  */
-public class SimpanRegistrasi extends HttpServlet {
+public class Dispatcher extends HttpServlet {
 
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException, Exception{
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
+        String page = request.getParameter("page");
         RequestDispatcher dis=null;
+        if (page != null) {
+            if (page.equals("registrasi")) {
+                
+                dis = request.getRequestDispatcher("Registrasi.jsp");
+            
+        }  if (page.equals("goRegistrasi")) {
+
+                GoRegistrasi goRegistrasi=new GoRegistrasi(request);
+                dis = request.getRequestDispatcher(goRegistrasi.Registrasi());
+                //out.println(goRegistrasi.getPesan());
+               out.println("<p><font size='3' id='pesan'>"+goRegistrasi.getPesan()+" </font></p>");
+                
+
+        }if (page.equals("login")) {
+                
+                GoLogin goLogin=new GoLogin(request);
+                dis=request.getRequestDispatcher(goLogin.Login());
+
+        }if (page.equals("pengaturanAkun")) {
+
+                dis = request.getRequestDispatcher("Pengaturan.jsp");
+
+        }
         
-        GoRegistrasi registrasi=new GoRegistrasi(request);
-
-        dis=request.getRequestDispatcher(registrasi.Registrasi());
-        out.println(registrasi.pesan());
-        
-
-
-
-  /*
-        String nama=request.getParameter("nama");
-        String nrp=request.getParameter("nrp");
-        String password=request.getParameter("password");
-        String passwordUlangi=request.getParameter("password_ulangi");
-    
-
- 
-        KoneksiDB kondb=new KoneksiDB();
-        Registrasi reg=new Registrasi(kondb.getConnection());
-
-
-        try{
-         GoRegistrasi goRegistrasi=new GoRegistrasi(request);
-        HttpSession session=request.getSession();
-        reg.insertReg(nama,nrp,password);
-        dis=request.getRequestDispatcher("/HalamanUtamaPengguna.jsp");
-    }
-    catch(Exception ex){
-
-         out.println("Maaf,NRP telah digunakan");
-         dis=request.getRequestDispatcher("/Registrasi.jsp");
-         kondb.CloseConnection();
-    
-  
-    }*/
+    }else {
+            dis = request.getRequestDispatcher("index.jsp");
+        }
         
         dis.include(request,response);
+        
+        
+        
         
         
     
@@ -97,7 +90,7 @@ public class SimpanRegistrasi extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (Exception ex) {
-            Logger.getLogger(SimpanRegistrasi.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Dispatcher.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -114,7 +107,7 @@ public class SimpanRegistrasi extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (Exception ex) {
-            Logger.getLogger(SimpanRegistrasi.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Dispatcher.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

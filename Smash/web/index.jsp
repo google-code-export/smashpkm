@@ -11,19 +11,20 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>test</title>
+        
     </head>
     <body>
+        <br>
         <h1>login</h1>
-        <form method='post' action='SimpanRegistrasi'>
+        <form method='post' action='Dispatcher?page=login'>
             <fieldset>
-                <table border=2 tbcolor="white">
+                <table border=0>
                     <tr>
                         <td>
             nrp:
                         </td>
                         <td>
-            <input type=text name='nama' />
+            <input type=text name='nrp' />
                         </td>
                     </tr>
                     <tr>
@@ -32,14 +33,14 @@
             password:
                     </td>
                     <td>
-            <input type=text name='nrp'/>
+            <input type=text name='password'/>
             </td>
                 </table>
             <input type='submit' value='Login'/>
             </fieldset>
         </form>
             <br>
-            <form method='post' action='Registrasi.jsp'>
+            <form method='post' action='Dispatcher?page=registrasi'>
               <input type='submit' value='Daftar Sekarang' >
 
         </form>
