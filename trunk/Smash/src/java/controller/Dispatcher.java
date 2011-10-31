@@ -31,6 +31,9 @@ public class Dispatcher extends HttpServlet {
 
 
         if (page != null) {
+            if (page.equals("home")) {
+                dis = request.getRequestDispatcher("halamanUtamaPengguna.jsp");
+            }
             if (page.equals("registrasi")) {
                 dis = request.getRequestDispatcher("registrasi.jsp");
             }
@@ -49,9 +52,15 @@ public class Dispatcher extends HttpServlet {
             }
 
             if (page.equals("pengaturanAkun")) {
-                mahasiswa=controller.getAturAkun();
                 dis = request.getRequestDispatcher("pengaturan.jsp");
+                mahasiswa=controller.getAturAkun();
                 
+                
+            }
+            if (page.equals("setPengaturanAkun")) {
+                controller.setAturAkun(mahasiswa);
+                dis = request.getRequestDispatcher("pengaturan.jsp");
+
             }
             if (page.equals("logout")) {
                 controller.setLogout(mahasiswa);
