@@ -2,7 +2,7 @@
 <web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
     <servlet>
         <servlet-name>Dispatcher</servlet-name>
-        <servlet-class>Controller.Dispatcher</servlet-class>
+        <servlet-class>controller.Dispatcher</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>SimpanRegistrasi</servlet-name>
@@ -11,6 +11,10 @@
     <servlet>
         <servlet-name>CekPassword</servlet-name>
         <servlet-class>Controller.CekPassword</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Dispatch</servlet-name>
+        <servlet-class>controller.Dispatcher</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>SimpanRegistrasi</servlet-name>
@@ -23,6 +27,10 @@
     <servlet-mapping>
         <servlet-name>Dispatcher</servlet-name>
         <url-pattern>/Dispatcher</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Dispatch</servlet-name>
+        <url-pattern>/Dispatch</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
