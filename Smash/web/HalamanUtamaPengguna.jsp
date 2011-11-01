@@ -1,6 +1,6 @@
 <%-- 
-    Document   : Login
-    Created on : Oct 12, 2011, 8:54:34 PM
+    Document   : halamanUtamaPengguna
+    Created on : Oct 31, 2011, 9:48:55 AM
     Author     : yosua
 --%>
 
@@ -12,14 +12,14 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Registrasi</title>
-        
+
     </head>
     <body>
        <h1>Registrasi</h1>
-       <fieldset>     
+       <fieldset>
             <table border="0.1">
                 <tr><td>
-            <form method='post' action='StatusMahasiswa.jsp'>
+            <form method='post' action='Dispatcher'>
               <input type='submit' value='Status Mahasiswa' >
         </form>
                     </td> </tr>
@@ -44,7 +44,7 @@
         </form>
                     </td> </tr>
                  <tr><td>
-            <form method='post' action='Logout.jsp'>
+            <form  method='post' action='Dispatcher?page=logout'>
               <input type='submit' value='Logout' >
         </form>
                     </td> </tr>
