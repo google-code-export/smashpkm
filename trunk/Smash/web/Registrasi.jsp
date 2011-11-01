@@ -1,6 +1,6 @@
 <%-- 
-    Document   : Registrasi
-    Created on : Oct 12, 2011, 7:11:23 PM
+    Document   : registrasi
+    Created on : Oct 31, 2011, 9:50:50 AM
     Author     : yosua
 --%>
 
@@ -13,7 +13,7 @@
         <script type='text/javascript'>
 
 function pencocokanPassword() {
-var spasi = " "; 
+var spasi = " ";
 var password = document.myForm.password.value;
 var passwordUlangi = document.myForm.password_ulangi.value;
 var nama= document.myForm.nama.value;
@@ -51,17 +51,19 @@ return false;
 }
 
    }
-}</script> 
+}</script>
+
+        <title>Registrasi</title>
     </head>
     <body>
-        <p><font size="3" id='pesan'> </font></p>
+
        <h1>Registrasi</h1>
-       
-        <form method='post' name="myForm" onsubmit='return pencocokanPassword()' action='Dispatcher?page=goRegistrasi'>
+
+        <form method='post' action='Dispatcher?page=goRegistrasi'>
 
             <fieldset>
                 <table border=2>
-                    
+
             <tr>
             <td>
             nama:
