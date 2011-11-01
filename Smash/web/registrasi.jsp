@@ -59,7 +59,7 @@ return false;
 
        <h1>Registrasi</h1>
 
-        <form method='post' action='Dispatcher?page=goRegistrasi'>
+        <form method='post' action='Dispatcher?page=goRegistrasi' onsubmit="">
 
             <fieldset>
                 <table border=2>
