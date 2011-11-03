@@ -52,14 +52,26 @@ public class Dispatcher extends HttpServlet {
             }
 
             if (page.equals("pengaturanAkun")) {
-                dis = request.getRequestDispatcher("pengaturan.jsp");
-                mahasiswa=controller.getAturAkun();
+                dis = request.getRequestDispatcher("pengaturanAkun.jsp");
+                mahasiswa=controller.getMahasiswa();
                 
                 
             }
-            if (page.equals("setPengaturanAkun")) {
+             if (page.equals("setPengaturanAkun")) {
                 controller.setAturAkun(mahasiswa);
-                dis = request.getRequestDispatcher("pengaturan.jsp");
+                 dis = request.getRequestDispatcher("pengaturanAkun.jsp");
+
+
+
+
+            }
+            if (page.equals("pengaturanPassword")) {
+                dis = request.getRequestDispatcher("pengaturanPassword.jsp");
+
+            }
+            if (page.equals("setPengaturanPassword")) {
+                controller.setAturPassword(mahasiswa);
+                dis = request.getRequestDispatcher("pengaturanPassword.jsp");
 
             }
             if (page.equals("logout")) {

@@ -59,7 +59,7 @@ return false;
 
        <h1>Registrasi</h1>
 
-        <form method='post' action='Dispatcher?page=goRegistrasi' onsubmit="">
+        <form method='post' name="myform" action='Dispatcher?page=goRegistrasi' onsubmit="return pencocokanPassword()">
 
             <fieldset>
                 <table border=2>

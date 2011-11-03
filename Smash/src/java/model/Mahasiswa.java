@@ -78,6 +78,17 @@ public class Mahasiswa implements Serializable {
      @Column(name = "jumlahSaudara")
     private long jumlahSaudara;
 
+     @Column(name = "isAdmin")
+    private boolean isAdmin;
+
+    public void setIsAdmin(boolean isAdmin) {
+        this.isAdmin = isAdmin;
+    }
+
+    public boolean isIsAdmin() {
+        return isAdmin;
+    }
+
     public void setAlamatAsal(String alamatAsal) {
         this.alamatAsal = alamatAsal;
     }
