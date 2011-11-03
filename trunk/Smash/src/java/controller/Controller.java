@@ -37,6 +37,8 @@ public class Controller {
             registrasi.create(mahasiswa);
             session.setAttribute("nrp", nrp);
             session.setAttribute("mahasiswa", mahasiswa);
+            session.setAttribute("password", password);
+            session.setAttribute("pesan", "");
             mahasiswa.setLoginStat(true);
         } catch (Exception e) {
             e.printStackTrace();
@@ -57,6 +59,8 @@ public class Controller {
                 mahasiswa.setLoginStat(true);
                 session.setAttribute("nrp", nrp);
                 session.setAttribute("mahasiswa", mahasiswa);
+                session.setAttribute("password", password);
+                session.setAttribute("pesan", "");
             } else {
                 mahasiswa.setLoginStat(false);
             }
@@ -85,7 +89,7 @@ public class Controller {
         }
     }
 
-    public Mahasiswa getAturAkun() {
+    public Mahasiswa getMahasiswa() {
         Mahasiswa mahasiswa = new Mahasiswa();
         MahasiswaJpaController aturAkun = new MahasiswaJpaController();
         HttpSession session = request.getSession();
@@ -94,20 +98,20 @@ public class Controller {
     }
 
     public void setAturAkun(Mahasiswa mahasiswa) {
-        String nama=request.getParameter("nama");
-        String noHp=request.getParameter("no_hp");
-        String alamatAsal=request.getParameter("alamat_asal");
-        String alamatSurabaya=request.getParameter("alamat_surabaya");
-        String nilaiToefl1=request.getParameter("nilai_toefl");
-        String semester1=request.getParameter("semester");
-        String ipk1=request.getParameter("ipk");
-        String namaAyah=request.getParameter("nama_ayah");
-        String penghasilanAyah1=request.getParameter("penghasilan_ayah");
-        String pekerjaanAyah=request.getParameter("pekerjaan_ayah");
-        String namaIbu=request.getParameter("nama_ibu");
-        String penghasilanIbu1=request.getParameter("penghasilan_ibu");
-        String pekerjaanIbu=request.getParameter("pekerjaan_ibu");
-        String jumlahSaudara1=request.getParameter("jumlah_saudara");
+        String nama = request.getParameter("nama");
+        String noHp = request.getParameter("no_hp");
+        String alamatAsal = request.getParameter("alamat_asal");
+        String alamatSurabaya = request.getParameter("alamat_surabaya");
+        String nilaiToefl1 = request.getParameter("nilai_toefl");
+        String semester1 = request.getParameter("semester");
+        String ipk1 = request.getParameter("ipk");
+        String namaAyah = request.getParameter("nama_ayah");
+        String penghasilanAyah1 = request.getParameter("penghasilan_ayah");
+        String pekerjaanAyah = request.getParameter("pekerjaan_ayah");
+        String namaIbu = request.getParameter("nama_ibu");
+        String penghasilanIbu1 = request.getParameter("penghasilan_ibu");
+        String pekerjaanIbu = request.getParameter("pekerjaan_ibu");
+        String jumlahSaudara1 = request.getParameter("jumlah_saudara");
 
         long nilaiToefl = Integer.parseInt(nilaiToefl1);
         long semester = Integer.parseInt(semester1);
@@ -120,6 +124,7 @@ public class Controller {
         HttpSession session = request.getSession();
         mahasiswa = aturAkun.findMahasiswaByNrp((String) session.getAttribute("nrp"));
 
+        
         mahasiswa.setNama(nama);
         mahasiswa.setAlamatAsal(alamatAsal);
         mahasiswa.setAlamatSurabaya(alamatSurabaya);
@@ -133,14 +138,40 @@ public class Controller {
         mahasiswa.setPenghasilanAyah(penghasilanAyah);
         mahasiswa.setPenghasilanIbu(penghasilanIbu);
         mahasiswa.setJumlahSaudara(jumlahSaudara);
+        mahasiswa.setIsAdmin(false);
         session.setAttribute("mahasiswa", mahasiswa);
         try {
             aturAkun.edit(mahasiswa);
-           
+
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        
+
+    }
+
+    public void setAturPassword(Mahasiswa mahasiswa) {
+        String passwordLama = request.getParameter("password_lama");
+        String passwordBaru = request.getParameter("password_baru");
+        MahasiswaJpaController aturPassword = new MahasiswaJpaController();
+        HttpSession session = request.getSession();
+        mahasiswa = aturPassword.findMahasiswaByNrp((String) session.getAttribute("nrp"));
+
+        if (aturPassword.findMahasiswaByNrp((String) session.getAttribute("nrp")) != null) {
+            mahasiswa = aturPassword.findMahasiswaByNrp((String) session.getAttribute("nrp"));
+            if (mahasiswa.getPassword().equals(passwordLama)) {
+                mahasiswa.setPassword(passwordBaru);
+
+                try {
+                    aturPassword.edit(mahasiswa);
+                    session.setAttribute("pesan","Password Berhasil Diubah");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+
+
+            }
+        }
     }
 }

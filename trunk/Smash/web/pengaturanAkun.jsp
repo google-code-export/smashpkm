@@ -15,6 +15,32 @@
 
     </head>
     <body>
+        <table border="0">
+    <tr>
+        <td> <form method='post' action='Dispatcher?page=home'>
+            <input type='submit' value='Menu Utama' >
+            </form>
+        </td>
+            <td> <form method='post' action='Dispatcher?page=home'>
+            <input type='submit' value='Profil' >
+                </form>
+            </td>
+             <td>
+           <form method='post' action='Dispatcher?page=pengaturanPassword'>
+            <input type='submit' value='Ganti Password' >
+                </form>
+            </td>
+     <td>
+           <form method='post' action='Dispatcher?page=statusMahasiswa'>
+            <input type='submit' value='Status Mahasiswa' >
+                </form>
+            </td>
+     <td>
+           <form method='post' action='Dispatcher?page=logout'>
+            <input type='submit' value='Logout' >
+                </form>
+            </td></tr>
+        </table>
         <form method='post'  action='Dispatcher?page=setPengaturanAkun'>
 
             <fieldset>
@@ -27,8 +53,7 @@
                         <td>
                             <input type=text name='nama' value='${mahasiswa.nama}' />
                         </td>
-                        <td>
-                        </td>
+                      
                     </tr>
 
                     <tr>
@@ -163,12 +188,10 @@
                 </table>
 
                 <input type='submit' value='update'/>
-                
+
             </fieldset>
         </form>
 
-                        <form method='post' action='Dispatcher?page=home'>
-                            <input type='submit' value='Kembali ke Menu Utama' >
 
     </body>
 </html>
