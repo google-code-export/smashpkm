@@ -81,6 +81,7 @@ public class Mahasiswa implements Serializable {
      @Column(name = "isAdmin")
     private boolean isAdmin;
 
+
     public void setIsAdmin(boolean isAdmin) {
         this.isAdmin = isAdmin;
     }
