@@ -39,7 +39,11 @@ public class Dispatcher extends HttpServlet {
             }
             if (page.equals("goRegistrasi")) {
                 controller.setRegistrasi(mahasiswa);
-                dis = request.getRequestDispatcher("halamanUtamaPengguna.jsp");
+               if (mahasiswa.getLoginStat() == true) {
+                    dis = request.getRequestDispatcher("halamanUtamaPengguna.jsp");
+                } else {
+                    dis = request.getRequestDispatcher("registrasi.jsp");
+                }
             }
             if (page.equals("login")) {
                 mahasiswa = controller.getLoginStat();

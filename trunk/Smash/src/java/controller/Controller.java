@@ -28,11 +28,18 @@ public class Controller {
         String nrp = request.getParameter("nrp");
         String nama = request.getParameter("nama");
         String password = request.getParameter("password");
+        String passwordUlangi = request.getParameter("password_ulangi");
         HttpSession session = request.getSession();
-        MahasiswaJpaController registrasi = new MahasiswaJpaController();
-        mahasiswa.setNrp(nrp);
-        mahasiswa.setNama(nama);
-        mahasiswa.setPassword(password);
+        if (nrp.equals("") || nama.equals("") || password.equals("") || passwordUlangi.equals("")) {
+            session.setAttribute("pesan", "Isikan seluruh form sesuai data anda");
+            mahasiswa.setLoginStat(false);}
+        else {
+        if (password.equals(passwordUlangi)){
+            MahasiswaJpaController registrasi = new MahasiswaJpaController();
+            mahasiswa.setNrp(nrp);
+            mahasiswa.setNama(nama);
+            mahasiswa.setPassword(password);
+
         try {
             registrasi.create(mahasiswa);
             session.setAttribute("nrp", nrp);
@@ -42,9 +49,11 @@ public class Controller {
             mahasiswa.setLoginStat(true);
         } catch (Exception e) {
             e.printStackTrace();
-        }
+        }}else{
+            session.setAttribute("pesan", "password harus sama");
+            mahasiswa.setLoginStat(false);}
+        }}
 
-    }
 
     public Mahasiswa getLoginStat() {
         String nrp = request.getParameter("nrp");

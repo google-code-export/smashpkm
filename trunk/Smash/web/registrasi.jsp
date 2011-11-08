@@ -8,7 +8,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
     "http://www.w3.org/TR/html4/loose.dtd">
 
-<script type='text/javascript'>
+<%--<script type='text/javascript'>
 
     function pencocokanPassword() {
         var spasi = " ";
@@ -52,13 +52,13 @@
             }
 
         }
-    }</script>
+    }</script>--%>
 </head>
 <body>
-    <p><font size="3" id='pesan'> </font></p>
+    <p>${pesan}</p>
     <h1>Registrasi</h1>
 
-    <form method='post' name="myForm" onsubmit='return pencocokanPassword()' action='Dispatcher?page=goRegistrasi'>
+    <form method='post' action='Dispatcher?page=goRegistrasi'>
 
         <fieldset>
             <table border=2>
