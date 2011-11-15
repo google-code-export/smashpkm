@@ -220,17 +220,29 @@ public class Controller {
         String namaBeasiswa = request.getParameter("namabeasiswa");
         String keterangan = request.getParameter("keterangan");
         String tanggalPublish = request.getParameter("tanggalpublish");
+        String tanggalKadaluwarsa = request.getParameter("tanggalkadaluwarsa");
+        String tanggalMulai = request.getParameter("tanggalmulai");
+        String tanggalHabis = request.getParameter("tanggalhabis");
 
         HttpSession session = request.getSession();
         BeasiswaJpaController beasiswaBaru = new BeasiswaJpaController();
         beasiswa.setNamabeasiswa(namaBeasiswa);
         beasiswa.setKeterangan(keterangan);
-        DateFormat formatter ; 
-        Date date;
+        DateFormat formatter;
+        Date datePublish;
+        Date dateKadaluwarsa;
+        Date dateMulai;
+        Date dateHabis;
         formatter = new SimpleDateFormat("MM-dd-yyyy");
-        date = (Date)formatter.parse(tanggalPublish);
-        beasiswa.setTanggalpublish(date);
-        request.setAttribute("beasiswa",beasiswa);
+        datePublish = (Date) formatter.parse(tanggalPublish);
+        dateKadaluwarsa = (Date) formatter.parse(tanggalKadaluwarsa);
+        dateMulai = (Date) formatter.parse(tanggalMulai);
+        dateHabis = (Date) formatter.parse(tanggalHabis);
+        beasiswa.setTanggalpublish(datePublish);
+        beasiswa.setTanggalpublish(dateKadaluwarsa);
+        beasiswa.setTanggalpublish(dateMulai);
+        beasiswa.setTanggalpublish(dateHabis);
+        request.setAttribute("beasiswa", beasiswa);
         try {
             beasiswaBaru.create(beasiswa);
         } catch (Exception e) {

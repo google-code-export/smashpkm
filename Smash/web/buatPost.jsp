@@ -76,7 +76,35 @@
                             tanggal kadaluwarsa:
                         </td>
                         <td>
-                            <input type="text" name="tanggalkadaluwarsa"/>
+                            <input id="demo2" type="text" name="tanggalkadaluwarsa" size="25" value="${beasiswa.tanggalpublish}"><a href="javascript:NewCal('demo2','ddmmyyyy')"><img src="images/cal.gif" width="16" height="16" border="0" alt="Pick a date"></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            &nbsp;
+                        </td>
+                        <td>
+                            &nbsp;
+                        </td>
+                        <td>
+                            tanggal mulai:
+                        </td>
+                        <td>
+                            <input id="demo3" type="text" name="tanggalmulai" size="25" value="${beasiswa.tanggalmulai}"><a href="javascript:NewCal('demo3','ddmmyyyy')"><img src="images/cal.gif" width="16" height="16" border="0" alt="Pick a date"></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            &nbsp;
+                        </td>
+                        <td>
+                            &nbsp;
+                        </td>
+                        <td>
+                            tanggal mulai:
+                        </td>
+                        <td>
+                            <input id="demo4" type="text" name="tanggalhabis" size="25" value="${beasiswa.tanggalhabis}"><a href="javascript:NewCal('demo4','ddmmyyyy')"><img src="images/cal.gif" width="16" height="16" border="0" alt="Pick a date"></a>
                         </td>
                     </tr>
 
