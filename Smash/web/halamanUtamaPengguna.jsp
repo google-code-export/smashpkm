@@ -1,49 +1,151 @@
-<%-- 
+<%--
     Document   : halamanUtamaPengguna
-    Created on : Oct 31, 2011, 9:48:55 AM
-    Author     : yosua
+    Created on : 04 Nov 11, 08:15:05
+    Author     : Danang
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-    "http://www.w3.org/TR/html4/loose.dtd">
-
-
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Registrasi</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>SMASH</title>
+        <meta name="keywords" content="Chrome Web Design, CSS, HTML, free template, piecemaker" />
+        <meta name="description" content="Chrome Web Design is a free website template integrated with PieceMaker 3D Flash Slider." />
+        <link href="templatemo_style.css" rel="stylesheet" type="text/css" />
+
+        <link rel="stylesheet" type="text/css" href="css/ddsmoothmenu.css" />
+
+        <script type="text/javascript" src="scripts/jquery.min.js"></script>
+        <script type="text/javascript" src="scripts/ddsmoothmenu.js">
+
+            /***********************************************
+             * Smooth Navigational Menu- (c) Dynamic Drive DHTML code library (www.dynamicdrive.com)
+             * This notice MUST stay intact for legal use
+             * Visit Dynamic Drive at http://www.dynamicdrive.com/ for full source code
+             ***********************************************/
+
+        </script>
+
+        <script type="text/javascript">
+
+            ddsmoothmenu.init({
+                mainmenuid: "templatemo_menu", //menu DIV id
+                orientation: 'h', //Horizontal or vertical menu: Set to "h" or "v"
+                classname: 'ddsmoothmenu', //class added to menu's outer DIV
+                //customtheme: ["#1c5a80", "#18374a"],
+                contentsource: "markup" //"markup" or ["container_id", "path_to_menu_file"]
+            })
+        </script>
 
     </head>
     <body>
-        <h1>Registrasi</h1>
-        <fieldset>
-            <table border="0.1">
-                <tr><td>
-                        <form method='post' action='Dispatcher'>
-                            <input type='submit' value='Status Mahasiswa' >
-                        </form>
-                    </td> </tr>
-                <tr><td>
-                        <form method='post' action='Dispatcher?page=pengaturanAkun'>
-                            <input type='submit' value='Pengaturan Akun' >
-                        </form>
-                    </td> </tr>
-                <tr><td>
-                        <form method='post' action='BeasiswaYangTersedia.jsp'>
-                            <input type='submit' value='Beasiswa yang Tersedia' >
-                        </form>
-                <tr><td>
-                        <form method='post' action='Dispatcher?page=daftarBeasiswa'>
-                            <input type='submit' value='Daftar Beasiswa' >
-                        </form>
-                    </td> </tr>
-                <tr><td>
-                        <form  method='post' action='Dispatcher?page=logout'>
-                            <input type='submit' value='Logout' >
-                        </form>
-                    </td> </tr>
-            </table>
-        </fieldset>
+
+        <div id="templatemo_wrapper">
+
+            <div id="templatemo_header">
+
+                <img src="images/logo.png"/>
+
+                <div id="templatemo_menu" class="ddsmoothmenu">
+                    <ul>
+                        <li><a href="index.html" class="selected">Home</a></li>
+                        <li><a href="about.html">About</a>
+                            <ul>
+                                <li><a href="http://www.templatemo.com/page/1">SMASH</a></li>
+                                <li><a href="http://www.templatemo.com/page/2">Our Team</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                    <br style="clear: left" />
+                </div> <!-- end of templatemo_menu -->
+
+            </div> <!-- end of header -->
+
+            <p align="right">Selamat Datang ${mahasiswa.nama}, <a href="Dispatcher?name=logout">(logout)</a></p>
+
+            <div id="templatemo_main">
+                <div class="sb_box">
+                </div>
+                <div class="col_fw">
+                    <div class="col_w460 float_l">
+                        <h2> </h2>
+                        <img src="images/utama.png"/>
+                        <div class="cleaner h20"></div>
+                    </div>
+                    <div class="col_w460 float_r">
+                        <h2>Menu Utama</h2>
+                        <div class="col_w460">
+                            <div class="fp_service_box fp_c1">
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <img src="images/1_64x64.png" alt="Image 1" />
+                                        </td>
+                                        <td>
+                                            <a href="pengaturan.jsp"><h4>Pengaturan Akun</h4></a>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="col_w460">
+                            <div class="fp_service_box fp_c2">
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <img src="images/32_64x64.png" alt="Image 2" />
+                                        </td>
+                                        <td>
+                                            <a href="#"> </a>
+                                            <h4>Status Beasiswa</h4>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="col_w460">
+                            <div class="fp_service_box fp_c3">
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <img src="images/list.png" alt="Image 3"/>
+                                        </td>
+                                        <td>
+                                            <a href="#"> </a>
+                                            <h4>Beasiswa yang Tersedia</h4>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="col_w460">
+                            <div class="fp_service_box fp_c4">
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <img src="images/50_64x64.png" alt="Image 4" />
+                                        </td>
+                                        <td>
+                                            <a href="#"> </a>
+                                            <h4>Daftar Beasiswa</h4>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cleaner"></div>
+                </div>
+            </div>
+        </div>
+        <div id="templatemo_footer_wrapper">
+            <div id="templatemo_footer">
+                Copyright Â© 2011 <a href="#">Smash Inc.</a> | Institut Teknologi Sepuluh Nopember
+                <div class="cleaner"></div>
+            </div>
+        </div>
+
     </body>
 </html>
