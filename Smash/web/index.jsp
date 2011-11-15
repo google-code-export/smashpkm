@@ -14,7 +14,7 @@
     </head>
     <body>
         <br>
-        <h1>login</h1>
+        <h1>login </h1>
         <form method='post' action='Dispatcher?page=login'>
             <fieldset>
                 <table border=0>
@@ -24,6 +24,7 @@
                         </td>
                         <td>
             <input type=text name='nrp' />
+
                         </td>
                     </tr>
                     <tr>

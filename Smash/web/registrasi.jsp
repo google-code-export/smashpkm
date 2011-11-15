@@ -53,12 +53,14 @@
 
         }
     }</script>--%>
+
 </head>
 <body>
     <p>${pesan}</p>
     <h1>Registrasi</h1>
 
     <form method='post' action='Dispatcher?page=goRegistrasi'>
+
 
         <fieldset>
             <table border=2>

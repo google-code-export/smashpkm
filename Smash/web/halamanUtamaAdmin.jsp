@@ -1,41 +1,36 @@
 <%-- 
-    Document   : halamanUtamaPengguna
-    Created on : Oct 31, 2011, 9:48:55 AM
+    Document   : halamanUtamaAdmin
+    Created on : Nov 8, 2011, 5:27:18 PM
     Author     : yosua
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-    "http://www.w3.org/TR/html4/loose.dtd">
-
+   "http://www.w3.org/TR/html4/loose.dtd">
 
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Registrasi</title>
+        <title>Halaman Utama Admin</title>
 
     </head>
     <body>
-        <h1>Registrasi</h1>
+        <h1>Halaman Utama Admin</h1>
         <fieldset>
             <table border="0.1">
                 <tr><td>
-                        <form method='post' action='Dispatcher'>
-                            <input type='submit' value='Status Mahasiswa' >
+                        <form method='post' action='Dispatcher?page=pengaturanPost'>
+                            <input type='submit' value='Posts' >
                         </form>
                     </td> </tr>
                 <tr><td>
-                        <form method='post' action='Dispatcher?page=pengaturanAkun'>
-                            <input type='submit' value='Pengaturan Akun' >
+                        <form method='post' action='Dispatcher?page=pengaturanMember'>
+                            <input type='submit' value='Members' >
                         </form>
                     </td> </tr>
                 <tr><td>
                         <form method='post' action='BeasiswaYangTersedia.jsp'>
-                            <input type='submit' value='Beasiswa yang Tersedia' >
-                        </form>
-                <tr><td>
-                        <form method='post' action='Dispatcher?page=daftarBeasiswa'>
-                            <input type='submit' value='Daftar Beasiswa' >
+                            <input type='submit' value='Rekapitulasi' >
                         </form>
                     </td> </tr>
                 <tr><td>
@@ -47,3 +42,4 @@
         </fieldset>
     </body>
 </html>
+
