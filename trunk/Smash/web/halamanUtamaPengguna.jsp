@@ -84,7 +84,7 @@
                                             <img src="images/1_64x64.png" alt="Image 1" />
                                         </td>
                                         <td>
-                                            <a href="pengaturan.jsp"><h4>Pengaturan Akun</h4></a>
+                                            <a href="Dispatcher?page=pengaturanAkun"><h4>Pengaturan Akun</h4></a>
                                         </td>
                                     </tr>
                                 </table>

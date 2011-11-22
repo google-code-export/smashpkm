@@ -114,11 +114,11 @@
 
                 <div id="templatemo_menu" class="ddsmoothmenu">
                     <ul>
-                        <li><a href="index.html" class="selected">Home</a></li>
+                        <li><a href="/Smash" class="selected">Home</a></li>
                         <li><a href="about.html">About</a>
                             <ul>
-                                <li><a href="http://www.templatemo.com/page/1">SMASH</a></li>
-                                <li><a href="http://www.templatemo.com/page/2">Our Team</a></li>
+                                <li><a href="Dispatcher?page=home">SMASH</a></li>
+                                <li><a href="Dispatcher?page=home">Our Team</a></li>
                             </ul>
                         </li>
                         <li><a href="contact.html">Contact</a></li>
@@ -188,6 +188,7 @@
 
                             <br/><fieldset>
                                 <table border=0>
+                                    <dd/><font color="red"><%= request.getAttribute("pesan")%></font>
                                     <br/>
                                     <tr>
                                         <td>
@@ -200,7 +201,7 @@
 
                                     <tr>
                                         <td>
-                                            <dd/><h6>Username</h6>
+                                            <dd/><h6>Username (NIM)</h6>
                                         </td>
                                         <td>
                                             <h6>: <input type=text name='nrp'/></h6>
@@ -241,7 +242,7 @@
 
         <div id="templatemo_footer_wrapper">
             <div id="templatemo_footer">
-                Copyright Â© 2011 <a href="#">Smash Inc.</a> | Institut Teknologi Sepuluh Nopember
+                Copyright © 2011 <a href="#">Smash Inc.</a> | Institut Teknologi Sepuluh Nopember
                 <div class="cleaner"></div>
             </div>
         </div>

@@ -37,18 +37,17 @@ public class Controller {
         String password = request.getParameter("password");
         String passwordUlangi = request.getParameter("password_ulangi");
         HttpSession session = request.getSession();
+        MahasiswaJpaController registrasi = new MahasiswaJpaController();
+        registrasi.findMahasiswaByNrp(nrp);
 
 
-        if (nama.equals("") || nrp.equals("") || password.equals("")) {
-            session.setAttribute("pesan", "isikan seluruh data");
+        if (nrp.equals("") || nama.equals("") || password.equals("") || passwordUlangi.equals("")) {
+            request.setAttribute("pesan", "Isikan seluruh field yang tersedia sesuai dengan data diri Anda");
             mahasiswa.setLoginstat(false);
+        } else {
 
-            if (nrp.equals("") || nama.equals("") || password.equals("") || passwordUlangi.equals("")) {
-                session.setAttribute("pesan", "Isikan seluruh form sesuai data anda");
-                mahasiswa.setLoginstat(false);
-            } else {
-                if (password.equals(passwordUlangi)) {
-                    MahasiswaJpaController registrasi = new MahasiswaJpaController();
+            if (password.equals(passwordUlangi)) {
+                if (registrasi.findMahasiswaByNrp(nrp) == null) {
                     mahasiswa.setNrp(nrp);
                     mahasiswa.setNama(nama);
                     mahasiswa.setPassword(password);
@@ -65,28 +64,12 @@ public class Controller {
 
                     }
                 } else {
-                    session.setAttribute("pesan", "password harus sama");
-                    mahasiswa.setLoginstat(false);
+                    request.setAttribute("pesan", "Username yang Anda masukkan telah terdaftar");
                 }
-            }
-        }
-        if (nama.equals("") || nrp.equals("") || password.equals("")) {
-            session.setAttribute("pesan", "isikan seluruh data");
-            mahasiswa.setLoginstat(false);
-        } else {
-            MahasiswaJpaController registrasi = new MahasiswaJpaController();
-            mahasiswa.setNrp(nrp);
-            mahasiswa.setNama(nama);
-            mahasiswa.setPassword(password);
-            try {
-                registrasi.create(mahasiswa);
-                session.setAttribute("nrp", nrp);
-                session.setAttribute("mahasiswa", mahasiswa);
-                session.setAttribute("password", password);
-                session.setAttribute("pesan", "");
-                mahasiswa.setLoginstat(true);
-            } catch (Exception e) {
-                e.printStackTrace();
+                    }
+             else {
+                request.setAttribute("pesan", "Password yang Anda masukkan tidak sesuai");
+                mahasiswa.setLoginstat(false);
             }
         }
     }
@@ -106,7 +89,6 @@ public class Controller {
                 session.setAttribute("nrp", nrp);
                 session.setAttribute("mahasiswa", mahasiswa);
                 session.setAttribute("password", password);
-                session.setAttribute("pesan", "");
                 try {
                     login.edit(mahasiswa);
                 } catch (Exception e) {
@@ -118,6 +100,7 @@ public class Controller {
 
         } else {
             mahasiswa.setLoginstat(false);
+            request.setAttribute("pesan", "Username dan password Anda tidak ditemukan");
         }
         return mahasiswa;
     }
