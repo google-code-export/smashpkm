@@ -186,6 +186,7 @@
                         <form method='post' action='Dispatcher?page=login'>
                             <br/><fieldset>
                                 <table border=0>
+                                    <dd/><font color="red"><%= request.getAttribute("pesan")%></font>
                                     <br/>
                                     <tr>
                                         <td>
@@ -232,7 +233,7 @@
 
         <div id="templatemo_footer_wrapper">
             <div id="templatemo_footer">
-                Copyright Â© 2011 <a href="#">Smash Inc.</a> | Institut Teknologi Sepuluh Nopember
+                Copyright © 2011 <a href="#">Smash Inc.</a> | Institut Teknologi Sepuluh Nopember
                 <div class="cleaner"></div>
             </div>
         </div>

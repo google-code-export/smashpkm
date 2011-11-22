@@ -33,6 +33,8 @@ public class Dispatcher extends HttpServlet {
         Controller controller = new Controller(request);
         Mahasiswa mahasiswa = new Mahasiswa();
         Beasiswa beasiswa =new Beasiswa();
+        String pesan = " ";
+        request.setAttribute("pesan", pesan);
 
 
         if (page != null) {

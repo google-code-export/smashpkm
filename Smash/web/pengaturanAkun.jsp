@@ -119,138 +119,138 @@
 
                         <tr>
                             <td>
-                                Nama:
+                                <font color="black">Nama</font>
                             </td>
                             <td>
-                                <input type=text name='nama' value='${mahasiswa.nama}' />
+                                : <input type=text name='nama' value='${mahasiswa.nama}' />
                             </td>
 
                         </tr>
 
                         <tr>
                             <td>
-                                NRP     :
+                                <font color="black">NRP</font>
                             </td>
                             <td>
-                                ${mahasiswa.nrp}
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>
-                                No HP     :
-                            </td>
-
-                            <td>
-                                <input type=text name='no_hp' value='${mahasiswa.noHp}'/>
+                                : ${mahasiswa.nrp}
                             </td>
                         </tr>
 
                         <tr>
                             <td>
-                                Alamat Asal :
+                                <font color="black">No HP</font>
                             </td>
+
                             <td>
-                                <input type=text name='alamat_asal' value='${mahasiswa.alamatAsal}'/>
-                            <td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Alamat Surabaya:
-                            </td>
-                            <td>
-                                <input type=text name='alamat_surabaya' value='${mahasiswa.alamatSurabaya}'/>
+                                : <input type=text name='no_hp' value='${mahasiswa.noHp}'/>
                             </td>
                         </tr>
 
                         <tr>
                             <td>
-                                Nilai TOEFL     :
+                                <font color="black">Alamat Asal</font>
                             </td>
                             <td>
-                                <input type=text name='nilai_toefl' value='${mahasiswa.nilaiToefl}'/>
+                                : <input type=text name='alamat_asal' value='${mahasiswa.alamatAsal}'/>
+                            <td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <font color="black">Alamat Surabaya</font>
+                            </td>
+                            <td>
+                                : <input type=text name='alamat_surabaya' value='${mahasiswa.alamatSurabaya}'/>
                             </td>
                         </tr>
 
                         <tr>
                             <td>
-                                Semester     :
-                            </td>
-
-                            <td>
-                                <input type=text name='semester' value='${mahasiswa.semester}'/>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>
-                                IPK :
+                                <font color="black">Nilai TOEFL</font>
                             </td>
                             <td>
-                                <input type=text name='ipk' value='${mahasiswa.ipk}'/>
-                            <td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Nama Ayah:
-                            </td>
-                            <td>
-                                <input type=text name='nama_ayah' value='${mahasiswa.namaAyah}'/>
+                                : <input type=text name='nilai_toefl' value='${mahasiswa.nilaiToefl}'/>
                             </td>
                         </tr>
 
                         <tr>
                             <td>
-                                Pekerjaan Ayah    :
+                                <font color="black">Semester</font>
                             </td>
+
                             <td>
-                                <input type=text name='pekerjaan_ayah'value='${mahasiswa.pekerjaanAyah}'/>
+                                : <input type=text name='semester' value='${mahasiswa.semester}'/>
                             </td>
                         </tr>
 
                         <tr>
                             <td>
-                                Penghasilan Ayah  :
+                                <font color="black">IPK</font>
                             </td>
-
                             <td>
-                                <input type=text name='penghasilan_ayah' value='${mahasiswa.penghasilanAyah}'/>
+                                : <input type=text name='ipk' value='${mahasiswa.ipk}'/>
+                            <td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <font color="black">Nama Ayah</font>
+                            </td>
+                            <td>
+                                : <input type=text name='nama_ayah' value='${mahasiswa.namaAyah}'/>
                             </td>
                         </tr>
 
                         <tr>
                             <td>
-                                Nama Ibu :
+                                <font color="black">Pekerjaan Ayah</font>
                             </td>
                             <td>
-                                <input type=text name='nama_ibu' value='${mahasiswa.namaIbu}'/>
-                            <td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Pekerjaan Ibu:
-                            </td>
-                            <td>
-                                <input type=text name='pekerjaan_ibu' value='${mahasiswa.pekerjaanIbu}'/>
+                                : <input type=text name='pekerjaan_ayah'value='${mahasiswa.pekerjaanAyah}'/>
                             </td>
                         </tr>
 
                         <tr>
                             <td>
-                                Penghasilan Ibu     :
+                                <font color="black">Penghasilan Ayah</font>
                             </td>
+
                             <td>
-                                <input type=text name='penghasilan_ibu' value='${mahasiswa.penghasilanIbu}'/>
+                                : <input type=text name='penghasilan_ayah' value='${mahasiswa.penghasilanAyah}'/>
                             </td>
                         </tr>
 
                         <tr>
                             <td>
-                                Jumlah Saudara     :
+                                <font color="black">Nama Ibu</font>
+                            </td>
+                            <td>
+                                : <input type=text name='nama_ibu' value='${mahasiswa.namaIbu}'/>
+                            <td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <font color="black">Pekerjaan Ibu</font>
+                            </td>
+                            <td>
+                                : <input type=text name='pekerjaan_ibu' value='${mahasiswa.pekerjaanIbu}'/>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <font color="black">Penghasilan Ibu</font>
+                            </td>
+                            <td>
+                                : <input type=text name='penghasilan_ibu' value='${mahasiswa.penghasilanIbu}'/>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <font color="black">Jumlah Saudara</font>
                             </td>
 
                             <td>
-                                <input type=text name='jumlah_saudara' value='${mahasiswa.jumlahSaudara}'/>
+                                : <input type=text name='jumlah_saudara' value='${mahasiswa.jumlahSaudara}'/>
                             </td>
                         </tr>
 
@@ -262,7 +262,7 @@
 
                 </fieldset>
             </form>
-
+</div>
 
     </body>
 </html>
