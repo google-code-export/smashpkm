@@ -8,16 +8,22 @@ package controller;
  *
  * @author yosua
  */
+import java.io.File;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.*;
 import model.Beasiswa;
 import model.Mahasiswa;
+import model.Pengajuan;
 
 /**
  *
@@ -51,6 +57,20 @@ public class Controller {
                     mahasiswa.setNrp(nrp);
                     mahasiswa.setNama(nama);
                     mahasiswa.setPassword(password);
+                 /*   mahasiswa.setNohp("");
+                    mahasiswa.setAlamatasal("");
+                    mahasiswa.setAlamatsurabaya("");
+                    mahasiswa.setNilaitoefl(0);
+                    mahasiswa.setSemester(0);
+                    mahasiswa.setIpk(0);
+                    mahasiswa.setNamaayah("");
+                    mahasiswa.setNamaibu("");
+                    mahasiswa.setPekerjaanayah("");
+                    mahasiswa.setPekerjaanibu("");
+                    mahasiswa.setPenghasilanayah(0);
+                    mahasiswa.setPenghasilanibu(0);
+                    mahasiswa.setJumlahsaudara(0);
+                    mahasiswa.setIsadmin(false);*/
 
                     try {
                         registrasi.create(mahasiswa);
@@ -66,8 +86,7 @@ public class Controller {
                 } else {
                     request.setAttribute("pesan", "Username yang Anda masukkan telah terdaftar");
                 }
-                    }
-             else {
+            } else {
                 request.setAttribute("pesan", "Password yang Anda masukkan tidak sesuai");
                 mahasiswa.setLoginstat(false);
             }
@@ -123,6 +142,7 @@ public class Controller {
         MahasiswaJpaController aturAkun = new MahasiswaJpaController();
         HttpSession session = request.getSession();
         mahasiswa = aturAkun.findMahasiswaByNrp((String) session.getAttribute("nrp"));
+        session.setAttribute("mahasiswa", mahasiswa);
         return mahasiswa;
     }
 
@@ -154,6 +174,7 @@ public class Controller {
         mahasiswa = aturAkun.findMahasiswaByNrp((String) session.getAttribute("nrp"));
 
         mahasiswa.setNama(nama);
+        mahasiswa.setNohp(noHp);
         mahasiswa.setAlamatasal(alamatAsal);
         mahasiswa.setAlamatsurabaya(alamatSurabaya);
         mahasiswa.setNilaitoefl(nilaiToefl);
@@ -225,7 +246,7 @@ public class Controller {
         beasiswa.setTanggalpublish(dateKadaluwarsa);
         beasiswa.setTanggalpublish(dateMulai);
         beasiswa.setTanggalpublish(dateHabis);
-        request.setAttribute("beasiswa", beasiswa);
+        session.setAttribute("beasiswa", beasiswa);
         try {
             beasiswaBaru.create(beasiswa);
         } catch (Exception e) {
@@ -236,9 +257,10 @@ public class Controller {
 
     public void setListBeasiswa() {
         BeasiswaJpaController listBeasiswa = new BeasiswaJpaController();
+        HttpSession session = request.getSession();
         List<Beasiswa> list = new ArrayList<Beasiswa>();
         list = listBeasiswa.getAllBeasiswa();
-        request.setAttribute("list_beasiswa", list);
+        session.setAttribute("list_beasiswa", list);
     }
 
     public void setEditPost(Beasiswa beasiswa) {
@@ -257,8 +279,8 @@ public class Controller {
         HttpSession session = request.getSession();
         BeasiswaJpaController aturPost = new BeasiswaJpaController();
         beasiswa = aturPost.findBeasiswaById(idBeasiswa);
-        request.setAttribute("beasiswa", beasiswa);
-        request.setAttribute("idbeasiswa", idBeasiswa);
+        session.setAttribute("beasiswa", beasiswa);
+        session.setAttribute("idbeasiswa", idBeasiswa);
 
     }
 
@@ -273,5 +295,11 @@ public class Controller {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public void setBeasiswaPengajuan() {
+        String idBeasiswa = request.getParameter("beasiswa");
+        HttpSession session = request.getSession();
+        session.setAttribute("idbeasiswa", idBeasiswa);
     }
 }

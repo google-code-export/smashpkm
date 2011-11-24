@@ -128,8 +128,8 @@
                                             <img src="images/50_64x64.png" alt="Image 4" />
                                         </td>
                                         <td>
-                                            <a href="#"> </a>
-                                            <h4>Daftar Beasiswa</h4>
+                                            
+                                            <a href="Dispatcher?page=daftarBeasiswa"<h4>Daftar Beasiswa</h4> </a>
                                         </td>
                                     </tr>
                                 </table>

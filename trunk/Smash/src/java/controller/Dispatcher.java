@@ -1,8 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package controller;
 
 import java.io.IOException;
@@ -17,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Beasiswa;
 import model.Mahasiswa;
+import model.Pengajuan;
 
 /**
  *
@@ -32,19 +28,20 @@ public class Dispatcher extends HttpServlet {
         RequestDispatcher dis = null;
         Controller controller = new Controller(request);
         Mahasiswa mahasiswa = new Mahasiswa();
-        Beasiswa beasiswa =new Beasiswa();
+        Beasiswa beasiswa = new Beasiswa();
+        Pengajuan pengajuan=new Pengajuan();
         String pesan = " ";
         request.setAttribute("pesan", pesan);
 
 
         if (page != null) {
             if (page.equals("home")) {
-                mahasiswa=controller.getMahasiswa();
-                if (mahasiswa.getIsadmin()==false) {
+                mahasiswa = controller.getMahasiswa();
+                if (mahasiswa.getIsadmin() == false) {
                     dis = request.getRequestDispatcher("halamanUtamaPengguna.jsp");
                 } else {
                     dis = request.getRequestDispatcher("halamanUtamaAdmin.jsp");
-                    
+
                 }
             }
             if (page.equals("registrasi")) {
@@ -60,7 +57,7 @@ public class Dispatcher extends HttpServlet {
                 }
 
 
-               if (mahasiswa.getLoginstat() == true) {
+                if (mahasiswa.getLoginstat() == true) {
                     dis = request.getRequestDispatcher("halamanUtamaPengguna.jsp");
                 } else {
                     dis = request.getRequestDispatcher("registrasi.jsp");
@@ -69,31 +66,32 @@ public class Dispatcher extends HttpServlet {
             }
             if (page.equals("login")) {
                 mahasiswa = controller.getLogin();
-                if(mahasiswa.getIsadmin()==true){
-                     if (mahasiswa.getLoginstat() == true) {
-                    dis = request.getRequestDispatcher("halamanUtamaAdmin.jsp");
+                if (mahasiswa.getIsadmin() == true) {
+                    if (mahasiswa.getLoginstat() == true) {
+                        dis = request.getRequestDispatcher("halamanUtamaAdmin.jsp");
+                    } else {
+                        dis = request.getRequestDispatcher("index.jsp");
+                    }
+
                 } else {
-                    dis = request.getRequestDispatcher("index.jsp");
-                }
-                    
-                }else{
-                if (mahasiswa.getLoginstat() == true) {
-                    dis = request.getRequestDispatcher("halamanUtamaPengguna.jsp");
-                } else {
-                    dis = request.getRequestDispatcher("index.jsp");
-                }
+                    if (mahasiswa.getLoginstat() == true) {
+                        dis = request.getRequestDispatcher("halamanUtamaPengguna.jsp");
+                    } else {
+                        dis = request.getRequestDispatcher("index.jsp");
+                    }
                 }
             }
 
             if (page.equals("pengaturanAkun")) {
+                mahasiswa = controller.getMahasiswa();
                 dis = request.getRequestDispatcher("pengaturanAkun.jsp");
-                mahasiswa=controller.getMahasiswa();
                 
-                
+
+
             }
-             if (page.equals("setPengaturanAkun")) {
+            if (page.equals("setPengaturanAkun")) {
                 controller.setAturAkun(mahasiswa);
-                 dis = request.getRequestDispatcher("pengaturanAkun.jsp");
+                dis = request.getRequestDispatcher("pengaturanAkun.jsp");
 
             }
             if (page.equals("pengaturanPassword")) {
@@ -106,9 +104,20 @@ public class Dispatcher extends HttpServlet {
                 dis = request.getRequestDispatcher("pengaturanPassword.jsp");
 
             }
-            if (page.equals("daftarBeasiswa")) {
+            if (page.equals("listDaftarBeasiswa")) {
                 controller.setListBeasiswa();
                 dis = request.getRequestDispatcher("daftarBeasiswa.jsp");
+
+            }
+            if (page.equals("daftarBeasiswa")) {
+                controller.setBeasiswaPengajuan();
+                dis = request.getRequestDispatcher("halamanDaftarBeasiswa.jsp");
+
+            }
+            if (page.equals("goDaftarBeasiswa")) {
+
+                controller.setBuatPengajuan(pengajuan);
+                dis = request.getRequestDispatcher("halamanDaftarBeasiswa.jsp");
 
             }
             if (page.equals("pengaturanPost")) {
@@ -153,7 +162,7 @@ public class Dispatcher extends HttpServlet {
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /** 
+    /**
      * Handles the HTTP <code>GET</code> method.
      * @param request servlet request
      * @param response servlet response
@@ -162,15 +171,15 @@ public class Dispatcher extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
+            throws ServletException, IOException {
         try {
             processRequest(request, response);
         } catch (ParseException ex) {
             Logger.getLogger(Dispatcher.class.getName()).log(Level.SEVERE, null, ex);
         }
-    } 
+    }
 
-    /** 
+    /**
      * Handles the HTTP <code>POST</code> method.
      * @param request servlet request
      * @param response servlet response
@@ -179,7 +188,7 @@ public class Dispatcher extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
+            throws ServletException, IOException {
         try {
             processRequest(request, response);
         } catch (ParseException ex) {
@@ -187,7 +196,7 @@ public class Dispatcher extends HttpServlet {
         }
     }
 
-    /** 
+    /**
      * Returns a short description of the servlet.
      * @return a String containing servlet description
      */
@@ -195,5 +204,4 @@ public class Dispatcher extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
 }
