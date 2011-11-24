@@ -142,7 +142,7 @@
                             </td>
 
                             <td>
-                                : <input type=text name='no_hp' value='${mahasiswa.noHp}'/>
+                                : <input type=text name='no_hp' value='${mahasiswa.nohp}'/>
                             </td>
                         </tr>
 
@@ -151,7 +151,7 @@
                                 <font color="black">Alamat Asal</font>
                             </td>
                             <td>
-                                : <input type=text name='alamat_asal' value='${mahasiswa.alamatAsal}'/>
+                                : <input type=text name='alamat_asal' value='${mahasiswa.alamatasal}'/>
                             <td>
                         </tr>
                         <tr>
@@ -159,7 +159,7 @@
                                 <font color="black">Alamat Surabaya</font>
                             </td>
                             <td>
-                                : <input type=text name='alamat_surabaya' value='${mahasiswa.alamatSurabaya}'/>
+                                : <input type=text name='alamat_surabaya' value='${mahasiswa.alamatsurabaya}'/>
                             </td>
                         </tr>
 
@@ -168,7 +168,7 @@
                                 <font color="black">Nilai TOEFL</font>
                             </td>
                             <td>
-                                : <input type=text name='nilai_toefl' value='${mahasiswa.nilaiToefl}'/>
+                                : <input type=text name='nilai_toefl' value='${mahasiswa.nilaitoefl}'/>
                             </td>
                         </tr>
 
@@ -195,7 +195,7 @@
                                 <font color="black">Nama Ayah</font>
                             </td>
                             <td>
-                                : <input type=text name='nama_ayah' value='${mahasiswa.namaAyah}'/>
+                                : <input type=text name='nama_ayah' value='${mahasiswa.namaayah}'/>
                             </td>
                         </tr>
 
@@ -204,7 +204,7 @@
                                 <font color="black">Pekerjaan Ayah</font>
                             </td>
                             <td>
-                                : <input type=text name='pekerjaan_ayah'value='${mahasiswa.pekerjaanAyah}'/>
+                                : <input type=text name='pekerjaan_ayah'value='${mahasiswa.pekerjaanayah}'/>
                             </td>
                         </tr>
 
@@ -214,7 +214,7 @@
                             </td>
 
                             <td>
-                                : <input type=text name='penghasilan_ayah' value='${mahasiswa.penghasilanAyah}'/>
+                                : <input type=text name='penghasilan_ayah' value='${mahasiswa.penghasilanayah}'/>
                             </td>
                         </tr>
 
@@ -223,7 +223,7 @@
                                 <font color="black">Nama Ibu</font>
                             </td>
                             <td>
-                                : <input type=text name='nama_ibu' value='${mahasiswa.namaIbu}'/>
+                                : <input type=text name='nama_ibu' value='${mahasiswa.namaibu}'/>
                             <td>
                         </tr>
                         <tr>
@@ -231,7 +231,7 @@
                                 <font color="black">Pekerjaan Ibu</font>
                             </td>
                             <td>
-                                : <input type=text name='pekerjaan_ibu' value='${mahasiswa.pekerjaanIbu}'/>
+                                : <input type=text name='pekerjaan_ibu' value='${mahasiswa.pekerjaanibu}'/>
                             </td>
                         </tr>
 
@@ -240,7 +240,7 @@
                                 <font color="black">Penghasilan Ibu</font>
                             </td>
                             <td>
-                                : <input type=text name='penghasilan_ibu' value='${mahasiswa.penghasilanIbu}'/>
+                                : <input type=text name='penghasilan_ibu' value='${mahasiswa.penghasilanibu}'/>
                             </td>
                         </tr>
 
@@ -250,7 +250,7 @@
                             </td>
 
                             <td>
-                                : <input type=text name='jumlah_saudara' value='${mahasiswa.jumlahSaudara}'/>
+                                : <input type=text name='jumlah_saudara' value='${mahasiswa.jumlahsaudara}'/>
                             </td>
                         </tr>
 
