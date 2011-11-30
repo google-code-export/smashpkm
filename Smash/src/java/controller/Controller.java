@@ -57,7 +57,7 @@ public class Controller {
                     mahasiswa.setNrp(nrp);
                     mahasiswa.setNama(nama);
                     mahasiswa.setPassword(password);
-                 /*   mahasiswa.setNohp("");
+                    /*   mahasiswa.setNohp("");
                     mahasiswa.setAlamatasal("");
                     mahasiswa.setAlamatsurabaya("");
                     mahasiswa.setNilaitoefl(0);
@@ -78,6 +78,7 @@ public class Controller {
                         session.setAttribute("mahasiswa", mahasiswa);
                         session.setAttribute("password", password);
                         session.setAttribute("pesan", "");
+                        session.setAttribute("pesan1", "");
                         mahasiswa.setLoginstat(true);
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -162,39 +163,51 @@ public class Controller {
         String pekerjaanIbu = request.getParameter("pekerjaan_ibu");
         String jumlahSaudara1 = request.getParameter("jumlah_saudara");
 
-        int nilaiToefl = Integer.parseInt(nilaiToefl1);
-        int semester = Integer.parseInt(semester1);
-        int ipk = Integer.parseInt(ipk1);
-        int penghasilanAyah = Integer.parseInt(penghasilanAyah1);
-        int penghasilanIbu = Integer.parseInt(penghasilanIbu1);
-        int jumlahSaudara = Integer.parseInt(jumlahSaudara1);
+        if (nama.equals("") || noHp.equals("") || alamatAsal.equals("") || nilaiToefl1.equals("")
+                || semester1.equals("") || ipk1.equals("") || namaAyah.equals("")
+                || penghasilanAyah1.equals("") || pekerjaanAyah.equals("") || namaIbu.equals("")
+                || penghasilanIbu1.equals("") || pekerjaanIbu.equals("") || jumlahSaudara1.equals("")) {
+            request.setAttribute("pesan", "Isikan seluruh field yang tersedia sesuai dengan data diri Anda");
 
-        MahasiswaJpaController aturAkun = new MahasiswaJpaController();
-        HttpSession session = request.getSession();
-        mahasiswa = aturAkun.findMahasiswaByNrp((String) session.getAttribute("nrp"));
+        } else {
+            int nilaiToefl = Integer.parseInt(nilaiToefl1);
+            int semester = Integer.parseInt(semester1);
+            int ipk = Integer.parseInt(ipk1);
+            int penghasilanAyah = Integer.parseInt(penghasilanAyah1);
+            int penghasilanIbu = Integer.parseInt(penghasilanIbu1);
+            int jumlahSaudara = Integer.parseInt(jumlahSaudara1);
 
-        mahasiswa.setNama(nama);
-        mahasiswa.setNohp(noHp);
-        mahasiswa.setAlamatasal(alamatAsal);
-        mahasiswa.setAlamatsurabaya(alamatSurabaya);
-        mahasiswa.setNilaitoefl(nilaiToefl);
-        mahasiswa.setSemester(semester);
-        mahasiswa.setIpk(ipk);
-        mahasiswa.setNamaayah(namaAyah);
-        mahasiswa.setNamaibu(namaIbu);
-        mahasiswa.setPekerjaanayah(pekerjaanAyah);
-        mahasiswa.setPekerjaanibu(pekerjaanIbu);
-        mahasiswa.setPenghasilanayah(penghasilanAyah);
-        mahasiswa.setPenghasilanibu(penghasilanIbu);
-        mahasiswa.setJumlahsaudara(jumlahSaudara);
-        mahasiswa.setIsadmin(false);
-        session.setAttribute("mahasiswa", mahasiswa);
-        try {
-            aturAkun.edit(mahasiswa);
+            MahasiswaJpaController aturAkun = new MahasiswaJpaController();
+            HttpSession session = request.getSession();
+            mahasiswa = aturAkun.findMahasiswaByNrp((String) session.getAttribute("nrp"));
 
-        } catch (Exception e) {
-            e.printStackTrace();
+            mahasiswa.setNama(nama);
+            mahasiswa.setNohp(noHp);
+            mahasiswa.setAlamatasal(alamatAsal);
+            mahasiswa.setAlamatsurabaya(alamatSurabaya);
+            mahasiswa.setNilaitoefl(nilaiToefl);
+            mahasiswa.setSemester(semester);
+            mahasiswa.setIpk(ipk);
+            mahasiswa.setNamaayah(namaAyah);
+            mahasiswa.setNamaibu(namaIbu);
+            mahasiswa.setPekerjaanayah(pekerjaanAyah);
+            mahasiswa.setPekerjaanibu(pekerjaanIbu);
+            mahasiswa.setPenghasilanayah(penghasilanAyah);
+            mahasiswa.setPenghasilanibu(penghasilanIbu);
+            mahasiswa.setJumlahsaudara(jumlahSaudara);
+            mahasiswa.setIsadmin(false);
+            session.setAttribute("mahasiswa", mahasiswa);
+
+            try {
+                aturAkun.edit(mahasiswa);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            request.setAttribute("pesan1", "Data yang Anda masukkan telah terimpan. Pastikan data yang Anda masukkan adalah benar");
+
         }
+
     }
 
     public void setAturPassword(Mahasiswa mahasiswa) {

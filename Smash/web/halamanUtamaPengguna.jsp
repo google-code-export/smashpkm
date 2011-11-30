@@ -62,8 +62,8 @@
                 </div> <!-- end of templatemo_menu -->
 
             </div> <!-- end of header -->
-
-            <p align="right">Selamat Datang ${mahasiswa.nama}, <a href="Dispatcher?name=logout">(logout)</a></p>
+            <br/>
+            <p align="right"><font color="black">Anda login sebagai ${mahasiswa.nama},</font><a style="color: red" href="Dispatcher?name=logout">(logout)</a></p>
 
             <div id="templatemo_main">
                 <div class="sb_box">
@@ -128,7 +128,7 @@
                                             <img src="images/50_64x64.png" alt="Image 4" />
                                         </td>
                                         <td>
-                                            
+
                                             <a href="Dispatcher?page=daftarBeasiswa"<h4>Daftar Beasiswa</h4> </a>
                                         </td>
                                     </tr>
