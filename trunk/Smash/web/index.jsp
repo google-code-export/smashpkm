@@ -58,49 +58,6 @@
             })
         </script>
 
-        <script type='text/javascript'>
-
-            function pencocokanPassword() {
-                var spasi = " ";
-                var password = document.myForm.password.value;
-                var passwordUlangi = document.myForm.password_ulangi.value;
-                var nama= document.myForm.nama.value;
-                var nrp= document.myForm.nrp.value;
-
-
-
-                if ((password == '') || (passwordUlangi == '')||(nama=='')||(nrp='')  ){
-                    document.getElementById('pesan').innerHTML = 'Isikan seluruh form sesuai data anda';
-
-                    //alert('Isikan seluruh form sesuai data anda');
-                    return false;
-
-
-                }
-
-                if (document.myForm.password.value.indexOf(spasi) > -1) {
-                    alert('password tidak boleh mengandung spasi');
-
-
-                    return false;
-
-                }
-                if (document.myForm.nrp.value.indexOf(spasi) > -1) {
-                    alert('nrp tidak boleh mengandung spasi');
-
-
-                    return false;
-
-                }
-                else {
-                    if (password != passwordUlangi) {
-                        alert ("Password harus sama");
-                        return false;
-                    }
-
-                }
-            }</script>
-
     </head>
     <body>
 

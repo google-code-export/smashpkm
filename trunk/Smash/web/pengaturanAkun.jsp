@@ -59,7 +59,7 @@
                 contentsource: "markup" //"markup" or ["container_id", "path_to_menu_file"]
             })
         </script>
-
+        <link rel="stylesheet" media="screen" href="buttonstyle.css">
     </head>
 
     <body>
@@ -85,10 +85,31 @@
                 </div> <!-- end of templatemo_menu -->
 
             </div> <!-- end of header -->
+            <br/>
+            <p align="right"><font color="black">Anda login sebagai ${mahasiswa.nama},</font><a style="color: red" href="Dispatcher?name=logout">(logout)</a></p>
+
+            <div class="content">
+                <table border="0">
+                    <tr>
+                        <td>
+                            <a href="Dispatcher?page=pengaturanAkun" title="" class="btn medium green">Profil</a>
+                        </td>
+                        <td>
+                            <a href="Dispatcher?page=home" title="" class="btn medium green">Menu Utama</a>
+                        </td>
+                        <td>
+                            <a href="Dispatcher?page=pengaturanPassword" title="" class="btn medium green">Ganti Password</a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
 
             <table border="0">
+                <font color="red"><%= request.getAttribute("pesan")%></font>
+                <font color="green"><%= request.getAttribute("pesan1")%></font>
+                <br/>
                 <tr>
-                    <td> <form method='post' action='Dispatcher?page=home'>
+                    <td> <form class="btn medium green" method='post' action='Dispatcher?page=home'>
                             <input type='submit' value='Menu Utama' >
                         </form>
                     </td>
@@ -132,7 +153,7 @@
                                 <font color="black">NRP</font>
                             </td>
                             <td>
-                                : ${mahasiswa.nrp}
+                                : <font color="black">${mahasiswa.nrp}</font>
                             </td>
                         </tr>
 
@@ -151,7 +172,7 @@
                                 <font color="black">Alamat Asal</font>
                             </td>
                             <td>
-                                : <input type=text name='alamat_asal' value='${mahasiswa.alamatasal}'/>
+                                <font color="transparent">:  </font><textarea rows="2" cols="20" name='alamat_asal' value="${ mahasiswa.alamatasal}"></textarea>
                             <td>
                         </tr>
                         <tr>
@@ -159,7 +180,7 @@
                                 <font color="black">Alamat Surabaya</font>
                             </td>
                             <td>
-                                : <input type=text name='alamat_surabaya' value='${mahasiswa.alamatsurabaya}'/>
+                                <font color="transparent">: </font><textarea rows="2" cols="20" name='alamat_surabaya' value='${mahasiswa.alamatsurabaya}'></textarea>
                             </td>
                         </tr>
 
@@ -254,15 +275,13 @@
                             </td>
                         </tr>
 
-
-
                     </table>
 
                     <input type='submit' value='update'/>
 
                 </fieldset>
             </form>
-</div>
+        </div>
 
     </body>
 </html>
