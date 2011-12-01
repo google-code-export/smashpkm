@@ -10,8 +10,9 @@
 
 <html>
     <head>
+        <link rel='icon' href="images/favicon.ico" />
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title>SMASH</title>
+        <title>Pengaturan Akun-SMASH</title>
         <meta name="keywords" content="Chrome Web Design, CSS, HTML, free template, piecemaker" />
         <meta name="description" content="Chrome Web Design is a free website template integrated with PieceMaker 3D Flash Slider." />
         <link href="templatemo_style.css" rel="stylesheet" type="text/css" />
@@ -95,49 +96,22 @@
                             <a href="Dispatcher?page=pengaturanAkun" title="" class="btn medium green">Profil</a>
                         </td>
                         <td>
-                            <a href="Dispatcher?page=home" title="" class="btn medium green">Menu Utama</a>
+                            <a href="Dispatcher?page=pengaturanPassword" title="" class="btn medium green">Ganti Password</a>
                         </td>
                         <td>
-                            <a href="Dispatcher?page=pengaturanPassword" title="" class="btn medium green">Ganti Password</a>
+                            <a href="Dispatcher?page=home" title="" class="btn medium green">Menu Utama</a>
                         </td>
                     </tr>
                 </table>
             </div>
 
-            <table border="0">
-                <font color="red"><%= request.getAttribute("pesan")%></font>
-                <font color="green"><%= request.getAttribute("pesan1")%></font>
-                <br/>
-                <tr>
-                    <td> <form class="btn medium green" method='post' action='Dispatcher?page=home'>
-                            <input type='submit' value='Menu Utama' >
-                        </form>
-                    </td>
-                    <td> <form method='post' action='Dispatcher?page=home'>
-                            <input type='submit' value='Profil' >
-                        </form>
-                    </td>
-                    <td>
-                        <form method='post' action='Dispatcher?page=pengaturanPassword'>
-                            <input type='submit' value='Ganti Password' >
-                        </form>
-                    </td>
-                    <td>
-                        <form method='post' action='Dispatcher?page=statusMahasiswa'>
-                            <input type='submit' value='Status Mahasiswa' >
-                        </form>
-                    </td>
-                    <td>
-                        <form method='post' action='Dispatcher?page=logout'>
-                            <input type='submit' value='Logout' >
-                        </form>
-                    </td></tr>
-            </table>
-            <form method='post'  action='Dispatcher?page=setPengaturanAkun'>
+            <br/>
 
+            <form method='post'  action='Dispatcher?page=setPengaturanAkun'>
                 <fieldset>
                     <table border=0>
-
+                        <font color="red"><%= request.getAttribute("pesan")%></font>
+                        <font color="green"><%= request.getAttribute("pesan1")%></font>
                         <tr>
                             <td>
                                 <font color="black">Nama</font>
@@ -282,7 +256,12 @@
                 </fieldset>
             </form>
         </div>
-
+        <div id="templatemo_footer_wrapper">
+            <div id="templatemo_footer">
+                Copyright © 2011 <a href="#">Smash Inc.</a> | Institut Teknologi Sepuluh Nopember
+                <div class="cleaner"></div>
+            </div>
+        </div>
     </body>
 </html>
 

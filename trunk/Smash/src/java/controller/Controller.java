@@ -116,6 +116,7 @@ public class Controller {
                 }
             } else {
                 mahasiswa.setLoginstat(false);
+                request.setAttribute("pesan", "Username dan password Anda tidak ditemukan");
             }
 
         } else {
@@ -213,22 +214,33 @@ public class Controller {
     public void setAturPassword(Mahasiswa mahasiswa) {
         String passwordLama = request.getParameter("password_lama");
         String passwordBaru = request.getParameter("password_baru");
+        String ulangiPassword = request.getParameter("password_baru_ulangi");
         MahasiswaJpaController aturPassword = new MahasiswaJpaController();
         HttpSession session = request.getSession();
         mahasiswa = aturPassword.findMahasiswaByNrp((String) session.getAttribute("nrp"));
 
-        if (aturPassword.findMahasiswaByNrp((String) session.getAttribute("nrp")) != null) {
-            mahasiswa = aturPassword.findMahasiswaByNrp((String) session.getAttribute("nrp"));
-            if (mahasiswa.getPassword().equals(passwordLama)) {
-                mahasiswa.setPassword(passwordBaru);
+        if (passwordLama.equals("") || passwordBaru.equals("") || ulangiPassword.equals("")) {
+            request.setAttribute("pesan", "Isikan seluruh field yang tersedia sesuai dengan data diri Anda");
+            mahasiswa.setLoginstat(false);
+        } else {
 
-                try {
-                    aturPassword.edit(mahasiswa);
-                    session.setAttribute("pesan", "Password Berhasil Diubah");
-                } catch (Exception e) {
-                    e.printStackTrace();
+            if (passwordBaru.equals(ulangiPassword)) {
+                if (mahasiswa.getPassword().equals(passwordLama)) {
+                    mahasiswa.setPassword(passwordBaru);
+
+                    try {
+                        aturPassword.edit(mahasiswa);
+                        request.setAttribute("pesan", "Password Anda telah diganti");
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                } else {
+                    request.setAttribute("pesan", "Password yang Anda masukkan tidak sesuai");
+                    mahasiswa.setLoginstat(false);
                 }
-
+            } else {
+                request.setAttribute("pesan", "Password Baru yang Anda masukkan tidak sesuai dengan ulangi Password");
+                mahasiswa.setLoginstat(false);
             }
         }
     }

@@ -8,8 +8,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
+        <link rel='icon' href="images/favicon.ico" />
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title>SMASH</title>
+        <title>${mahasiswa.nama}</title>
         <meta name="keywords" content="Chrome Web Design, CSS, HTML, free template, piecemaker" />
         <meta name="description" content="Chrome Web Design is a free website template integrated with PieceMaker 3D Flash Slider." />
         <link href="templatemo_style.css" rel="stylesheet" type="text/css" />
@@ -70,7 +71,7 @@
                 </div>
                 <div class="col_fw">
                     <div class="col_w460 float_l">
-                        <h2> </h2>
+                        <h5> </h5>
                         <img src="images/utama.png"/>
                         <div class="cleaner h20"></div>
                     </div>
@@ -142,7 +143,7 @@
         </div>
         <div id="templatemo_footer_wrapper">
             <div id="templatemo_footer">
-                Copyright Â© 2011 <a href="#">Smash Inc.</a> | Institut Teknologi Sepuluh Nopember
+                Copyright © 2011 <a href="#">Smash Inc.</a> | Institut Teknologi Sepuluh Nopember
                 <div class="cleaner"></div>
             </div>
         </div>
