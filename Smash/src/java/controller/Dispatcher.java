@@ -58,7 +58,7 @@ public class Dispatcher extends HttpServlet {
 
 
                 if (mahasiswa.getLoginstat() == true) {
-                    dis = request.getRequestDispatcher("halamanUtamaPengguna.jsp");
+                    dis = request.getRequestDispatcher("index.jsp");
                 } else {
                     dis = request.getRequestDispatcher("registrasi.jsp");
                 }

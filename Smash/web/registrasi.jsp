@@ -8,8 +8,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
+        <link rel='icon' href="images/favicon.ico" />
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title>SMASH</title>
+        <title>Registrasi - SMASH</title>
         <meta name="keywords" content="Chrome Web Design, CSS, HTML, free template, piecemaker" />
         <meta name="description" content="Chrome Web Design is a free website template integrated with PieceMaker 3D Flash Slider." />
         <link href="templatemo_style.css" rel="stylesheet" type="text/css" />
@@ -58,51 +59,6 @@
             })
         </script>
 
-        <script type='text/javascript'>
-
-            function pencocokanPassword() {
-                var spasi = " ";
-                var password = document.myForm.password.value;
-                var passwordUlangi = document.myForm.password_ulangi.value;
-                var nama= document.myForm.nama.value;
-                var nrp= document.myForm.nrp.value;
-
-
-
-                if ((password == '') || (passwordUlangi == '')||(nama=='')||(nrp='')  ){
-                    document.getElementById('pesan').innerHTML = 'Isikan seluruh form sesuai data anda';
-
-                    //alert('Isikan seluruh form sesuai data anda');
-                    return false;
-
-
-                }
-
-                if (document.myForm.password.value.indexOf(spasi) > -1) {
-                    document.getElementById('pesan').innerHTML = 'password tidak boleh mengandung spasi';
-                    // alert('password tidak boleh mengandung spasi');
-
-
-                    return false;
-
-                }
-                if (document.myForm.nrp.value.indexOf(spasi) > -1) {
-                    document.getElementById('pesan').innerHTML = 'nrp tidak boleh mengandung spasi';
-                    // alert('nrp tidak boleh mengandung spasi');
-
-
-                    return false;
-
-                }
-                else {
-                    if (password != passwordUlangi) {
-                        document.getElementById('pesan').innerHTML = "Password harus sama";
-                        // alert ("Password harus sama");
-                        return false;
-                    }
-
-                }
-            }</script>
     </head>
     <body>
 
@@ -192,7 +148,7 @@
                                     <br/>
                                     <tr>
                                         <td>
-                                            <dd/><h6>Nama</h6>
+                                            <dd/><h6>Nama Lengkap</h6>
                                         </td>
                                         <td>
                                             <h6>: <input type=text name='nama' /></h6>
