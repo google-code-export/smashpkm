@@ -130,7 +130,7 @@
                                         </td>
                                         <td>
 
-                                            <a href="Dispatcher?page=daftarBeasiswa"<h4>Daftar Beasiswa</h4> </a>
+                                            <a href="Dispatcher?page=listDaftarBeasiswa"<h4>Daftar Beasiswa</h4> </a>
                                         </td>
                                     </tr>
                                 </table>

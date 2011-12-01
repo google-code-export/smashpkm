@@ -6,7 +6,6 @@
 package controller;
 
 import controller.exceptions.NonexistentEntityException;
-import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -15,15 +14,15 @@ import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import model.Beasiswa;
+import model.Pengajuan;
 
 /**
  *
  * @author yosua
  */
-public class BeasiswaJpaController {
+public class PengajuanJpaController {
 
-    public BeasiswaJpaController() {
+    public PengajuanJpaController() {
         emf = Persistence.createEntityManagerFactory("SmashPU");
     }
     private EntityManagerFactory emf = null;
@@ -32,12 +31,12 @@ public class BeasiswaJpaController {
         return emf.createEntityManager();
     }
 
-    public void create(Beasiswa beasiswa) {
+    public void create(Pengajuan pengajuan) {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            em.persist(beasiswa);
+            em.persist(pengajuan);
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -46,19 +45,19 @@ public class BeasiswaJpaController {
         }
     }
 
-    public void edit(Beasiswa beasiswa) throws NonexistentEntityException, Exception {
+    public void edit(Pengajuan pengajuan) throws NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            beasiswa = em.merge(beasiswa);
+            pengajuan = em.merge(pengajuan);
             em.getTransaction().commit();
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
-                String id = beasiswa.getIdbeasiswa();
-                if (findBeasiswa(id) == null) {
-                    throw new NonexistentEntityException("The beasiswa with id " + id + " no longer exists.");
+                String id = pengajuan.getIdpengajuan();
+                if (findPengajuan(id) == null) {
+                    throw new NonexistentEntityException("The pengajuan with id " + id + " no longer exists.");
                 }
             }
             throw ex;
@@ -74,14 +73,14 @@ public class BeasiswaJpaController {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Beasiswa beasiswa;
+            Pengajuan pengajuan;
             try {
-                beasiswa = em.getReference(Beasiswa.class, id);
-                beasiswa.getIdbeasiswa();
+                pengajuan = em.getReference(Pengajuan.class, id);
+                pengajuan.getIdpengajuan();
             } catch (EntityNotFoundException enfe) {
-                throw new NonexistentEntityException("The beasiswa with id " + id + " no longer exists.", enfe);
+                throw new NonexistentEntityException("The pengajuan with id " + id + " no longer exists.", enfe);
             }
-            em.remove(beasiswa);
+            em.remove(pengajuan);
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -90,19 +89,19 @@ public class BeasiswaJpaController {
         }
     }
 
-    public List<Beasiswa> findBeasiswaEntities() {
-        return findBeasiswaEntities(true, -1, -1);
+    public List<Pengajuan> findPengajuanEntities() {
+        return findPengajuanEntities(true, -1, -1);
     }
 
-    public List<Beasiswa> findBeasiswaEntities(int maxResults, int firstResult) {
-        return findBeasiswaEntities(false, maxResults, firstResult);
+    public List<Pengajuan> findPengajuanEntities(int maxResults, int firstResult) {
+        return findPengajuanEntities(false, maxResults, firstResult);
     }
 
-    private List<Beasiswa> findBeasiswaEntities(boolean all, int maxResults, int firstResult) {
+    private List<Pengajuan> findPengajuanEntities(boolean all, int maxResults, int firstResult) {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            cq.select(cq.from(Beasiswa.class));
+            cq.select(cq.from(Pengajuan.class));
             Query q = em.createQuery(cq);
             if (!all) {
                 q.setMaxResults(maxResults);
@@ -114,20 +113,20 @@ public class BeasiswaJpaController {
         }
     }
 
-    public Beasiswa findBeasiswa(String id) {
+    public Pengajuan findPengajuan(String id) {
         EntityManager em = getEntityManager();
         try {
-            return em.find(Beasiswa.class, id);
+            return em.find(Pengajuan.class, id);
         } finally {
             em.close();
         }
     }
 
-    public int getBeasiswaCount() {
+    public int getPengajuanCount() {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            Root<Beasiswa> rt = cq.from(Beasiswa.class);
+            Root<Pengajuan> rt = cq.from(Pengajuan.class);
             cq.select(em.getCriteriaBuilder().count(rt));
             Query q = em.createQuery(cq);
             return ((Long) q.getSingleResult()).intValue();
@@ -135,40 +134,5 @@ public class BeasiswaJpaController {
             em.close();
         }
     }
-
-        public List<Beasiswa> getAllBeasiswa() {
-        List<Beasiswa> beasiswa = new ArrayList<Beasiswa>();
-        EntityManager em = getEntityManager();
-        try {
-            Query q = em.createQuery("SELECT o FROM Beasiswa o");
-            beasiswa = q.getResultList();
-
-        } finally {
-            if (em != null) {
-                em.close();
-            }
-        }
-        return beasiswa;
-    }
-
-    public Beasiswa findBeasiswaById(String idBeasiswa) {
-        EntityManager em = getEntityManager();
-        try {
-            Query query = em.createQuery("SELECT c FROM Beasiswa c WHERE c.idbeasiswa =:idbeasiswa");
-            query.setParameter("idbeasiswa", idBeasiswa);
-            List list = query.getResultList();
-            if (list.size() == 1) {
-
-                return (Beasiswa) list.get(0);
-
-
-            } else {
-                return null;
-            }
-        } finally {
-            em.close();
-        }
-    }
-
 
 }

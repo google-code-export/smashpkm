@@ -30,12 +30,13 @@
             </tr>
         </table>
         <br>
-        <form method='post' action='Dispatcher?page=daftarBeasiswa'>
+        <form method='post' action="tes.jsp"<%--action='Dispatcher?page=daftarBeasiswa'--%>>
             <select name="cars">
                  <c:forEach items="${list_beasiswa}" var="bsw">
                 <option value=${bsw.namabeasiswa } > ${bsw.namabeasiswa} </option>
                 </c:forEach>
             </select>
+            <input type='submit' value='Daftar' >
         </form> 
     </body>
 </html>
