@@ -140,3 +140,4 @@ public class Beasiswa implements Serializable {
         return "model.Beasiswa[idbeasiswa=" + idbeasiswa + "]";
     }
 }
+

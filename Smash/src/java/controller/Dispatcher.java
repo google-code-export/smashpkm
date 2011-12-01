@@ -116,7 +116,7 @@ public class Dispatcher extends HttpServlet {
             }
             if (page.equals("goDaftarBeasiswa")) {
 
-                controller.setBuatPengajuan(pengajuan);
+                CommonsFileUploadServlet cfs=new CommonsFileUploadServlet();
                 dis = request.getRequestDispatcher("halamanDaftarBeasiswa.jsp");
 
             }
