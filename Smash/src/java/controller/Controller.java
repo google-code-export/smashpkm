@@ -9,12 +9,16 @@ package controller;
  * @author yosua
  */
 import java.io.File;
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
@@ -105,9 +109,10 @@ public class Controller {
 
             if (mahasiswa.getPassword().equals(password)) {
                 mahasiswa.setLoginstat(true);
-                session.setAttribute("nrp", nrp);
+                session.setAttribute("nrp", mahasiswa.getNrp());
+                session.setAttribute("nama", mahasiswa.getNama());
+                session.setAttribute("password", mahasiswa.getPassword());
                 session.setAttribute("mahasiswa", mahasiswa);
-                session.setAttribute("password", password);
                 try {
                     login.edit(mahasiswa);
                 } catch (Exception e) {
@@ -322,8 +327,25 @@ public class Controller {
     }
 
     public void setBeasiswaPengajuan() {
-        String idBeasiswa = request.getParameter("beasiswa");
+        String idBeasiswa = request.getParameter("pilih");
         HttpSession session = request.getSession();
         session.setAttribute("idbeasiswa", idBeasiswa);
+    }
+
+    /*public void setPilihBeasiswa() {
+    String idBeasiswa = request.getParameter("pilih");
+    HttpSession session = request.getSession();
+    session.setAttribute("idbeasiswa", idBeasiswa);
+    }
+     */
+    public void setSimpanGambar(CommonsFileUploadServlet cfs) throws ServletException, IOException {
+
+        //  CommonsFileUploadServlet cfs=new CommonsFileUploadServlet();
+        // cfs.doGet(request,null);
+        try {
+            cfs.init(cfs);
+        } catch (ServletException ex) {
+            Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }

@@ -38,6 +38,16 @@ public class Pengajuan implements Serializable {
     @Basic(optional = false)
     @Column(name = "IDPENGAJUAN", nullable = false, length = 1000)
     private String idpengajuan;
+    @Column(name = "PATHS", nullable = false, length = 1000)
+    private String paths;
+
+    public void setPaths(String paths) {
+        this.paths = paths;
+    }
+
+    public String getPaths() {
+        return paths;
+    }
     @Basic(optional = false)
     @JoinColumn(name = "nama",
     referencedColumnName = "nama")

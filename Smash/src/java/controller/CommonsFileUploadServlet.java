@@ -16,6 +16,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import model.Pengajuan;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
@@ -34,13 +36,14 @@ public class CommonsFileUploadServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    private static final String TMP_DIR_PATH = "c:/tmp";
+    private static final String TMP_DIR_PATH = "C://tmp";
     private File tmpDir;
-    private static final String DESTINATION_DIR_PATH = "files";
+    private static final String DESTINATION_DIR_PATH = "gambar";
     private File destinationDir;
 
     @Override
     public void init(ServletConfig config) throws ServletException {
+
         super.init(config);
         tmpDir = new File(TMP_DIR_PATH);
         if (!tmpDir.isDirectory()) {
@@ -57,10 +60,12 @@ public class CommonsFileUploadServlet extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        PrintWriter out = response.getWriter();
+       PrintWriter out = response.getWriter();
+       
         response.setContentType("text/plain");
         out.println("<h1>Servlet File Upload Example using Commons File Upload</h1>");
         out.println();
+
 
         DiskFileItemFactory fileItemFactory = new DiskFileItemFactory();
         /*
@@ -70,9 +75,12 @@ public class CommonsFileUploadServlet extends HttpServlet {
 		/*
          * Set the temporary directory to store the uploaded files of size above threshold.
          */
+
+
         fileItemFactory.setRepository(tmpDir);
 
         ServletFileUpload uploadHandler = new ServletFileUpload(fileItemFactory);
+        
         try {
             /*
              * Parse the request
@@ -81,24 +89,36 @@ public class CommonsFileUploadServlet extends HttpServlet {
             Iterator itr = items.iterator();
             while (itr.hasNext()) {
                 FileItem item = (FileItem) itr.next();
+                //item.
                 /*
                  * Handle Form Fields.
                  */
+                PengajuanJpaController daftar=new PengajuanJpaController();
+                Pengajuan pengajuan=new Pengajuan();
+                HttpSession session = request.getSession();
                 if (item.isFormField()) {
                     out.println("File Name = " + item.getFieldName() + ", Value = " + item.getString());
                 } else {
-                    //Handle Uploaded files.
-                    out.println("Field Name = " + item.getFieldName()
+             //      Handle Uploaded files.
+                   out.println("Field Name = " + item.getFieldName()
                             + ", File Name = " + item.getName()
                             + ", Content type = " + item.getContentType()
-                            + ", File Size = " + item.getSize());
+                            + ", File Size = " + item.getSize()
+                          );
+                          pengajuan.setPaths(item.getName());
+                          pengajuan.setIdbeasiswa((String) session.getAttribute("idbeasiswa"));
+                          pengajuan.setNama((String) session.getAttribute("nama"));
+   
                     /*
                      * Write file to the ultimate location.
                      */
+
                     File file = new File(destinationDir, item.getName());
                     item.write(file);
                 }
-                out.close();
+                
+                daftar.create(pengajuan);
+            //    out.close();
             }
         } catch (FileUploadException ex) {
             log("Error encountered while parsing the request", ex);
