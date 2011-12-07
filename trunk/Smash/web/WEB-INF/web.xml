@@ -12,6 +12,10 @@
         <servlet-name>CekPassword</servlet-name>
         <servlet-class>Controller.CekPassword</servlet-class>
     </servlet>
+      <servlet>
+        <servlet-name>CommonsFileUploadServlet</servlet-name>
+        <servlet-class>controller.CommonsFileUploadServlet</servlet-class>
+    </servlet>
     <servlet>
         <servlet-name>Dispatch</servlet-name>
         <servlet-class>controller.Dispatcher</servlet-class>
@@ -23,6 +27,10 @@
     <servlet-mapping>
         <servlet-name>CekPassword</servlet-name>
         <url-pattern>/CekPassword</url-pattern>
+    </servlet-mapping>
+     <servlet-mapping>
+        <servlet-name>CommonsFileUploadServlet</servlet-name>
+        <url-pattern>/CommonsFileUploadServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>Dispatcher</servlet-name>
