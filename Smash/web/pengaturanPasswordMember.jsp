@@ -1,7 +1,7 @@
-<%--
-    Document   : pengaturanPassword
-    Created on : 01 Dec 11, 08:32:45
-    Author     : Danang
+<%-- 
+    Document   : pengaturanPasswordMember
+    Created on : Dec 11, 2011, 8:07:37 AM
+    Author     : yosua
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -87,10 +87,10 @@
                 <table border="0">
                     <tr>
                         <td>
-                            <a href="Dispatcher?page=pengaturanAkun&&nrp=${mahasiswa.nrp}" title="" class="btn medium green">Profil</a>
+                            <a href="Dispatcher?page=pengaturanMember" title="" class="btn medium green">Profil</a>
                         </td>
                         <td>
-                            <a href="Dispatcher?page=pengaturanPassword&&nrp=${mahasiswa.nrp}" title="" class="btn medium green">Ganti Password</a>
+                            <a href="Dispatcher?page=pengaturanPasswordMember" title="" class="btn medium green">Ganti Password</a>
                         </td>
                         <td>
                             <a href="Dispatcher?page=home&&nrp=${mahasiswa.nrp}" title="" class="btn medium green">Menu Utama</a>
@@ -105,9 +105,7 @@
                     <h2>SMASH</h2>
                     <h5>Smart Application Scholarhip</h5>
                     <div class="cleaner h20"></div>
-                    <h6>Untuk menjaga keamanan data Anda, ubah password Anda secara berkala.
-                        Gunakan password minimal 6 karakter yang terdiri dari huruf kapital, huruf kecil, bilangan, dan simbol yang umum.
-                        Lebih baik jangan menggunakan tanggal lahir atau hal-hal umum lainnya sebagai password.</h6>
+                    
                     <div class="cleaner h20"></div>
                 </div>
 
@@ -115,7 +113,7 @@
                 <div class="col_w460 float_r">
                     <div class="cleaner h20"></div>
 
-                    <form method='post'  action='Dispatcher?page=setPengaturanPassword'>
+                    <form method='post'  action='Dispatcher?page=goAturPasswordMember&&nrp=${member.nrp}'>
                         <br/>
                         <fieldset>
                             <table border=0>
@@ -126,7 +124,7 @@
                                         Password Lama
                                     </td>
                                     <td>
-                                        : <input type=text name='password_lama' />
+                                        : ${member.password}
                                     </td>
 
                                 </tr>
@@ -139,16 +137,7 @@
                                     </td>
 
                                 </tr>
-                                <tr>
-                                    <td>
-                                        Ulangi Passord Baru
-                                    </td>
-                                    <td>
-                                        : <input type=text name='password_baru_ulangi' />
-                                    </td>
-
-                                </tr>
-
+                               
                             </table>
                             <br/>
                             <input type='submit' value='update'/>

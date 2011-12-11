@@ -64,7 +64,7 @@
 
             </div> <!-- end of header -->
             <br/>
-            <p align="right"><font color="black">Anda login sebagai ${mahasiswa.nama},</font><a style="color: red" href="Dispatcher?name=logout">(logout)</a></p>
+            <p align="right"><font color="black">Anda login sebagai ${mahasiswa.nama},</font><a style="color: red" href="Dispatcher?name=logout&&nrp=${mahasiswa.nrp}">(logout)</a></p>
 
             <div id="templatemo_main">
                 <div class="sb_box">
@@ -85,7 +85,7 @@
                                             <img src="images/1_64x64.png" alt="Image 1" />
                                         </td>
                                         <td>
-                                            <a href="Dispatcher?page=pengaturanAkun"><h4>Pengaturan Akun</h4></a>
+                                            <a href="Dispatcher?page=pengaturanAkun&&nrp=${mahasiswa.nrp}"><h4>Pengaturan Akun</h4></a>
                                         </td>
                                     </tr>
                                 </table>

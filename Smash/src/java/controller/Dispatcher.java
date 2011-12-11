@@ -41,9 +41,9 @@ public class Dispatcher extends HttpServlet {
                     dis = request.getRequestDispatcher("halamanUtamaPengguna.jsp");
                 } else {
                     dis = request.getRequestDispatcher("halamanUtamaAdmin.jsp");
-
                 }
             }
+
             if (page.equals("registrasi")) {
                 dis = request.getRequestDispatcher("registrasi.jsp");
             }
@@ -153,6 +153,47 @@ public class Dispatcher extends HttpServlet {
                 dis = request.getRequestDispatcher("pengaturanPost.jsp");
 
             }
+            
+            if (page.equals("pengaturanMember")) {
+                controller.setListMahasiswa();
+                dis = request.getRequestDispatcher("member.jsp");
+
+            }
+              if (page.equals("setPengaturanMember")) {
+                controller.setAturAkun(mahasiswa);
+                dis = request.getRequestDispatcher("pengaturanMember.jsp");
+
+            }
+
+            if (page.equals("editMember")) {
+                controller.setMahasiswa(mahasiswa);
+                dis = request.getRequestDispatcher("pengaturanMember.jsp");
+
+            }
+            if (page.equals("goEditMember")) {
+                controller.setAturAkun(mahasiswa);
+                dis = request.getRequestDispatcher("pengaturanMember.jsp");
+
+            }
+            if (page.equals("pengaturanPasswordMember")) {
+                controller.setMahasiswa(mahasiswa);
+                dis = request.getRequestDispatcher("pengaturanPasswordMember.jsp");
+
+            }
+            if (page.equals("goAturPasswordMember")) {
+                controller.setAturPasswordMember(mahasiswa);
+                 controller.setMahasiswa(mahasiswa);
+                dis = request.getRequestDispatcher("pengaturanPasswordMember.jsp");
+
+            }
+
+            if (page.equals("deleteMember")) {
+                controller.setDeleteMahasiswa();
+                controller.setListMahasiswa();
+                dis = request.getRequestDispatcher("member.jsp");
+
+            }
+ 
             if (page.equals("logout")) {
                 controller.setLogout(mahasiswa);
                 dis = request.getRequestDispatcher("index.jsp");

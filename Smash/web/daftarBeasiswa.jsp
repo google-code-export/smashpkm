@@ -18,12 +18,12 @@
         <table border=0>
             <tr>
                 <td>
-                    <form method='post' action='Dispatcher?page=logout'>
+                    <form method='post' action='Dispatcher?page=logout&&nrp=${mahasiswa.nrp}'>
                         <input type='submit' value='Logout' >
                     </form>
                 </td>
                 <td>
-                    <form method='post' action='Dispatcher?page=home'>
+                    <form method='post' action='Dispatcher?page=home&&nrp=${mahasiswa.nrp}'>
                         <input type='submit' value='Menu Utama' >
                     </form>
                 </td>
