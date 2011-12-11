@@ -60,7 +60,7 @@ public class Controller {
                     mahasiswa.setNrp(nrp);
                     mahasiswa.setNama(nama);
                     mahasiswa.setPassword(password);
-                    /*   mahasiswa.setNohp("");
+                    mahasiswa.setNohp("");
                     mahasiswa.setAlamatasal("");
                     mahasiswa.setAlamatsurabaya("");
                     mahasiswa.setNilaitoefl(0);
@@ -73,7 +73,7 @@ public class Controller {
                     mahasiswa.setPenghasilanayah(0);
                     mahasiswa.setPenghasilanibu(0);
                     mahasiswa.setJumlahsaudara(0);
-                    mahasiswa.setIsadmin(false);*/
+                    mahasiswa.setIsadmin(false);
 
                     try {
                         registrasi.create(mahasiswa);
@@ -131,9 +131,10 @@ public class Controller {
     }
 
     public void setLogout(Mahasiswa mahasiswa) {
+        String nrp = request.getParameter("nrp");
         MahasiswaJpaController logout = new MahasiswaJpaController();
         HttpSession session = request.getSession();
-        mahasiswa = logout.findMahasiswaByNrp((String) session.getAttribute("nrp"));
+        mahasiswa = logout.findMahasiswaByNrp(nrp);
         mahasiswa.setLoginstat(false);
 
         try {
@@ -144,15 +145,59 @@ public class Controller {
     }
 
     public Mahasiswa getMahasiswa() {
+        String nrp = request.getParameter("nrp");
         Mahasiswa mahasiswa = new Mahasiswa();
         MahasiswaJpaController aturAkun = new MahasiswaJpaController();
         HttpSession session = request.getSession();
-        mahasiswa = aturAkun.findMahasiswaByNrp((String) session.getAttribute("nrp"));
+        mahasiswa = aturAkun.findMahasiswaByNrp(nrp);
         session.setAttribute("mahasiswa", mahasiswa);
         return mahasiswa;
     }
 
+    public void setMahasiswa(Mahasiswa mahasiswa) {
+        String nrp = request.getParameter("nrp");
+        HttpSession session = request.getSession();
+        MahasiswaJpaController aturMember = new MahasiswaJpaController();
+        mahasiswa = aturMember.findMahasiswaByNrp(nrp);
+        session.setAttribute("member", mahasiswa);
+       // session.setAttribute("nrp", nrp);
+
+    }
+
+     public void setEditMahasiswa(Mahasiswa mahasiswa) {
+        HttpSession session = request.getSession();
+        MahasiswaJpaController editMahasiswa = new MahasiswaJpaController();
+        mahasiswa = editMahasiswa.findMahasiswaByNrp((String) session.getAttribute("nrp"));
+        try {
+            editMahasiswa.edit(mahasiswa);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+     public void setListMahasiswa() {
+        MahasiswaJpaController listMahasiswa = new MahasiswaJpaController();
+        HttpSession session = request.getSession();
+        List<Mahasiswa> list = new ArrayList<Mahasiswa>();
+        list = listMahasiswa.getAllMahasiswa();
+        session.setAttribute("list_mahasiswa", list);
+    }
+
+     public void setDeleteMahasiswa() {
+        String nrp = request.getParameter("nrp");
+        HttpSession session = request.getSession();
+        Mahasiswa mahasiswa = new Mahasiswa();
+        MahasiswaJpaController deleteMahasiswa = new MahasiswaJpaController();
+        mahasiswa = deleteMahasiswa.findMahasiswaByNrp(nrp);
+        try {
+            deleteMahasiswa.destroy(mahasiswa.getNrp());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public void setAturAkun(Mahasiswa mahasiswa) {
+        String nrp = request.getParameter("nrp");
         String nama = request.getParameter("nama");
         String noHp = request.getParameter("no_hp");
         String alamatAsal = request.getParameter("alamat_asal");
@@ -184,7 +229,7 @@ public class Controller {
 
             MahasiswaJpaController aturAkun = new MahasiswaJpaController();
             HttpSession session = request.getSession();
-            mahasiswa = aturAkun.findMahasiswaByNrp((String) session.getAttribute("nrp"));
+            mahasiswa = aturAkun.findMahasiswaByNrp(nrp);
 
             mahasiswa.setNama(nama);
             mahasiswa.setNohp(noHp);
@@ -215,13 +260,16 @@ public class Controller {
 
     }
 
+  
+
     public void setAturPassword(Mahasiswa mahasiswa) {
+        String nrp = request.getParameter("nrp");
         String passwordLama = request.getParameter("password_lama");
         String passwordBaru = request.getParameter("password_baru");
         String ulangiPassword = request.getParameter("password_baru_ulangi");
         MahasiswaJpaController aturPassword = new MahasiswaJpaController();
         HttpSession session = request.getSession();
-        mahasiswa = aturPassword.findMahasiswaByNrp((String) session.getAttribute("nrp"));
+        mahasiswa = aturPassword.findMahasiswaByNrp(nrp);
 
         if (passwordLama.equals("") || passwordBaru.equals("") || ulangiPassword.equals("")) {
             request.setAttribute("pesan", "Isikan seluruh field yang tersedia sesuai dengan data diri Anda");
@@ -249,6 +297,28 @@ public class Controller {
         }
     }
 
+    public void setAturPasswordMember(Mahasiswa mahasiswa) {
+        String nrp = request.getParameter("nrp");
+        String passwordBaru = request.getParameter("password_baru");
+        MahasiswaJpaController aturPassword = new MahasiswaJpaController();
+        HttpSession session = request.getSession();
+        mahasiswa = aturPassword.findMahasiswaByNrp(nrp);
+
+        if ( passwordBaru.equals("")) {
+            request.setAttribute("pesan", "Isikan seluruh field yang tersedia sesuai dengan data diri Anda");
+            mahasiswa.setLoginstat(false);
+        } else {
+                    mahasiswa.setPassword(passwordBaru);
+                    try {
+                        aturPassword.edit(mahasiswa);
+                        request.setAttribute("pesan", "Password Anda telah diganti");
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                
+
+        }
+    }
     public void setBuatBeasiswa(Beasiswa beasiswa) throws ParseException {
         String namaBeasiswa = request.getParameter("namabeasiswa");
         String keterangan = request.getParameter("keterangan");
@@ -292,6 +362,8 @@ public class Controller {
         session.setAttribute("list_beasiswa", list);
     }
 
+    
+
     public void setEditPost(Beasiswa beasiswa) {
         HttpSession session = request.getSession();
         BeasiswaJpaController editPost = new BeasiswaJpaController();
@@ -332,16 +404,9 @@ public class Controller {
         session.setAttribute("idbeasiswa", idBeasiswa);
     }
 
-    /*public void setPilihBeasiswa() {
-    String idBeasiswa = request.getParameter("pilih");
-    HttpSession session = request.getSession();
-    session.setAttribute("idbeasiswa", idBeasiswa);
-    }
-     */
     public void setSimpanGambar(CommonsFileUploadServlet cfs) throws ServletException, IOException {
 
-        //  CommonsFileUploadServlet cfs=new CommonsFileUploadServlet();
-        // cfs.doGet(request,null);
+     
         try {
             cfs.init(cfs);
         } catch (ServletException ex) {

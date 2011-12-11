@@ -7,6 +7,7 @@ package controller;
 
 import controller.exceptions.NonexistentEntityException;
 import controller.exceptions.PreexistingEntityException;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -158,6 +159,21 @@ public class MahasiswaJpaController {
         } finally {
             em.close();
         }
+    }
+
+      public List<Mahasiswa> getAllMahasiswa() {
+        List<Mahasiswa> mahasiswa = new ArrayList<Mahasiswa>();
+        EntityManager em = getEntityManager();
+        try {
+            Query q = em.createQuery("SELECT o FROM Mahasiswa o");
+            mahasiswa = q.getResultList();
+
+        } finally {
+            if (em != null) {
+                em.close();
+            }
+        }
+        return mahasiswa;
     }
 
 }

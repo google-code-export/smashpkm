@@ -23,7 +23,7 @@
                         </form>
                     </td>
                     <td>
-            <form method='post' action='Dispatcher?page=home'>
+            <form method='post' action='Dispatcher?page=home&&nrp=${mahasiswa.nrp}'>
               <input type='submit' value='Menu Utama' >
         </form>
                     </td>

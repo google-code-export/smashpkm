@@ -34,7 +34,7 @@
                         </form>
                     </td> </tr>
                 <tr><td>
-                        <form  method='post' action='Dispatcher?page=logout'>
+                        <form  method='post' action='Dispatcher?page=logout&&nrp=${mahasiswa.nrp}'>
                             <input type='submit' value='Logout' >
                         </form>
                     </td> </tr>

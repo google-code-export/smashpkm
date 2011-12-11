@@ -1,8 +1,9 @@
-<%--
-    Document   : registrasi
-    Created on : 05 Nov 11, 16:07:12
-    Author     : Danang
+<%-- 
+    Document   : pengaturanMember
+    Created on : Dec 11, 2011, 8:04:37 AM
+    Author     : yosua
 --%>
+
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
@@ -87,16 +88,16 @@
 
             </div> <!-- end of header -->
             <br/>
-            <p align="right"><font color="black">Anda login sebagai ${mahasiswa.nama},</font><a style="color: red" href="Dispatcher?name=logout">(logout)</a></p>
+            <p align="right"><font color="black"></font><a style="color: red" href="Dispatcher?name=logout">(logout)</a></p>
 
             <div class="content">
                 <table border="0">
                     <tr>
                         <td>
-                            <a href="Dispatcher?page=pengaturanAkun&&nrp=${mahasiswa.nrp}" title="" class="btn medium green">Profil</a>
+                            <a href="Dispatcher?page=pengaturanMember" title="" class="btn medium green">Profil</a>
                         </td>
                         <td>
-                            <a href="Dispatcher?page=pengaturanPassword&&nrp=${mahasiswa.nrp}" title="" class="btn medium green">Ganti Password</a>
+                            <a href="Dispatcher?page=pengaturanPasswordMember&&nrp=${member.nrp}" title="" class="btn medium green">Ganti Password</a>
                         </td>
                         <td>
                             <a href="Dispatcher?page=home&&nrp=${mahasiswa.nrp}" title="" class="btn medium green">Menu Utama</a>
@@ -107,7 +108,7 @@
 
             <br/>
 
-            <form method='post'  action='Dispatcher?page=setPengaturanAkun&&nrp=${mahasiswa.nrp}'>
+            <form method='post'  action='Dispatcher?page=goEditMember&&nrp=${member.nrp}'>
                 <fieldset>
                     <table border=0>
                         <font color="red"><%= request.getAttribute("pesan")%></font>
@@ -117,7 +118,7 @@
                                 <font color="black">Nama</font>
                             </td>
                             <td>
-                                : <input type=text name='nama' value='${mahasiswa.nama}' />
+                                : <input type=text name='nama' value='${member.nama}' />
                             </td>
 
                         </tr>
@@ -127,7 +128,7 @@
                                 <font color="black">NRP</font>
                             </td>
                             <td>
-                                : <font color="black">${mahasiswa.nrp}</font>
+                                : <font color="black">${member.nrp}</font>
                             </td>
                         </tr>
 
@@ -137,7 +138,7 @@
                             </td>
 
                             <td>
-                                : <input type=text name='no_hp' value='${mahasiswa.nohp}'/>
+                                : <input type=text name='no_hp' value='${member.nohp}'/>
                             </td>
                         </tr>
 
@@ -146,7 +147,7 @@
                                 <font color="black">Alamat Asal</font>
                             </td>
                             <td>
-                                <font color="transparent">:  </font><textarea rows="2" cols="20" name='alamat_asal' value="">${ mahasiswa.alamatasal}</textarea>
+                                <font color="transparent">:  </font><textarea rows="2" cols="20" name='alamat_asal' value="${ member.alamatasal}">${ member.alamatasal}</textarea>
                             <td>
                         </tr>
                         <tr>
@@ -154,7 +155,7 @@
                                 <font color="black">Alamat Surabaya</font>
                             </td>
                             <td>
-                                <font color="transparent">: </font><textarea rows="2" cols="20" name='alamat_surabaya' value=''>${mahasiswa.alamatsurabaya}</textarea>
+                                <font color="transparent">: </font><textarea rows="2" cols="20" name='alamat_surabaya' value='${member.alamatsurabaya}'>${member.alamatsurabaya}</textarea>
                             </td>
                         </tr>
 
@@ -163,7 +164,7 @@
                                 <font color="black">Nilai TOEFL</font>
                             </td>
                             <td>
-                                : <input type=text name='nilai_toefl' value='${mahasiswa.nilaitoefl}'/>
+                                : <input type=text name='nilai_toefl' value='${member.nilaitoefl}'/>
                             </td>
                         </tr>
 
@@ -173,7 +174,7 @@
                             </td>
 
                             <td>
-                                : <input type=text name='semester' value='${mahasiswa.semester}'/>
+                                : <input type=text name='semester' value='${member.semester}'/>
                             </td>
                         </tr>
 
@@ -182,7 +183,7 @@
                                 <font color="black">IPK</font>
                             </td>
                             <td>
-                                : <input type=text name='ipk' value='${mahasiswa.ipk}'/>
+                                : <input type=text name='ipk' value='${member.ipk}'/>
                             <td>
                         </tr>
                         <tr>
@@ -190,7 +191,7 @@
                                 <font color="black">Nama Ayah</font>
                             </td>
                             <td>
-                                : <input type=text name='nama_ayah' value='${mahasiswa.namaayah}'/>
+                                : <input type=text name='nama_ayah' value='${member.namaayah}'/>
                             </td>
                         </tr>
 
@@ -199,7 +200,7 @@
                                 <font color="black">Pekerjaan Ayah</font>
                             </td>
                             <td>
-                                : <input type=text name='pekerjaan_ayah'value='${mahasiswa.pekerjaanayah}'/>
+                                : <input type=text name='pekerjaan_ayah'value='${member.pekerjaanayah}'/>
                             </td>
                         </tr>
 
@@ -209,7 +210,7 @@
                             </td>
 
                             <td>
-                                : <input type=text name='penghasilan_ayah' value='${mahasiswa.penghasilanayah}'/>
+                                : <input type=text name='penghasilan_ayah' value='${member.penghasilanayah}'/>
                             </td>
                         </tr>
 
@@ -218,7 +219,7 @@
                                 <font color="black">Nama Ibu</font>
                             </td>
                             <td>
-                                : <input type=text name='nama_ibu' value='${mahasiswa.namaibu}'/>
+                                : <input type=text name='nama_ibu' value='${member.namaibu}'/>
                             <td>
                         </tr>
                         <tr>
@@ -226,7 +227,7 @@
                                 <font color="black">Pekerjaan Ibu</font>
                             </td>
                             <td>
-                                : <input type=text name='pekerjaan_ibu' value='${mahasiswa.pekerjaanibu}'/>
+                                : <input type=text name='pekerjaan_ibu' value='${member.pekerjaanibu}'/>
                             </td>
                         </tr>
 
@@ -235,7 +236,7 @@
                                 <font color="black">Penghasilan Ibu</font>
                             </td>
                             <td>
-                                : <input type=text name='penghasilan_ibu' value='${mahasiswa.penghasilanibu}'/>
+                                : <input type=text name='penghasilan_ibu' value='${member.penghasilanibu}'/>
                             </td>
                         </tr>
 
@@ -245,7 +246,7 @@
                             </td>
 
                             <td>
-                                : <input type=text name='jumlah_saudara' value='${mahasiswa.jumlahsaudara}'/>
+                                : <input type=text name='jumlah_saudara' value='${member.jumlahsaudara}'/>
                             </td>
                         </tr>
 
@@ -264,4 +265,5 @@
         </div>
     </body>
 </html>
+
 
