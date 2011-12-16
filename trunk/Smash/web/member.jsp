@@ -9,8 +9,8 @@
     </head>
     <body>
         <h2>Posts</h2>
-        <form method='post' action='Dispatcher?page=membuatPost'>
-            <input type='submit' value='Add New Post' >
+        <form method='post' action='Dispatcher?page=buatMember'>
+            <input type='submit' value='Add New Member' >
         </form>
         <table>
             <c:forEach items="${list_mahasiswa}" var="mhs">

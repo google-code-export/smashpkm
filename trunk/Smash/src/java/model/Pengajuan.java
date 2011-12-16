@@ -6,6 +6,7 @@ package model;
 
 import java.io.Serializable;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -51,12 +52,12 @@ public class Pengajuan implements Serializable {
     @Basic(optional = false)
     @JoinColumn(name = "nama",
     referencedColumnName = "nama")
-    @ManyToOne
+    @ManyToOne(cascade=CascadeType.REMOVE)
     //@Column(name = "NAMA", nullable = false, length = 1000)
     private String nama;
     @JoinColumn(name = "idbeasiswa",
     referencedColumnName = "idbeasiswa")
-    @ManyToOne
+    @ManyToOne(cascade=CascadeType.REMOVE)
     @Basic(optional = false)
     //@Column(name = "IDBEASISWA", nullable = false, length = 1000)
     private String idbeasiswa;
