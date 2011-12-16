@@ -48,15 +48,16 @@ public class Controller {
         HttpSession session = request.getSession();
         MahasiswaJpaController registrasi = new MahasiswaJpaController();
         registrasi.findMahasiswaByNrp(nrp);
-
+       
 
         if (nrp.equals("") || nama.equals("") || password.equals("") || passwordUlangi.equals("")) {
             request.setAttribute("pesan", "Isikan seluruh field yang tersedia sesuai dengan data diri Anda");
-            mahasiswa.setLoginstat(false);
+            
         } else {
 
             if (password.equals(passwordUlangi)) {
                 if (registrasi.findMahasiswaByNrp(nrp) == null) {
+                    mahasiswa.setLoginstat(true);
                     mahasiswa.setNrp(nrp);
                     mahasiswa.setNama(nama);
                     mahasiswa.setPassword(password);
@@ -77,12 +78,12 @@ public class Controller {
 
                     try {
                         registrasi.create(mahasiswa);
-                        session.setAttribute("nrp", nrp);
+                      /*  session.setAttribute("nrp", nrp);
                         session.setAttribute("mahasiswa", mahasiswa);
                         session.setAttribute("password", password);
                         session.setAttribute("pesan", "");
                         session.setAttribute("pesan1", "");
-                        mahasiswa.setLoginstat(true);
+                        mahasiswa.setLoginstat(true); */
                     } catch (Exception e) {
                         e.printStackTrace();
 
@@ -96,6 +97,8 @@ public class Controller {
             }
         }
     }
+
+
 
     public Mahasiswa getLogin() {
         String nrp = request.getParameter("nrp");
@@ -180,6 +183,7 @@ public class Controller {
         HttpSession session = request.getSession();
         List<Mahasiswa> list = new ArrayList<Mahasiswa>();
         list = listMahasiswa.getAllMahasiswa();
+
         session.setAttribute("list_mahasiswa", list);
     }
 

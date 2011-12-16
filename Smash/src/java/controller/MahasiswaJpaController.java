@@ -165,7 +165,8 @@ public class MahasiswaJpaController {
         List<Mahasiswa> mahasiswa = new ArrayList<Mahasiswa>();
         EntityManager em = getEntityManager();
         try {
-            Query q = em.createQuery("SELECT o FROM Mahasiswa o");
+            Query q = em.createQuery("SELECT o FROM Mahasiswa o WHERE o.isadmin=:isadmin");
+            q.setParameter("isadmin", false);
             mahasiswa = q.getResultList();
 
         } finally {
