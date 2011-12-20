@@ -6,6 +6,7 @@
 package controller;
 
 import controller.exceptions.NonexistentEntityException;
+import controller.exceptions.PreexistingEntityException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -32,13 +33,18 @@ public class BeasiswaJpaController {
         return emf.createEntityManager();
     }
 
-    public void create(Beasiswa beasiswa) {
+    public void create(Beasiswa beasiswa) throws PreexistingEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
             em.persist(beasiswa);
             em.getTransaction().commit();
+        } catch (Exception ex) {
+            if (findBeasiswa(beasiswa.getIdbeasiswa()) != null) {
+                throw new PreexistingEntityException("Beasiswa " + beasiswa + " already exists.", ex);
+            }
+            throw ex;
         } finally {
             if (em != null) {
                 em.close();
@@ -135,8 +141,7 @@ public class BeasiswaJpaController {
             em.close();
         }
     }
-
-        public List<Beasiswa> getAllBeasiswa() {
+     public List<Beasiswa> getAllBeasiswa() {
         List<Beasiswa> beasiswa = new ArrayList<Beasiswa>();
         EntityManager em = getEntityManager();
         try {
@@ -169,6 +174,5 @@ public class BeasiswaJpaController {
             em.close();
         }
     }
-
 
 }

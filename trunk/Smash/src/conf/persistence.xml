@@ -3,7 +3,10 @@
   <persistence-unit name="SmashPU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>.Mahasiswa</class>
-    <exclude-unlisted-classes>false</exclude-unlisted-classes>
+    <class>model.Beasiswa</class>
+    <class>model.Mahasiswa</class>
+    <class>model.Penerima</class>
+    <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/Smash"/>
       <property name="javax.persistence.jdbc.password" value=""/>

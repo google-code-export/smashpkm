@@ -50,9 +50,9 @@ public class Dispatcher extends HttpServlet {
             if (page.equals("goRegistrasi")) {
                 controller.setRegistrasi(mahasiswa);
 
-                if (mahasiswa.getLoginstat() == true) {
+                if (mahasiswa.getLoginstat() ==true) {
                     dis = request.getRequestDispatcher("index.jsp");
-                } else {
+                } else{
                     dis = request.getRequestDispatcher("registrasi.jsp");
                 }
 
@@ -90,7 +90,6 @@ public class Dispatcher extends HttpServlet {
             if (page.equals("pengaturanPassword")) {
 
                 dis = request.getRequestDispatcher("pengaturanPassword.jsp");
-
             }
             if (page.equals("setPengaturanPassword")) {
                 controller.setAturPassword(mahasiswa);
@@ -108,12 +107,11 @@ public class Dispatcher extends HttpServlet {
 
             }
             if (page.equals("goDaftarBeasiswa")) {
-
-                CommonsFileUploadServlet cfs = new CommonsFileUploadServlet();
+                /*CommonsFileUploadServlet cfs = new CommonsFileUploadServlet();
                 cfs.doGet(request, response);
-                //cfs.init(cfs);
                 controller.setSimpanGambar(cfs);
-                dis = request.getRequestDispatcher("halamanDaftarBeasiswa.jsp");
+                dis = request.getRequestDispatcher("halamanDaftarBeasiswa.jsp");*/
+                dis = request.getRequestDispatcher("CommonsFileUploadServlet");
 
             }
             if (page.equals("pengaturanPost")) {
@@ -127,7 +125,7 @@ public class Dispatcher extends HttpServlet {
             }
             if (page.equals("goBuatPost")) {
                 controller.setBuatBeasiswa(beasiswa);
-                dis = request.getRequestDispatcher("buatPost.jsp");
+                dis = request.getRequestDispatcher("pengaturanPost.jsp");
 
             }
             if (page.equals("editPost")) {

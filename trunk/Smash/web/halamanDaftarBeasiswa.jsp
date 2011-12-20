@@ -14,7 +14,7 @@
 
 <body>
 <h1>Daftar Beasiswa</h1>
-<form  method="post"  enctype="multipart/form-data" action="CommonsFileUploadServlet" >
+<form  method="post"  enctype="multipart/form-data" action="Dispatcher?page=goDaftarBeasiswa" >
   <table width="374" height="112" border="0">
     <tr>
       <td width="171" height="32">Scan Transkrip IPK</td>

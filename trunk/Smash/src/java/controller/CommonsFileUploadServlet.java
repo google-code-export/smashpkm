@@ -17,6 +17,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.Beasiswa;
+import model.Mahasiswa;
 import model.Pengajuan;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
@@ -95,6 +97,8 @@ public class CommonsFileUploadServlet extends HttpServlet {
                  */
                 PengajuanJpaController daftar=new PengajuanJpaController();
                 Pengajuan pengajuan=new Pengajuan();
+                Mahasiswa mahasiswa=new Mahasiswa();
+                Beasiswa beasiswa=new Beasiswa();
                 HttpSession session = request.getSession();
                 if (item.isFormField()) {
                     out.println("File Name = " + item.getFieldName() + ", Value = " + item.getString());
@@ -105,9 +109,11 @@ public class CommonsFileUploadServlet extends HttpServlet {
                             + ", Content type = " + item.getContentType()
                             + ", File Size = " + item.getSize()
                           );
+                          mahasiswa.setNrp((String) session.getAttribute("nama"));
+                          beasiswa.setIdbeasiswa((String) session.getAttribute("idbeasiswa"));
                           pengajuan.setPaths(item.getName());
-                          pengajuan.setIdbeasiswa((String) session.getAttribute("idbeasiswa"));
-                          pengajuan.setNama((String) session.getAttribute("nama"));
+                //          pengajuan.setBeasiswa(beasiswa);
+                          pengajuan.setMahasiswaNrp("nama");
    
                     /*
                      * Write file to the ultimate location.

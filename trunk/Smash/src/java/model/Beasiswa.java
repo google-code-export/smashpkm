@@ -2,6 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package model;
 
 import java.io.Serializable;
@@ -16,6 +17,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.persistence.UniqueConstraint;
 
 /**
@@ -28,69 +30,35 @@ import javax.persistence.UniqueConstraint;
 @NamedQueries({
     @NamedQuery(name = "Beasiswa.findAll", query = "SELECT b FROM Beasiswa b"),
     @NamedQuery(name = "Beasiswa.findByIdbeasiswa", query = "SELECT b FROM Beasiswa b WHERE b.idbeasiswa = :idbeasiswa"),
-    @NamedQuery(name = "Beasiswa.findByNamabeasiswa", query = "SELECT b FROM Beasiswa b WHERE b.namabeasiswa = :namabeasiswa")})
+    @NamedQuery(name = "Beasiswa.findByNamabeasiswa", query = "SELECT b FROM Beasiswa b WHERE b.namabeasiswa = :namabeasiswa"),
+    @NamedQuery(name = "Beasiswa.findByTanggalmulai", query = "SELECT b FROM Beasiswa b WHERE b.tanggalmulai = :tanggalmulai"),
+    @NamedQuery(name = "Beasiswa.findByKeterangan", query = "SELECT b FROM Beasiswa b WHERE b.keterangan = :keterangan"),
+    @NamedQuery(name = "Beasiswa.findByTanggalkadaluwarsa", query = "SELECT b FROM Beasiswa b WHERE b.tanggalkadaluwarsa = :tanggalkadaluwarsa"),
+    @NamedQuery(name = "Beasiswa.findByTanggalhabis", query = "SELECT b FROM Beasiswa b WHERE b.tanggalhabis = :tanggalhabis"),
+    @NamedQuery(name = "Beasiswa.findByTanggalpublish", query = "SELECT b FROM Beasiswa b WHERE b.tanggalpublish = :tanggalpublish")})
 public class Beasiswa implements Serializable {
-
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @Basic(optional = false)
-    @Column(name = "IDBEASISWA", nullable = false, length = 1000)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "IDBEASISWA", nullable = false, length = 255)
     private String idbeasiswa;
-    @Column(name = "NAMABEASISWA", length = 1000)
+    @Column(name = "NAMABEASISWA", length = 255)
     private String namabeasiswa;
-    private String keterangan;
-    @Temporal(javax.persistence.TemporalType.DATE)
-    private Date tanggalpublish;
-    @Temporal(javax.persistence.TemporalType.DATE)
-    private Date tanggalkadaluwarsa;
-    @Temporal(javax.persistence.TemporalType.DATE)
+    @Column(name = "TANGGALMULAI")
+    @Temporal(TemporalType.DATE)
     private Date tanggalmulai;
-    @Temporal(javax.persistence.TemporalType.DATE)
+    @Column(name = "KETERANGAN", length = 255)
+    private String keterangan;
+    @Column(name = "TANGGALKADALUWARSA")
+    @Temporal(TemporalType.DATE)
+    private Date tanggalkadaluwarsa;
+    @Column(name = "TANGGALHABIS")
+    @Temporal(TemporalType.DATE)
     private Date tanggalhabis;
-    public void setKeterangan(String keterangan) {
-        this.keterangan = keterangan;
-    }
-
-    public void setTanggalhabis(Date tanggalhabis) {
-        this.tanggalhabis = tanggalhabis;
-    }
-
-    public void setTanggalkadaluwarsa(Date tanggalkadaluwarsa) {
-        this.tanggalkadaluwarsa = tanggalkadaluwarsa;
-    }
-
-    public void setTanggalmulai(Date tanggalmulai) {
-        this.tanggalmulai = tanggalmulai;
-    }
-
-    public void setTanggalpublish(Date tanggalpublish) {
-        this.tanggalpublish = tanggalpublish;
-    }
-
-    public String getKeterangan() {
-        return keterangan;
-    }
-
-    public static long getSerialVersionUID() {
-        return serialVersionUID;
-    }
-
-    public Date getTanggalhabis() {
-        return tanggalhabis;
-    }
-
-    public Date getTanggalkadaluwarsa() {
-        return tanggalkadaluwarsa;
-    }
-
-    public Date getTanggalmulai() {
-        return tanggalmulai;
-    }
-
-    public Date getTanggalpublish() {
-        return tanggalpublish;
-    }
+    @Column(name = "TANGGALPUBLISH")
+    @Temporal(TemporalType.DATE)
+    private Date tanggalpublish;
 
     public Beasiswa() {
     }
@@ -113,6 +81,46 @@ public class Beasiswa implements Serializable {
 
     public void setNamabeasiswa(String namabeasiswa) {
         this.namabeasiswa = namabeasiswa;
+    }
+
+    public Date getTanggalmulai() {
+        return tanggalmulai;
+    }
+
+    public void setTanggalmulai(Date tanggalmulai) {
+        this.tanggalmulai = tanggalmulai;
+    }
+
+    public String getKeterangan() {
+        return keterangan;
+    }
+
+    public void setKeterangan(String keterangan) {
+        this.keterangan = keterangan;
+    }
+
+    public Date getTanggalkadaluwarsa() {
+        return tanggalkadaluwarsa;
+    }
+
+    public void setTanggalkadaluwarsa(Date tanggalkadaluwarsa) {
+        this.tanggalkadaluwarsa = tanggalkadaluwarsa;
+    }
+
+    public Date getTanggalhabis() {
+        return tanggalhabis;
+    }
+
+    public void setTanggalhabis(Date tanggalhabis) {
+        this.tanggalhabis = tanggalhabis;
+    }
+
+    public Date getTanggalpublish() {
+        return tanggalpublish;
+    }
+
+    public void setTanggalpublish(Date tanggalpublish) {
+        this.tanggalpublish = tanggalpublish;
     }
 
     @Override
@@ -139,5 +147,5 @@ public class Beasiswa implements Serializable {
     public String toString() {
         return "model.Beasiswa[idbeasiswa=" + idbeasiswa + "]";
     }
-}
 
+}
