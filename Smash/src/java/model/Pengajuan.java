@@ -2,18 +2,16 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package model;
 
 import java.io.Serializable;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -29,42 +27,23 @@ import javax.persistence.UniqueConstraint;
 @NamedQueries({
     @NamedQuery(name = "Pengajuan.findAll", query = "SELECT p FROM Pengajuan p"),
     @NamedQuery(name = "Pengajuan.findByIdpengajuan", query = "SELECT p FROM Pengajuan p WHERE p.idpengajuan = :idpengajuan"),
-    @NamedQuery(name = "Pengajuan.findByNama", query = "SELECT p FROM Pengajuan p WHERE p.nama = :nama"),
-    @NamedQuery(name = "Pengajuan.findByIdbeasiswa", query = "SELECT p FROM Pengajuan p WHERE p.idbeasiswa = :idbeasiswa")})
+    @NamedQuery(name = "Pengajuan.findByPaths", query = "SELECT p FROM Pengajuan p WHERE p.paths = :paths"),
+    @NamedQuery(name = "Pengajuan.findByMahasiswaNrp", query = "SELECT p FROM Pengajuan p WHERE p.mahasiswaNrp = :mahasiswaNrp"),
+    @NamedQuery(name = "Pengajuan.findByBeasiswaIdbeasiswa", query = "SELECT p FROM Pengajuan p WHERE p.beasiswaIdbeasiswa = :beasiswaIdbeasiswa")})
 public class Pengajuan implements Serializable {
-
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @Basic(optional = false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "IDPENGAJUAN", nullable = false, length = 1000)
     private String idpengajuan;
+    @Basic(optional = false)
     @Column(name = "PATHS", nullable = false, length = 1000)
     private String paths;
-
-    public void setPaths(String paths) {
-        this.paths = paths;
-    }
-
-    public String getPaths() {
-        return paths;
-    }
-    @Basic(optional = false)
-    @JoinColumn(name = "nama",
-    referencedColumnName = "nama")
-    @ManyToOne(cascade=CascadeType.REMOVE)
-    //@Column(name = "NAMA", nullable = false, length = 1000)
-    private String nama;
-    @JoinColumn(name = "idbeasiswa",
-    referencedColumnName = "idbeasiswa")
-    @ManyToOne(cascade=CascadeType.REMOVE)
-    @Basic(optional = false)
-    //@Column(name = "IDBEASISWA", nullable = false, length = 1000)
-    private String idbeasiswa;
-
-
-
-
+    @Column(name = "MAHASISWA_NRP", length = 1000)
+    private String mahasiswaNrp;
+    @Column(name = "BEASISWA_IDBEASISWA", length = 255)
+    private String beasiswaIdbeasiswa;
 
     public Pengajuan() {
     }
@@ -73,10 +52,9 @@ public class Pengajuan implements Serializable {
         this.idpengajuan = idpengajuan;
     }
 
-    public Pengajuan(String idpengajuan, String nama, String idbeasiswa) {
+    public Pengajuan(String idpengajuan, String paths) {
         this.idpengajuan = idpengajuan;
-        this.nama = nama;
-        this.idbeasiswa = idbeasiswa;
+        this.paths = paths;
     }
 
     public String getIdpengajuan() {
@@ -87,20 +65,28 @@ public class Pengajuan implements Serializable {
         this.idpengajuan = idpengajuan;
     }
 
-    public String getNama() {
-        return nama;
+    public String getPaths() {
+        return paths;
     }
 
-    public void setNama(String nama) {
-        this.nama = nama;
+    public void setPaths(String paths) {
+        this.paths = paths;
     }
 
-    public String getIdbeasiswa() {
-        return idbeasiswa;
+    public String getMahasiswaNrp() {
+        return mahasiswaNrp;
     }
 
-    public void setIdbeasiswa(String idbeasiswa) {
-        this.idbeasiswa = idbeasiswa;
+    public void setMahasiswaNrp(String mahasiswaNrp) {
+        this.mahasiswaNrp = mahasiswaNrp;
+    }
+
+    public String getBeasiswaIdbeasiswa() {
+        return beasiswaIdbeasiswa;
+    }
+
+    public void setBeasiswaIdbeasiswa(String beasiswaIdbeasiswa) {
+        this.beasiswaIdbeasiswa = beasiswaIdbeasiswa;
     }
 
     @Override
@@ -127,4 +113,5 @@ public class Pengajuan implements Serializable {
     public String toString() {
         return "model.Pengajuan[idpengajuan=" + idpengajuan + "]";
     }
+
 }

@@ -115,7 +115,7 @@
                 <div class="col_w460 float_r">
                     <div class="cleaner h20"></div>
 
-                    <form method='post'  action='Dispatcher?page=setPengaturanPassword'>
+                    <form method='post'  action='Dispatcher?page=setPengaturanPassword&&nrp=${mahasiswa.nrp}'>
                         <br/>
                         <fieldset>
                             <table border=0>

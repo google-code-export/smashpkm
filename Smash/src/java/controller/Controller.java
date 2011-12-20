@@ -52,7 +52,7 @@ public class Controller {
 
         if (nrp.equals("") || nama.equals("") || password.equals("") || passwordUlangi.equals("")) {
             request.setAttribute("pesan", "Isikan seluruh field yang tersedia sesuai dengan data diri Anda");
-            
+            mahasiswa.setLoginstat(false);
         } else {
 
             if (password.equals(passwordUlangi)) {
@@ -90,6 +90,7 @@ public class Controller {
                     }
                 } else {
                     request.setAttribute("pesan", "Username yang Anda masukkan telah terdaftar");
+                    mahasiswa.setLoginstat(false);
                 }
             } else {
                 request.setAttribute("pesan", "Password yang Anda masukkan tidak sesuai");
@@ -277,7 +278,7 @@ public class Controller {
 
         if (passwordLama.equals("") || passwordBaru.equals("") || ulangiPassword.equals("")) {
             request.setAttribute("pesan", "Isikan seluruh field yang tersedia sesuai dengan data diri Anda");
-            mahasiswa.setLoginstat(false);
+            
         } else {
 
             if (passwordBaru.equals(ulangiPassword)) {
@@ -292,11 +293,10 @@ public class Controller {
                     }
                 } else {
                     request.setAttribute("pesan", "Password yang Anda masukkan tidak sesuai");
-                    mahasiswa.setLoginstat(false);
+                  
                 }
             } else {
                 request.setAttribute("pesan", "Password Baru yang Anda masukkan tidak sesuai dengan ulangi Password");
-                mahasiswa.setLoginstat(false);
             }
         }
     }
@@ -340,7 +340,7 @@ public class Controller {
         Date dateKadaluwarsa;
         Date dateMulai;
         Date dateHabis;
-        formatter = new SimpleDateFormat("MM-dd-yyyy");
+        formatter = new SimpleDateFormat("dd-MM-yyyy");
         datePublish = (Date) formatter.parse(tanggalPublish);
         dateKadaluwarsa = (Date) formatter.parse(tanggalKadaluwarsa);
         dateMulai = (Date) formatter.parse(tanggalMulai);

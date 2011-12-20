@@ -16,6 +16,7 @@ import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import model.Beasiswa;
 import model.Mahasiswa;
 
 /**
@@ -41,7 +42,7 @@ public class MahasiswaJpaController {
             em.persist(mahasiswa);
             em.getTransaction().commit();
         } catch (Exception ex) {
-            if (findMahasiswa(mahasiswa.getNrp()) != null) {
+            if (findMahasiswa(mahasiswa.getNama()) != null) {
                 throw new PreexistingEntityException("Mahasiswa " + mahasiswa + " already exists.", ex);
             }
             throw ex;
@@ -62,7 +63,7 @@ public class MahasiswaJpaController {
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
-                String id = mahasiswa.getNrp();
+                String id = mahasiswa.getNama();
                 if (findMahasiswa(id) == null) {
                     throw new NonexistentEntityException("The mahasiswa with id " + id + " no longer exists.");
                 }
@@ -83,7 +84,7 @@ public class MahasiswaJpaController {
             Mahasiswa mahasiswa;
             try {
                 mahasiswa = em.getReference(Mahasiswa.class, id);
-                mahasiswa.getNrp();
+                mahasiswa.getNama();
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The mahasiswa with id " + id + " no longer exists.", enfe);
             }
@@ -142,7 +143,7 @@ public class MahasiswaJpaController {
         }
     }
 
-      public Mahasiswa findMahasiswaByNrp(String nrp) {
+     public Mahasiswa findMahasiswaByNrp(String nrp) {
         EntityManager em = getEntityManager();
         try {
             Query query = em.createQuery("SELECT c FROM Mahasiswa c WHERE c.nrp =:nrp");
@@ -175,6 +176,40 @@ public class MahasiswaJpaController {
             }
         }
         return mahasiswa;
+    }
+
+       public List<Beasiswa> getAllBeasiswa() {
+        List<Beasiswa> beasiswa = new ArrayList<Beasiswa>();
+        EntityManager em = getEntityManager();
+        try {
+            Query q = em.createQuery("SELECT o FROM Beasiswa o");
+            beasiswa = q.getResultList();
+
+        } finally {
+            if (em != null) {
+                em.close();
+            }
+        }
+        return beasiswa;
+    }
+
+    public Beasiswa findBeasiswaById(String idBeasiswa) {
+        EntityManager em = getEntityManager();
+        try {
+            Query query = em.createQuery("SELECT c FROM Beasiswa c WHERE c.idbeasiswa =:idbeasiswa");
+            query.setParameter("idbeasiswa", idBeasiswa);
+            List list = query.getResultList();
+            if (list.size() == 1) {
+
+                return (Beasiswa) list.get(0);
+
+
+            } else {
+                return null;
+            }
+        } finally {
+            em.close();
+        }
     }
 
 }
