@@ -80,13 +80,16 @@ public class BeasiswaJpaControllerTest extends TestCase {
     @Override
     protected void tearDown() throws Exception {
         super.tearDown();
+        eq.destroy("1213");
+        beasiswa1 = null;
+        beasiswa2 = null;
 
     }
 
     /**
      * Test of getEntityManager method, of class BeasiswaJpaController.
      */
-    public void testGetEntityManager() {
+        public void testGetEntityManager() {
         BeasiswaJpaController instance = new BeasiswaJpaController();
         EntityManager expResult = null;
         EntityManager result = instance.getEntityManager();
@@ -105,32 +108,22 @@ public class BeasiswaJpaControllerTest extends TestCase {
         BeasiswaJpaController instance = new BeasiswaJpaController();
         instance.create(beasiswa);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
      * Test of edit method, of class BeasiswaJpaController.
      */
     public void testEdit() throws Exception {
-        System.out.println("edit");
-        Beasiswa beasiswa = null;
-        BeasiswaJpaController instance = new BeasiswaJpaController();
-        instance.edit(beasiswa);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        beasiswa1 = eq.findBeasiswaById("1213");
+        beasiswa1.setIdbeasiswa(beasiswa2.getIdbeasiswa());
+        eq.edit(beasiswa1);
+        assertEquals(beasiswa2.getIdbeasiswa(),eq.findBeasiswaById("1213"));
     }
 
     /**
      * Test of destroy method, of class BeasiswaJpaController.
      */
-    public void testDestroy() throws Exception {
-        System.out.println("destroy");
-        String id = "";
-        BeasiswaJpaController instance = new BeasiswaJpaController();
-        instance.destroy(id);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
+    
 
     /**
      * Test of findBeasiswaEntities method, of class BeasiswaJpaController.
