@@ -85,7 +85,7 @@
                                             <img src="images/1_64x64.png" alt="Image 1" />
                                         </td>
                                         <td>
-                                            <a href="Dispatcher?page=pengaturanAkun&&nrp=${mahasiswa.nrp}"><h4>Pengaturan Akun</h4></a>
+                                            <a href="DispatcherMahasiswa?page=pengaturanAkun&&nrp=${mahasiswa.nrp}"><h4>Pengaturan Akun</h4></a>
                                         </td>
                                     </tr>
                                 </table>
@@ -130,7 +130,7 @@
                                         </td>
                                         <td>
 
-                                            <a href="Dispatcher?page=listDaftarBeasiswa"<h4>Daftar Beasiswa</h4> </a>
+                                            <a href="DispatcherBeasiswa?page=listDaftarBeasiswa"<h4>Daftar Beasiswa</h4> </a>
                                         </td>
                                     </tr>
                                 </table>

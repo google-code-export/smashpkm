@@ -73,8 +73,8 @@
                         <li><a href="/Smash" class="selected">Home</a></li>
                         <li><a href="about.html">About</a>
                             <ul>
-                                <li><a href="Dispatcher?page=home">SMASH</a></li>
-                                <li><a href="Dispatcher?page=home">Our Team</a></li>
+                                <li><a href="DispatcherMahasiswa?page=home">SMASH</a></li>
+                                <li><a href="DispatcherMahasiswa?page=home">Our Team</a></li>
                             </ul>
                         </li>
                         <li><a href="contact.html">Contact</a></li>
@@ -140,7 +140,7 @@
 
                         </script>
 
-                        <form method='post' action='Dispatcher?page=goRegistrasi' onsubmit="">
+                        <form method='post' action='DispatcherMahasiswa?page=goRegistrasi' onsubmit="">
 
                             <br/><fieldset>
                                 <table border=0>

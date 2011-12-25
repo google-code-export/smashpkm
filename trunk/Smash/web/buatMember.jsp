@@ -13,11 +13,11 @@
     </head>
     <body>
 
-           <form method='post' action='Dispatcher?page=home&&nrp=${mahasiswa.nrp}'>
+           <form method='post' action='DispatcherMahasiswa?page=home&&nrp=${mahasiswa.nrp}'>
             <input type='submit' value='Pengaturan member' />
         </form>
 
-        <form method='post' action='Dispatcher?page=goBuatMember' onsubmit="">
+        <form method='post' action='DispatcherMahasiswa?page=goBuatMember' onsubmit="">
 
                             <br/><fieldset>
                                 <table border=0>

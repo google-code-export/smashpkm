@@ -1,44 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
     <servlet>
-        <servlet-name>Dispatcher</servlet-name>
-        <servlet-class>controller.Dispatcher</servlet-class>
+        <servlet-name>DispatcherMahasiswa</servlet-name>
+        <servlet-class>controller.DispatcherMahasiswa</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>SimpanRegistrasi</servlet-name>
-        <servlet-class>Controller.Dispatcher</servlet-class>
+        <servlet-name>DispatcherBeasiswa</servlet-name>
+        <servlet-class>controller.DispatcherBeasiswa</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>CekPassword</servlet-name>
-        <servlet-class>Controller.CekPassword</servlet-class>
+        <servlet-name>DispatcherPengajuan</servlet-name>
+        <servlet-class>controller.DispatcherPengajuan</servlet-class>
     </servlet>
-      <servlet>
+    <servlet>
         <servlet-name>CommonsFileUploadServlet</servlet-name>
         <servlet-class>controller.CommonsFileUploadServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>Dispatch</servlet-name>
-        <servlet-class>controller.Dispatcher</servlet-class>
+        <servlet-name>ControllerPengajuan</servlet-name>
+        <servlet-class>controller.ControllerPengajuan</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>SimpanRegistrasi</servlet-name>
-        <url-pattern>/SimpanRegistrasi</url-pattern>
+        <servlet-name>DispatcherBeasiswa</servlet-name>
+        <url-pattern>/DispatcherBeasiswa</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>CekPassword</servlet-name>
-        <url-pattern>/CekPassword</url-pattern>
+        <servlet-name>DispatcherPengajuan</servlet-name>
+        <url-pattern>/DispatcherPengajuan</url-pattern>
     </servlet-mapping>
-     <servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DispatcherMahasiswa</servlet-name>
+        <url-pattern>/DispatcherMahasiswa</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>CommonsFileUploadServlet</servlet-name>
         <url-pattern>/CommonsFileUploadServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>Dispatcher</servlet-name>
-        <url-pattern>/Dispatcher</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>Dispatch</servlet-name>
-        <url-pattern>/Dispatch</url-pattern>
+        <servlet-name>ControllerPengajuan</servlet-name>
+        <url-pattern>/ControllerPengajuan</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
@@ -46,6 +46,6 @@
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>Dispatcher</welcome-file>
+        <welcome-file>DispatcherMahasiswa</welcome-file>
     </welcome-file-list>
 </web-app>

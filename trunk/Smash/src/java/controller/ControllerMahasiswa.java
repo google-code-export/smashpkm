@@ -8,35 +8,24 @@ package controller;
  *
  * @author yosua
  */
-import java.io.File;
-import java.io.IOException;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+
+
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import org.apache.commons.fileupload.servlet.ServletFileUpload;
-import org.apache.commons.fileupload.disk.DiskFileItemFactory;
-//import org.apache.commons.fileupload.*;
-import model.Beasiswa;
+
 import model.Mahasiswa;
-import model.Pengajuan;
 
 /**
  *
  * @author yosua
  */
-public class Controller {
+public class ControllerMahasiswa {
 
     HttpServletRequest request;
 
-    public Controller(HttpServletRequest request) {
+    public ControllerMahasiswa(HttpServletRequest request) {
         this.request = request;
     }
 
@@ -66,7 +55,7 @@ public class Controller {
                     mahasiswa.setAlamatsurabaya("");
                     mahasiswa.setNilaitoefl(0);
                     mahasiswa.setSemester(0);
-                    mahasiswa.setIpk(0);
+                    mahasiswa.setIpk(0.0);
                     mahasiswa.setNamaayah("");
                     mahasiswa.setNamaibu("");
                     mahasiswa.setPekerjaanayah("");
@@ -107,7 +96,8 @@ public class Controller {
         HttpSession session = request.getSession();
         MahasiswaJpaController login = new MahasiswaJpaController();
         Mahasiswa mahasiswa = new Mahasiswa();
-        login.findMahasiswaByNrp(nrp);
+        mahasiswa.setIsadmin(false);
+        //login.findMahasiswaByNrp(nrp);
         if (login.findMahasiswaByNrp(nrp) != null) {
             mahasiswa = login.findMahasiswaByNrp(nrp);
 
@@ -227,7 +217,7 @@ public class Controller {
         } else {
             int nilaiToefl = Integer.parseInt(nilaiToefl1);
             int semester = Integer.parseInt(semester1);
-            int ipk = Integer.parseInt(ipk1);
+            Double ipk = Double.parseDouble(ipk1);
             int penghasilanAyah = Integer.parseInt(penghasilanAyah1);
             int penghasilanIbu = Integer.parseInt(penghasilanIbu1);
             int jumlahSaudara = Integer.parseInt(jumlahSaudara1);
@@ -323,98 +313,5 @@ public class Controller {
 
         }
     }
-    public void setBuatBeasiswa(Beasiswa beasiswa) throws ParseException {
-        String namaBeasiswa = request.getParameter("namabeasiswa");
-        String keterangan = request.getParameter("keterangan");
-        String tanggalPublish = request.getParameter("tanggalpublish");
-        String tanggalKadaluwarsa = request.getParameter("tanggalkadaluwarsa");
-        String tanggalMulai = request.getParameter("tanggalmulai");
-        String tanggalHabis = request.getParameter("tanggalhabis");
-
-        HttpSession session = request.getSession();
-        BeasiswaJpaController beasiswaBaru = new BeasiswaJpaController();
-        beasiswa.setNamabeasiswa(namaBeasiswa);
-        beasiswa.setKeterangan(keterangan);
-        DateFormat formatter;
-        Date datePublish;
-        Date dateKadaluwarsa;
-        Date dateMulai;
-        Date dateHabis;
-        formatter = new SimpleDateFormat("dd-MM-yyyy");
-        datePublish = (Date) formatter.parse(tanggalPublish);
-        dateKadaluwarsa = (Date) formatter.parse(tanggalKadaluwarsa);
-        dateMulai = (Date) formatter.parse(tanggalMulai);
-        dateHabis = (Date) formatter.parse(tanggalHabis);
-        beasiswa.setTanggalpublish(datePublish);
-        beasiswa.setTanggalpublish(dateKadaluwarsa);
-        beasiswa.setTanggalpublish(dateMulai);
-        beasiswa.setTanggalpublish(dateHabis);
-        session.setAttribute("beasiswa", beasiswa);
-        try {
-            beasiswaBaru.create(beasiswa);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-    }
-
-    public void setListBeasiswa() {
-        BeasiswaJpaController listBeasiswa = new BeasiswaJpaController();
-        HttpSession session = request.getSession();
-        List<Beasiswa> list = new ArrayList<Beasiswa>();
-        list = listBeasiswa.getAllBeasiswa();
-        session.setAttribute("list_beasiswa", list);
-    }
-
     
-
-    public void setEditPost(Beasiswa beasiswa) {
-        HttpSession session = request.getSession();
-        BeasiswaJpaController editPost = new BeasiswaJpaController();
-        beasiswa = editPost.findBeasiswaById((String) session.getAttribute("idbeasiswa"));
-        try {
-            editPost.edit(beasiswa);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void setPost(Beasiswa beasiswa) {
-        String idBeasiswa = request.getParameter("idbeasiswa");
-        HttpSession session = request.getSession();
-        BeasiswaJpaController aturPost = new BeasiswaJpaController();
-        beasiswa = aturPost.findBeasiswaById(idBeasiswa);
-        session.setAttribute("beasiswa", beasiswa);
-        session.setAttribute("idbeasiswa", idBeasiswa);
-
-    }
-
-    public void setDeletePost() {
-        String idBeasiswa = request.getParameter("idbeasiswa");
-        HttpSession session = request.getSession();
-        Beasiswa beasiswa = new Beasiswa();
-        BeasiswaJpaController deletePost = new BeasiswaJpaController();
-        beasiswa = deletePost.findBeasiswaById(idBeasiswa);
-        try {
-            deletePost.destroy(beasiswa.getIdbeasiswa());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void setBeasiswaPengajuan() {
-        String idBeasiswa = request.getParameter("pilih");
-        HttpSession session = request.getSession();
-        session.setAttribute("idbeasiswa", idBeasiswa);
-    }
-
-    public void setSimpanGambar(CommonsFileUploadServlet cfs) throws ServletException, IOException {
-
-     
-        try {
-            cfs.init(cfs);
-        } catch (ServletException ex) {
-            Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
 }

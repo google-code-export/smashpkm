@@ -32,12 +32,12 @@
         <table border=0>
             <tr>
                 <td>
-                    <form method='post' action='Dispatcher?page=pengaturanPost'>
+                    <form method='post' action='DispatcherBeasiswa?page=pengaturanPost'>
                         <input type='submit' value='Posts' >
                     </form>
                 </td>
                 <td>
-                    <form method='post' action='Dispatcher?page=home&&nrp=${mahasiswa.nrp}'>
+                    <form method='post' action='DispatcherMahasiswa?page=home&&nrp=${mahasiswa.nrp}'>
                         <input type='submit' value='Menu Utama' >
                     </form>
                 </td>
@@ -46,14 +46,14 @@
         <br>
         <fieldset>
 
-            <form method='post' action='Dispatcher?page=goBuatPost'>
+            <form method='post' action='DispatcherBeasiswa?page=goBuatPost'>
                 <table border="0">
                     <tr>                          
                         <td >
                             nama beasiswa:
                         </td>
                         <td >
-                            <input type=text name='namabeasiswa' value="${beasiswa.namabeasiswa}"/>
+                            <input type=text name='namabeasiswa' value=""/>
                             &nbsp; &nbsp;
 
                         </td>
@@ -61,7 +61,7 @@
                             tanggal publish:
                         </td>
                         <td> 
-                           <input id="demo1" type="text" name="tanggalpublish" size="25" value="${beasiswa.tanggalpublish}"><a href="javascript:NewCal('demo1','ddmmyyyy')"><img src="images/cal.gif" width="16" height="16" border="0" alt="Pick a date"></a>
+                           <input id="demo1" type="text" name="tanggalpublish" size="25" value=""><a href="javascript:NewCal('demo1','ddmmyyyy')"><img src="images/cal.gif" width="16" height="16" border="0" alt="Pick a date"></a>
 
                         </td>
                     </tr>
@@ -76,7 +76,7 @@
                             tanggal kadaluwarsa:
                         </td>
                         <td>
-                            <input id="demo2" type="text" name="tanggalkadaluwarsa" size="25" value="${beasiswa.tanggalpublish}"><a href="javascript:NewCal('demo2','ddmmyyyy')"><img src="images/cal.gif" width="16" height="16" border="0" alt="Pick a date"></a>
+                            <input id="demo2" type="text" name="tanggalkadaluwarsa" size="25" value=""><a href="javascript:NewCal('demo2','ddmmyyyy')"><img src="images/cal.gif" width="16" height="16" border="0" alt="Pick a date"></a>
                         </td>
                     </tr>
                     <tr>
@@ -90,7 +90,7 @@
                             tanggal mulai:
                         </td>
                         <td>
-                            <input id="demo3" type="text" name="tanggalmulai" size="25" value="${beasiswa.tanggalmulai}"><a href="javascript:NewCal('demo3','ddmmyyyy')"><img src="images/cal.gif" width="16" height="16" border="0" alt="Pick a date"></a>
+                            <input id="demo3" type="text" name="tanggalmulai" size="25" value=""><a href="javascript:NewCal('demo3','ddmmyyyy')"><img src="images/cal.gif" width="16" height="16" border="0" alt="Pick a date"></a>
                         </td>
                     </tr>
                     <tr>
@@ -104,14 +104,14 @@
                             tanggal mulai:
                         </td>
                         <td>
-                            <input id="demo4" type="text" name="tanggalhabis" size="25" value="${beasiswa.tanggalhabis}"><a href="javascript:NewCal('demo4','ddmmyyyy')"><img src="images/cal.gif" width="16" height="16" border="0" alt="Pick a date"></a>
+                            <input id="demo4" type="text" name="tanggalhabis" size="25" value=""><a href="javascript:NewCal('demo4','ddmmyyyy')"><img src="images/cal.gif" width="16" height="16" border="0" alt="Pick a date"></a>
                         </td>
                     </tr>
 
 
                 </table>
                 <p>keterangan</p>
-                <textarea rows="10" cols="30" name="keterangan">${beasiswa.keterangan}</textarea>
+                <textarea rows="10" cols="30" name="keterangan" value=""></textarea>
                 <input type='submit' value='add'/>
             </form>
 

@@ -88,19 +88,19 @@
 
             </div> <!-- end of header -->
             <br/>
-            <p align="right"><font color="black"></font><a style="color: red" href="Dispatcher?name=logout">(logout)</a></p>
+            <p align="right"><font color="black"></font><a style="color: red" href="DispatcherMahasiswa?name=logout">(logout)</a></p>
 
             <div class="content">
                 <table border="0">
                     <tr>
                         <td>
-                            <a href="Dispatcher?page=pengaturanMember" title="" class="btn medium green">Profil</a>
+                            <a href="DispatcherMahasiswa?page=pengaturanMember" title="" class="btn medium green">Profil</a>
                         </td>
                         <td>
-                            <a href="Dispatcher?page=pengaturanPasswordMember&&nrp=${member.nrp}" title="" class="btn medium green">Ganti Password</a>
+                            <a href="DispatcherMahasiswa?page=pengaturanPasswordMember&&nrp=${member.nrp}" title="" class="btn medium green">Ganti Password</a>
                         </td>
                         <td>
-                            <a href="Dispatcher?page=home&&nrp=${mahasiswa.nrp}" title="" class="btn medium green">Menu Utama</a>
+                            <a href="DispatcherMahasiswa?page=home&&nrp=${mahasiswa.nrp}" title="" class="btn medium green">Menu Utama</a>
                         </td>
                     </tr>
                 </table>
@@ -108,7 +108,7 @@
 
             <br/>
 
-            <form method='post'  action='Dispatcher?page=goEditMember&&nrp=${member.nrp}'>
+            <form method='post'  action='DispatcherMahasiswa?page=goEditMember&&nrp=${member.nrp}'>
                 <fieldset>
                     <table border=0>
                         <font color="red"><%= request.getAttribute("pesan")%></font>

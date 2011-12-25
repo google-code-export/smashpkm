@@ -14,30 +14,48 @@
     </head>
     <body>
         <h2>Posts</h2>
-        <form method='post' action='Dispatcher?page=membuatPost'>
-            <input type='submit' value='Add New Post' >
-        </form>
+
+        <table>
+            <tr>
+                <td>
+                    <form method='post' action='DispatcherBeasiswa?page=membuatPost'>
+                        <input type='submit' value='Add New Post' >
+                    </form>
+                </td>
+                <td>
+                    <form method='post' action='DispatcherMahasiswa?page=home&&nrp=${mahasiswa.nrp}'>
+                        <input type='submit' value='Menu Utama' >
+                    </form>
+                </td>
+                <td>
+                    <form  method='post' action='DispatcherMahasiswa?page=logout&&nrp=${mahasiswa.nrp}'>
+                        <input type='submit' value='Logout' >
+                    </form>
+
+                </td>
+            </tr>
+        </table>
         <table>
             <c:forEach items="${list_beasiswa}" var="bsw">
                 <tr>
                     <td>${bsw.namabeasiswa}</td>
-                    </tr>
+                </tr>
                 <tr>
                     <td>
-                <form method='post' action='Dispatcher?page=editPost&&idbeasiswa=${bsw.idbeasiswa}'>
-                    <input type='submit' value='Edit' >
-                </form>
+                        <form method='post' action='DispatcherBeasiswa?page=editPost&&idbeasiswa=${bsw.idbeasiswa}'>
+                            <input type='submit' value='Edit' >
+                        </form>
                     </td>
                     <td>
-                <form method='post' action='Dispatcher?page=deletePost&&idbeasiswa=${bsw.idbeasiswa}'>
-                    <input type='submit' value='Delete' >
-                </form>
+                        <form method='post' action='DispatcherBeasiswa?page=deletePost&&idbeasiswa=${bsw.idbeasiswa}'>
+                            <input type='submit' value='Delete' >
+                        </form>
                     </td>
 
-            </tr>
-        </c:forEach> 
-    </table>
-    <br><br>
+                </tr>
+            </c:forEach>
+        </table>
+        <br><br>
 
-</body>
+    </body>
 </html>

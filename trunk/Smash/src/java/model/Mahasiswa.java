@@ -2,86 +2,75 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package model;
 
 import java.io.Serializable;
+import java.util.Collection;
+import java.util.Set;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
 
 /**
  *
  * @author yosua
  */
 @Entity
-@Table(name = "mahasiswa", catalog = "Smash", schema = "", uniqueConstraints = {
-    @UniqueConstraint(columnNames = {"NRP"})})
+@Table(name = "mahasiswa")
 @NamedQueries({
-    @NamedQuery(name = "Mahasiswa.findAll", query = "SELECT m FROM Mahasiswa m"),
-    @NamedQuery(name = "Mahasiswa.findByNrp", query = "SELECT m FROM Mahasiswa m WHERE m.nrp = :nrp"),
-    @NamedQuery(name = "Mahasiswa.findByJumlahsaudara", query = "SELECT m FROM Mahasiswa m WHERE m.jumlahsaudara = :jumlahsaudara"),
-    @NamedQuery(name = "Mahasiswa.findByNamaayah", query = "SELECT m FROM Mahasiswa m WHERE m.namaayah = :namaayah"),
-    @NamedQuery(name = "Mahasiswa.findByPenghasilanibu", query = "SELECT m FROM Mahasiswa m WHERE m.penghasilanibu = :penghasilanibu"),
-    @NamedQuery(name = "Mahasiswa.findByLoginstat", query = "SELECT m FROM Mahasiswa m WHERE m.loginstat = :loginstat"),
-    @NamedQuery(name = "Mahasiswa.findByPassword", query = "SELECT m FROM Mahasiswa m WHERE m.password = :password"),
-    @NamedQuery(name = "Mahasiswa.findByIpk", query = "SELECT m FROM Mahasiswa m WHERE m.ipk = :ipk"),
-    @NamedQuery(name = "Mahasiswa.findByPekerjaanibu", query = "SELECT m FROM Mahasiswa m WHERE m.pekerjaanibu = :pekerjaanibu"),
-    @NamedQuery(name = "Mahasiswa.findByNamaibu", query = "SELECT m FROM Mahasiswa m WHERE m.namaibu = :namaibu"),
-    @NamedQuery(name = "Mahasiswa.findByNohp", query = "SELECT m FROM Mahasiswa m WHERE m.nohp = :nohp"),
-    @NamedQuery(name = "Mahasiswa.findByAlamatsurabaya", query = "SELECT m FROM Mahasiswa m WHERE m.alamatsurabaya = :alamatsurabaya"),
-    @NamedQuery(name = "Mahasiswa.findByAlamatasal", query = "SELECT m FROM Mahasiswa m WHERE m.alamatasal = :alamatasal"),
-    @NamedQuery(name = "Mahasiswa.findByPenghasilanayah", query = "SELECT m FROM Mahasiswa m WHERE m.penghasilanayah = :penghasilanayah"),
-    @NamedQuery(name = "Mahasiswa.findByNilaitoefl", query = "SELECT m FROM Mahasiswa m WHERE m.nilaitoefl = :nilaitoefl"),
-    @NamedQuery(name = "Mahasiswa.findByNama", query = "SELECT m FROM Mahasiswa m WHERE m.nama = :nama"),
-    @NamedQuery(name = "Mahasiswa.findByPekerjaanayah", query = "SELECT m FROM Mahasiswa m WHERE m.pekerjaanayah = :pekerjaanayah"),
-    @NamedQuery(name = "Mahasiswa.findByIsadmin", query = "SELECT m FROM Mahasiswa m WHERE m.isadmin = :isadmin"),
-    @NamedQuery(name = "Mahasiswa.findBySemester", query = "SELECT m FROM Mahasiswa m WHERE m.semester = :semester")})
+    @NamedQuery(name = "Mahasiswa.findAll", query = "SELECT m FROM Mahasiswa m")})
 public class Mahasiswa implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @Column(name = "NRP", nullable = false, length = 1000)
+    @Column(name = "NRP", nullable = false, length = 767)
     private String nrp;
-    @Column(name = "JUMLAHSAUDARA")
-    private Integer jumlahsaudara;
-    @Column(name = "NAMAAYAH", length = 1000)
-    private String namaayah;
-    @Column(name = "PENGHASILANIBU")
-    private Integer penghasilanibu;
+    @Column(name = "NAMA", length = 767)
+    private String nama;
+    @Column(name = "PASSWORD", length = 767)
+    private String password;
     @Column(name = "LOGINSTAT")
     private Boolean loginstat;
-    @Column(name = "PASSWORD", length = 1000)
-    private String password;
-    @Column(name = "IPK")
-    private Integer ipk;
-    @Column(name = "PEKERJAANIBU", length = 1000)
-    private String pekerjaanibu;
-    @Column(name = "NAMAIBU", length = 1000)
-    private String namaibu;
-    @Column(name = "NOHP", length = 1000)
+    @Column(name = "NOHP", length = 767)
     private String nohp;
-    @Column(name = "ALAMATSURABAYA", length = 1000)
-    private String alamatsurabaya;
-    @Column(name = "ALAMATASAL", length = 1000)
+    @Column(name = "ALAMATASAL", length = 767)
     private String alamatasal;
-    @Column(name = "PENGHASILANAYAH")
-    private Integer penghasilanayah;
+    @Column(name = "ALAMATSURABAYA", length = 767)
+    private String alamatsurabaya;
     @Column(name = "NILAITOEFL")
     private Integer nilaitoefl;
-    @Column(name = "NAMA", length = 1000)
-    private String nama;
-    @Column(name = "PEKERJAANAYAH", length = 1000)
-    private String pekerjaanayah;
-    @Column(name = "ISADMIN")
-    private Boolean isadmin;
     @Column(name = "SEMESTER")
     private Integer semester;
+    @Column(name = "IPK", precision = 22)
+    private Double ipk;
+    @Column(name = "NAMAAYAH", length = 767)
+    private String namaayah;
+    @Column(name = "NAMAIBU", length = 767)
+    private String namaibu;
+    @Column(name = "PENGHASILANAYAH")
+    private Integer penghasilanayah;
+    @Column(name = "PENGHASILANIBU")
+    private Integer penghasilanibu;
+    @Column(name = "PEKERJAANAYAH", length = 767)
+    private String pekerjaanayah;
+    @Column(name = "PEKERJAANIBU", length = 767)
+    private String pekerjaanibu;
+    @Column(name = "JUMLAHSAUDARA")
+    private Integer jumlahsaudara;
+    @Column(name = "ISADMIN")
+    private Boolean isadmin;
+    //@OneToMany//(cascade = CascadeType.ALL, mappedBy = "idbeasiswa", fetch = FetchType.LAZY)
+    //private Pengajuan pengajuan;
+    @OneToMany(mappedBy = "nrp")
+    private Set<Pengajuan> pengajuanCollection;
 
     public Mahasiswa() {
     }
@@ -98,36 +87,12 @@ public class Mahasiswa implements Serializable {
         this.nrp = nrp;
     }
 
-    public Integer getJumlahsaudara() {
-        return jumlahsaudara;
+    public String getNama() {
+        return nama;
     }
 
-    public void setJumlahsaudara(Integer jumlahsaudara) {
-        this.jumlahsaudara = jumlahsaudara;
-    }
-
-    public String getNamaayah() {
-        return namaayah;
-    }
-
-    public void setNamaayah(String namaayah) {
-        this.namaayah = namaayah;
-    }
-
-    public Integer getPenghasilanibu() {
-        return penghasilanibu;
-    }
-
-    public void setPenghasilanibu(Integer penghasilanibu) {
-        this.penghasilanibu = penghasilanibu;
-    }
-
-    public Boolean getLoginstat() {
-        return loginstat;
-    }
-
-    public void setLoginstat(Boolean loginstat) {
-        this.loginstat = loginstat;
+    public void setNama(String nama) {
+        this.nama = nama;
     }
 
     public String getPassword() {
@@ -138,28 +103,12 @@ public class Mahasiswa implements Serializable {
         this.password = password;
     }
 
-    public Integer getIpk() {
-        return ipk;
+    public Boolean getLoginstat() {
+        return loginstat;
     }
 
-    public void setIpk(Integer ipk) {
-        this.ipk = ipk;
-    }
-
-    public String getPekerjaanibu() {
-        return pekerjaanibu;
-    }
-
-    public void setPekerjaanibu(String pekerjaanibu) {
-        this.pekerjaanibu = pekerjaanibu;
-    }
-
-    public String getNamaibu() {
-        return namaibu;
-    }
-
-    public void setNamaibu(String namaibu) {
-        this.namaibu = namaibu;
+    public void setLoginstat(Boolean loginstat) {
+        this.loginstat = loginstat;
     }
 
     public String getNohp() {
@@ -170,14 +119,6 @@ public class Mahasiswa implements Serializable {
         this.nohp = nohp;
     }
 
-    public String getAlamatsurabaya() {
-        return alamatsurabaya;
-    }
-
-    public void setAlamatsurabaya(String alamatsurabaya) {
-        this.alamatsurabaya = alamatsurabaya;
-    }
-
     public String getAlamatasal() {
         return alamatasal;
     }
@@ -186,12 +127,12 @@ public class Mahasiswa implements Serializable {
         this.alamatasal = alamatasal;
     }
 
-    public Integer getPenghasilanayah() {
-        return penghasilanayah;
+    public String getAlamatsurabaya() {
+        return alamatsurabaya;
     }
 
-    public void setPenghasilanayah(Integer penghasilanayah) {
-        this.penghasilanayah = penghasilanayah;
+    public void setAlamatsurabaya(String alamatsurabaya) {
+        this.alamatsurabaya = alamatsurabaya;
     }
 
     public Integer getNilaitoefl() {
@@ -202,12 +143,52 @@ public class Mahasiswa implements Serializable {
         this.nilaitoefl = nilaitoefl;
     }
 
-    public String getNama() {
-        return nama;
+    public Integer getSemester() {
+        return semester;
     }
 
-    public void setNama(String nama) {
-        this.nama = nama;
+    public void setSemester(Integer semester) {
+        this.semester = semester;
+    }
+
+    public Double getIpk() {
+        return ipk;
+    }
+
+    public void setIpk(Double ipk) {
+        this.ipk = ipk;
+    }
+
+    public String getNamaayah() {
+        return namaayah;
+    }
+
+    public void setNamaayah(String namaayah) {
+        this.namaayah = namaayah;
+    }
+
+    public String getNamaibu() {
+        return namaibu;
+    }
+
+    public void setNamaibu(String namaibu) {
+        this.namaibu = namaibu;
+    }
+
+    public Integer getPenghasilanayah() {
+        return penghasilanayah;
+    }
+
+    public void setPenghasilanayah(Integer penghasilanayah) {
+        this.penghasilanayah = penghasilanayah;
+    }
+
+    public Integer getPenghasilanibu() {
+        return penghasilanibu;
+    }
+
+    public void setPenghasilanibu(Integer penghasilanibu) {
+        this.penghasilanibu = penghasilanibu;
     }
 
     public String getPekerjaanayah() {
@@ -218,20 +199,28 @@ public class Mahasiswa implements Serializable {
         this.pekerjaanayah = pekerjaanayah;
     }
 
+    public String getPekerjaanibu() {
+        return pekerjaanibu;
+    }
+
+    public void setPekerjaanibu(String pekerjaanibu) {
+        this.pekerjaanibu = pekerjaanibu;
+    }
+
+    public Integer getJumlahsaudara() {
+        return jumlahsaudara;
+    }
+
+    public void setJumlahsaudara(Integer jumlahsaudara) {
+        this.jumlahsaudara = jumlahsaudara;
+    }
+
     public Boolean getIsadmin() {
         return isadmin;
     }
 
     public void setIsadmin(Boolean isadmin) {
         this.isadmin = isadmin;
-    }
-
-    public Integer getSemester() {
-        return semester;
-    }
-
-    public void setSemester(Integer semester) {
-        this.semester = semester;
     }
 
     @Override
@@ -258,5 +247,4 @@ public class Mahasiswa implements Serializable {
     public String toString() {
         return "model.Mahasiswa[nrp=" + nrp + "]";
     }
-
 }

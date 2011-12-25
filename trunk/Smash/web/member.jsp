@@ -8,31 +8,49 @@
         <title>Posts</title>
     </head>
     <body>
-        <h2>Posts</h2>
-        <form method='post' action='Dispatcher?page=buatMember'>
-            <input type='submit' value='Add New Member' >
-        </form>
+        <h2>Members</h2>
+        <table>
+            <tr>
+                <td>
+                    <form method='post' action='DispatcherMahasiswa?page=buatMember'>
+                        <input type='submit' value='Add New Member' >
+                    </form>
+                </td>
+                <td>
+                    <form method='post' action='DispatcherMahasiswa?page=home&&nrp=${mahasiswa.nrp}'>
+                        <input type='submit' value='Menu Utama' >
+                    </form>
+                </td>
+                <td>
+                    <form  method='post' action='DispatcherMahasiswa?page=logout&&nrp=${mahasiswa.nrp}'>
+                        <input type='submit' value='Logout' >
+                    </form>
+
+                </td>
+            </tr>
+        </table>
+
         <table>
             <c:forEach items="${list_mahasiswa}" var="mhs">
                 <tr>
                     <td>${mhs.nama}</td>
-                    </tr>
+                </tr>
                 <tr>
                     <td>
-                <form method='post' action='Dispatcher?page=editMember&&nrp=${mhs.nrp}'>
-                    <input type='submit' value='Edit' >
-                </form>
+                        <form method='post' action='DispatcherMahasiswa?page=editMember&&nrp=${mhs.nrp}'>
+                            <input type='submit' value='Edit' >
+                        </form>
                     </td>
                     <td>
-                <form method='post' action='Dispatcher?page=deleteMember&&nrp=${mhs.nrp}'>
-                    <input type='submit' value='Delete' >
-                </form>
+                        <form method='post' action='DispatcherMahasiswa?page=deleteMember&&nrp=${mhs.nrp}'>
+                            <input type='submit' value='Delete' >
+                        </form>
                     </td>
 
-            </tr>
-        </c:forEach>
-    </table>
-    <br><br>
+                </tr>
+            </c:forEach>
+        </table>
+        <br><br>
 
-</body>
+    </body>
 </html>
