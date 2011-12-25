@@ -1,5 +1,3 @@
-
-
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -9,8 +7,11 @@ package controller;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Iterator;
 import java.util.List;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -62,18 +63,18 @@ public class CommonsFileUploadServlet extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       PrintWriter out = response.getWriter();
-       
+        PrintWriter out = response.getWriter();
+        RequestDispatcher dis = null;
+        ControllerBeasiswa controller = new ControllerBeasiswa(request);
         response.setContentType("text/plain");
-        out.println("<h1>Servlet File Upload Example using Commons File Upload</h1>");
-        out.println();
+
 
 
         DiskFileItemFactory fileItemFactory = new DiskFileItemFactory();
         /*
          *Set the size threshold, above which content will be stored on disk.
          */
-        fileItemFactory.setSizeThreshold(1 * 1024 * 1024); //1 MB
+        fileItemFactory.setSizeThreshold(1 * 1600 * 1600); //
 		/*
          * Set the temporary directory to store the uploaded files of size above threshold.
          */
@@ -82,11 +83,12 @@ public class CommonsFileUploadServlet extends HttpServlet {
         fileItemFactory.setRepository(tmpDir);
 
         ServletFileUpload uploadHandler = new ServletFileUpload(fileItemFactory);
-        
+
         try {
             /*
              * Parse the request
              */
+
             List items = uploadHandler.parseRequest(request);
             Iterator itr = items.iterator();
             while (itr.hasNext()) {
@@ -95,42 +97,59 @@ public class CommonsFileUploadServlet extends HttpServlet {
                 /*
                  * Handle Form Fields.
                  */
-                PengajuanJpaController daftar=new PengajuanJpaController();
-                Pengajuan pengajuan=new Pengajuan();
-                Mahasiswa mahasiswa=new Mahasiswa();
-                Beasiswa beasiswa=new Beasiswa();
-                HttpSession session = request.getSession();
                 if (item.isFormField()) {
-                    out.println("File Name = " + item.getFieldName() + ", Value = " + item.getString());
+                    //    out.println("File Name = " + item.getFieldName() + ", Value = " + item.getString());
                 } else {
-             //      Handle Uploaded files.
-                   out.println("Field Name = " + item.getFieldName()
-                            + ", File Name = " + item.getName()
-                            + ", Content type = " + item.getContentType()
-                            + ", File Size = " + item.getSize()
-                          );
-                          mahasiswa.setNrp((String) session.getAttribute("nama"));
-                          beasiswa.setIdbeasiswa((String) session.getAttribute("idbeasiswa"));
-                          pengajuan.setPaths(item.getName());
-                //          pengajuan.setBeasiswa(beasiswa);
-                          pengajuan.setMahasiswaNrp("nama");
-   
-                    /*
-                     * Write file to the ultimate location.
-                     */
+                    //      Handle Uploaded files.
 
+
+                    PengajuanJpaController daftar = new PengajuanJpaController();
+                    MahasiswaJpaController cariMhs = new MahasiswaJpaController();
+                    BeasiswaJpaController cariBsw = new BeasiswaJpaController();
+                    Pengajuan pengajuan = new Pengajuan();
+                    Mahasiswa mahasiswa = new Mahasiswa();
+                    Beasiswa beasiswa = new Beasiswa();
+                    String nrp = request.getParameter("nrp");
+                    String idbeasiswa = request.getParameter("idbeasiswa");
+                    HttpSession session = request.getSession();
+                    Calendar currentDate = Calendar.getInstance();
+                    SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+                    String dateNow = formatter.format(currentDate.getTime());
+
+                    mahasiswa=cariMhs.findMahasiswaByNrp(nrp);
+                    beasiswa=cariBsw.findBeasiswaById(idbeasiswa);
+                    pengajuan.setNrp(mahasiswa);
+                    beasiswa.setIdbeasiswa(idbeasiswa);
+                    pengajuan.setPaths(item.getName());
+                    pengajuan.setIdbeasiswa(beasiswa);
+                    pengajuan.setTanggalpengajuan(dateNow);
+                    session.setAttribute("pengajuan",pengajuan);
+                    try {
+                        daftar.create(pengajuan);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    
                     File file = new File(destinationDir, item.getName());
                     item.write(file);
                 }
-                
-                daftar.create(pengajuan);
-            //    out.close();
+
             }
+
         } catch (FileUploadException ex) {
             log("Error encountered while parsing the request", ex);
+
+
         } catch (Exception ex) {
             log("Error encountered while uploading file", ex);
+
+
         }
+        controller.setBeasiswaPengajuan();
+        dis = request.getRequestDispatcher("halamanDaftarBeasiswa.jsp");
+        dis.include(request, response);
+
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -145,6 +164,8 @@ public class CommonsFileUploadServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+
+
     }
 
     /**
@@ -158,6 +179,8 @@ public class CommonsFileUploadServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+
+
     }
 
     /**
@@ -167,5 +190,6 @@ public class CommonsFileUploadServlet extends HttpServlet {
     @Override
     public String getServletInfo() {
         return "Short description";
+
     }// </editor-fold>
 }

@@ -19,10 +19,9 @@ import javax.persistence.Table;
  * @author yosua
  */
 @Entity
-@Table(name = "penerima", catalog = "Smash", schema = "")
+@Table(name = "penerima")
 @NamedQueries({
-    @NamedQuery(name = "Penerima.findAll", query = "SELECT p FROM Penerima p"),
-    @NamedQuery(name = "Penerima.findById", query = "SELECT p FROM Penerima p WHERE p.id = :id")})
+    @NamedQuery(name = "Penerima.findAll", query = "SELECT p FROM Penerima p")})
 public class Penerima implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id

@@ -6,6 +6,8 @@
 package controller;
 
 import controller.exceptions.NonexistentEntityException;
+import controller.exceptions.PreexistingEntityException;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -31,13 +33,18 @@ public class PengajuanJpaController {
         return emf.createEntityManager();
     }
 
-    public void create(Pengajuan pengajuan) {
+       public void create(Pengajuan pengajuan) throws PreexistingEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
             em.persist(pengajuan);
             em.getTransaction().commit();
+        } catch (Exception ex) {
+            if (findPengajuan(pengajuan.getIdpengajuan()) != null) {
+                throw new PreexistingEntityException("Pengajuan " + pengajuan + " already exists.", ex);
+            }
+            throw ex;
         } finally {
             if (em != null) {
                 em.close();
@@ -133,6 +140,21 @@ public class PengajuanJpaController {
         } finally {
             em.close();
         }
+    }
+
+    public List<Pengajuan> getAllPengajuan() {
+        List<Pengajuan> pengajuan = new ArrayList<Pengajuan>();
+        EntityManager em = getEntityManager();
+        try {
+            Query q = em.createQuery("SELECT o FROM Pengajuan o");
+            pengajuan = q.getResultList();
+
+        } finally {
+            if (em != null) {
+                em.close();
+            }
+        }
+        return pengajuan;
     }
 
 }

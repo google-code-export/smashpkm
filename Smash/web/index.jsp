@@ -141,7 +141,7 @@
 
                         </script>
 
-                        <form method='post' action='Dispatcher?page=login'>
+                        <form method='post' action='DispatcherMahasiswa?page=login'>
                             <br/><fieldset>
                                 <table border=0>
                                     <dd/><font color="red"><%= request.getAttribute("pesan")%></font>
@@ -174,7 +174,7 @@
                                             atau
                                         </td>
                                         <td>
-                                            <form method='post' action='Dispatcher?page=registrasi'/>
+                                            <form method='post' action='DispatcherMahasiswa?page=registrasi'/>
                                             <input type='submit' value='Daftar Sekarang >>' />
                                         </td>
                                     </tr>

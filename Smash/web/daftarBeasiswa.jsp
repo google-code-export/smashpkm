@@ -18,22 +18,22 @@
         <table border=0>
             <tr>
                 <td>
-                    <form method='post' action='Dispatcher?page=logout&&nrp=${mahasiswa.nrp}'>
+                    <form method='post' action='DispatcherMahasiswa?page=logout&&nrp=${mahasiswa.nrp}'>
                         <input type='submit' value='Logout' >
                     </form>
                 </td>
                 <td>
-                    <form method='post' action='Dispatcher?page=home&&nrp=${mahasiswa.nrp}'>
+                    <form method='post' action='DispatcherMahasiswa?page=home&&nrp=${mahasiswa.nrp}'>
                         <input type='submit' value='Menu Utama' >
                     </form>
                 </td>
             </tr>
         </table>
         <br>
-        <form method='post' action="Dispatcher?page=daftarBeasiswa">
+        <form method='post' action="DispatcherBeasiswa?page=daftarBeasiswa">
             <select name="pilih">
                  <c:forEach items="${list_beasiswa}" var="bsw">
-                <option value=${bsw.namabeasiswa } > ${bsw.namabeasiswa} </option>
+                <option value=${bsw.idbeasiswa} > ${bsw.namabeasiswa} </option>
                 </c:forEach>
             </select>
             <input type='submit' value='Daftar' >

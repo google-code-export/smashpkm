@@ -10,15 +10,13 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.Beasiswa;
 import model.Mahasiswa;
-import model.Pengajuan;
 
 /**
  *
  * @author yosua
  */
-public class Dispatcher extends HttpServlet {
+public class DispatcherMahasiswa extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, ParseException {
@@ -26,14 +24,10 @@ public class Dispatcher extends HttpServlet {
         PrintWriter out = response.getWriter();
         String page = request.getParameter("page");
         RequestDispatcher dis = null;
-        Controller controller = new Controller(request);
+        ControllerMahasiswa controller = new ControllerMahasiswa(request);
         Mahasiswa mahasiswa = new Mahasiswa();
-        Beasiswa beasiswa = new Beasiswa();
-        Pengajuan pengajuan = new Pengajuan();
-        String pesan = " ";
+        String pesan = "  ";
         request.setAttribute("pesan", pesan);
-
-
         if (page != null) {
             if (page.equals("home")) {
                 mahasiswa = controller.getMahasiswa();
@@ -50,9 +44,9 @@ public class Dispatcher extends HttpServlet {
             if (page.equals("goRegistrasi")) {
                 controller.setRegistrasi(mahasiswa);
 
-                if (mahasiswa.getLoginstat() ==true) {
+                if (mahasiswa.getLoginstat() == true) {
                     dis = request.getRequestDispatcher("index.jsp");
-                } else{
+                } else {
                     dis = request.getRequestDispatcher("registrasi.jsp");
                 }
 
@@ -69,6 +63,8 @@ public class Dispatcher extends HttpServlet {
                 } else {
                     if (mahasiswa.getLoginstat() == true) {
                         dis = request.getRequestDispatcher("halamanUtamaPengguna.jsp");
+                    } else if (mahasiswa.getLoginstat() == false) {
+                        dis = request.getRequestDispatcher("index.jsp");
                     } else {
                         dis = request.getRequestDispatcher("index.jsp");
                     }
@@ -96,55 +92,6 @@ public class Dispatcher extends HttpServlet {
                 dis = request.getRequestDispatcher("pengaturanPassword.jsp");
 
             }
-            if (page.equals("listDaftarBeasiswa")) {
-                controller.setListBeasiswa();
-                dis = request.getRequestDispatcher("daftarBeasiswa.jsp");
-
-            }
-            if (page.equals("daftarBeasiswa")) {
-                controller.setBeasiswaPengajuan();
-                dis = request.getRequestDispatcher("halamanDaftarBeasiswa.jsp");
-
-            }
-            if (page.equals("goDaftarBeasiswa")) {
-                /*CommonsFileUploadServlet cfs = new CommonsFileUploadServlet();
-                cfs.doGet(request, response);
-                controller.setSimpanGambar(cfs);
-                dis = request.getRequestDispatcher("halamanDaftarBeasiswa.jsp");*/
-                dis = request.getRequestDispatcher("CommonsFileUploadServlet");
-
-            }
-            if (page.equals("pengaturanPost")) {
-                controller.setListBeasiswa();
-                dis = request.getRequestDispatcher("pengaturanPost.jsp");
-
-            }
-            if (page.equals("membuatPost")) {
-                dis = request.getRequestDispatcher("buatPost.jsp");
-
-            }
-            if (page.equals("goBuatPost")) {
-                controller.setBuatBeasiswa(beasiswa);
-                dis = request.getRequestDispatcher("pengaturanPost.jsp");
-
-            }
-            if (page.equals("editPost")) {
-                controller.setPost(beasiswa);
-                dis = request.getRequestDispatcher("buatPost.jsp");
-
-            }
-            if (page.equals("goEditPost")) {
-                controller.setEditPost(beasiswa);
-                dis = request.getRequestDispatcher("buatPost.jsp");
-
-            }
-            if (page.equals("deletePost")) {
-                controller.setDeletePost();
-                controller.setListBeasiswa();
-                dis = request.getRequestDispatcher("pengaturanPost.jsp");
-
-            }
-
             if (page.equals("pengaturanMember")) {
                 controller.setListMahasiswa();
                 dis = request.getRequestDispatcher("member.jsp");
@@ -156,7 +103,8 @@ public class Dispatcher extends HttpServlet {
             }
             if (page.equals("goBuatMember")) {
                 controller.setRegistrasi(mahasiswa);
-                dis = request.getRequestDispatcher("buatMember.jsp");
+                controller.setListMahasiswa();
+                dis = request.getRequestDispatcher("member.jsp");
 
             }
             if (page.equals("setPengaturanMember")) {
@@ -203,6 +151,7 @@ public class Dispatcher extends HttpServlet {
             dis = request.getRequestDispatcher("index.jsp");
         }
         dis.include(request, response);
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -219,7 +168,7 @@ public class Dispatcher extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (ParseException ex) {
-            Logger.getLogger(Dispatcher.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DispatcherMahasiswa.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -236,7 +185,7 @@ public class Dispatcher extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (ParseException ex) {
-            Logger.getLogger(Dispatcher.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DispatcherMahasiswa.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

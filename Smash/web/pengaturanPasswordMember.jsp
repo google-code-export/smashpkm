@@ -87,13 +87,13 @@
                 <table border="0">
                     <tr>
                         <td>
-                            <a href="Dispatcher?page=pengaturanMember" title="" class="btn medium green">Profil</a>
+                            <a href="DispatcherMahasiswa?page=pengaturanMember" title="" class="btn medium green">Profil</a>
                         </td>
                         <td>
-                            <a href="Dispatcher?page=pengaturanPasswordMember" title="" class="btn medium green">Ganti Password</a>
+                            <a href="DispatcherMahasiswa?page=pengaturanPasswordMember" title="" class="btn medium green">Ganti Password</a>
                         </td>
                         <td>
-                            <a href="Dispatcher?page=home&&nrp=${mahasiswa.nrp}" title="" class="btn medium green">Menu Utama</a>
+                            <a href="DispatcherMahasiswa?page=home&&nrp=${mahasiswa.nrp}" title="" class="btn medium green">Menu Utama</a>
                         </td>
                     </tr>
                 </table>
@@ -113,7 +113,7 @@
                 <div class="col_w460 float_r">
                     <div class="cleaner h20"></div>
 
-                    <form method='post'  action='Dispatcher?page=goAturPasswordMember&&nrp=${member.nrp}'>
+                    <form method='post'  action='DispatcherMahasiswa?page=goAturPasswordMember&&nrp=${member.nrp}'>
                         <br/>
                         <fieldset>
                             <table border=0>

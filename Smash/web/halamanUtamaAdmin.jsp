@@ -19,12 +19,12 @@
         <fieldset>
             <table border="0.1">
                 <tr><td>
-                        <form method='post' action='Dispatcher?page=pengaturanPost'>
+                        <form method='post' action='DispatcherBeasiswa?page=pengaturanPost'>
                             <input type='submit' value='Posts' >
                         </form>
                     </td> </tr>
                 <tr><td>
-                        <form method='post' action='Dispatcher?page=pengaturanMember'>
+                        <form method='post' action='DispatcherMahasiswa?page=pengaturanMember'>
                             <input type='submit' value='Members' >
                         </form>
                     </td> </tr>
@@ -34,7 +34,7 @@
                         </form>
                     </td> </tr>
                 <tr><td>
-                        <form  method='post' action='Dispatcher?page=logout&&nrp=${mahasiswa.nrp}'>
+                        <form  method='post' action='DispatcherMahasiswa?page=logout&&nrp=${mahasiswa.nrp}'>
                             <input type='submit' value='Logout' >
                         </form>
                     </td> </tr>
