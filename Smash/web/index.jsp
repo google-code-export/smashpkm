@@ -148,7 +148,7 @@
                                     <br/>
                                     <tr>
                                         <td>
-                                            <dd/><h5>Username</h5>
+                                            <dd/><h5>Username (NIM)</h5>
                                         </td>
                                         <td>
                                             <h5>: <input type=text name='nrp' /></h5>

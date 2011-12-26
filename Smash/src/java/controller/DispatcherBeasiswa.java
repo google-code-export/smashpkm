@@ -64,7 +64,7 @@ public class DispatcherBeasiswa extends HttpServlet {
             }
             if (page.equals("goEditPost")) {
                 controller.setEditPost(beasiswa);
-                //controller.setListBeasiswa();
+                controller.setListBeasiswa();
                 controller.setPost(beasiswa);
                 dis = request.getRequestDispatcher("pengaturanPost.jsp");
             }
