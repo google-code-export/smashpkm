@@ -64,7 +64,7 @@
 
             </div> <!-- end of header -->
             <br/>
-            <p align="right"><font color="black">Anda login sebagai ${mahasiswa.nama},</font><a style="color: red" href="Dispatcher?name=logout&&nrp=${mahasiswa.nrp}">(logout)</a></p>
+            <p align="right"><font color="black">Anda login sebagai ${mahasiswa.nama},</font><a style="color: red" href="DispatcherMahasiswa?name=logout&&nrp=${mahasiswa.nrp}">(logout)</a></p>
 
             <div id="templatemo_main">
                 <div class="sb_box">
