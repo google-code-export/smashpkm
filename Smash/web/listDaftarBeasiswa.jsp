@@ -6,7 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-   "http://www.w3.org/TR/html4/loose.dtd">
+    "http://www.w3.org/TR/html4/loose.dtd">
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <html>
@@ -15,13 +15,32 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <table border=0>
+            <tr>
+                <td>
+                    <form method='post' action='DispatcherBeasiswa?page=listPilihBeasiswa'>
+                        <input type='submit' value='Daftar' >
+                    </form>
+                </td>
+                <td>
+                    <form method='post' action='DispatcherMahasiswa?page=home&&nrp=${mahasiswa.nrp}'>
+                        <input type='submit' value='Menu Utama' >
+                    </form>
+                </td>
+                <td>
+                    <form method='post' action='DispatcherMahasiswa?page=logout&&nrp=${mahasiswa.nrp}'>
+                        <input type='submit' value='Logout' >
+                    </form>
+                </td>
+            </tr>
+        </table>
+        <h1>List Daftar Beasiswa</h1>
     </body><table border="1">
         <thead>
             <tr>
                 <th>
                     No.
-                    </th>
+                </th>
                 <th>
                     Beasiswa
                 </th>
@@ -31,23 +50,24 @@
             </tr>
         </thead>
         <tbody>
-             <form method='post' action="DispatcherBeasiswa?page=daftarBeasiswa">
-                 <c:forEach items="${list_beasiswa_nrp}" var="bsw">
-        </form>
+            <%int i = 1;%>
+        <form method='post' action="DispatcherBeasiswa?page=daftarBeasiswa">
+            <c:forEach items="${list_pengajuan}" var="bsw">
+            </form>
             <tr>
                 <td>
-                    <%int i=1;%>
-                    <%out.print(i++); %>
+                    <%out.print(i);%>
+                    <%i++;%>
                 </td>
                 <td>
-                    bsw.idbeasiswa.namabeasiswa
+                    ${bsw.idbeasiswa.namabeasiswa}
                 </td>
                 <td>
-                    bsw.tanggalpengajuan
+                    ${bsw.tanggalpengajuan}
                 </td>
             </tr>
-           </c:forEach>
-        </tbody>
-    </table>
+        </c:forEach>
+    </tbody>
+</table>
 
 </html>

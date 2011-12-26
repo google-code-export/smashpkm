@@ -32,7 +32,7 @@ public class DispatcherBeasiswa extends HttpServlet {
 
         if (page != null) {
 
-            if (page.equals("listDaftarBeasiswa")) {
+            if (page.equals("listPilihBeasiswa")) {
                 controller.setListBeasiswa();
                 dis = request.getRequestDispatcher("daftarBeasiswa.jsp");
 
@@ -64,8 +64,9 @@ public class DispatcherBeasiswa extends HttpServlet {
             }
             if (page.equals("goEditPost")) {
                 controller.setEditPost(beasiswa);
-                dis = request.getRequestDispatcher("buatPost.jsp");
-
+                //controller.setListBeasiswa();
+                controller.setPost(beasiswa);
+                dis = request.getRequestDispatcher("pengaturanPost.jsp");
             }
             if (page.equals("deletePost")) {
                 controller.setDeletePost();

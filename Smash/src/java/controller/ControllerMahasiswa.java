@@ -158,16 +158,7 @@ public class ControllerMahasiswa {
 
     }
 
-     public void setEditMahasiswa(Mahasiswa mahasiswa) {
-        HttpSession session = request.getSession();
-        MahasiswaJpaController editMahasiswa = new MahasiswaJpaController();
-        mahasiswa = editMahasiswa.findMahasiswaByNrp((String) session.getAttribute("nrp"));
-        try {
-            editMahasiswa.edit(mahasiswa);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+   
 
      public void setListMahasiswa() {
         MahasiswaJpaController listMahasiswa = new MahasiswaJpaController();
@@ -249,7 +240,7 @@ public class ControllerMahasiswa {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            request.setAttribute("pesan1", "Data yang Anda masukkan telah terimpan. Pastikan data yang Anda masukkan adalah benar");
+            request.setAttribute("pesan1", "Data yang Anda masukkan telah tersimpan. Pastikan data yang Anda masukkan adalah benar");
 
         }
 
