@@ -142,11 +142,13 @@ public class PengajuanJpaController {
         }
     }
 
-    public List<Pengajuan> getAllPengajuan() {
+    public List<Pengajuan> getAllPengajuanByNrp(String nrp) {
+
         List<Pengajuan> pengajuan = new ArrayList<Pengajuan>();
         EntityManager em = getEntityManager();
         try {
-            Query q = em.createQuery("SELECT o FROM Pengajuan o");
+            Query q = em.createQuery("SELECT o FROM Pengajuan o WHERE o.nrp.nrp=:nrp");
+            q.setParameter("nrp", nrp);
             pengajuan = q.getResultList();
 
         } finally {

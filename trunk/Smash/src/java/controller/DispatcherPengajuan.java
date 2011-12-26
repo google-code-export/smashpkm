@@ -25,7 +25,7 @@ public class DispatcherPengajuan extends HttpServlet {
         PrintWriter out = response.getWriter();
         String page = request.getParameter("page");
         RequestDispatcher dis = null;
-        ControllerBeasiswa controller = new ControllerBeasiswa(request);
+        ControllerPengajuan controller = new ControllerPengajuan(request);
         Beasiswa beasiswa = new Beasiswa();
         Pengajuan pengajuan = new Pengajuan();
         String pesan = " ";
@@ -34,7 +34,11 @@ public class DispatcherPengajuan extends HttpServlet {
 
         if (page != null) {
 
+            if (page.equals("listDaftarBeasiswa")) {
+                controller.setListPengajuan(pengajuan);
+                dis = request.getRequestDispatcher("listDaftarBeasiswa.jsp");
 
+            }
             if (page.equals("goDaftarBeasiswa")) {
 
                 dis = request.getRequestDispatcher("CommonsFileUploadServlet");
