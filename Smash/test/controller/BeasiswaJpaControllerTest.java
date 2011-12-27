@@ -5,9 +5,6 @@
 
 package controller;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManager;
 import junit.framework.TestCase;
@@ -18,12 +15,9 @@ import model.Beasiswa;
  * @author ROODHIN
  */
 public class BeasiswaJpaControllerTest extends TestCase {
-    private Beasiswa beasiswa1;
-    private Beasiswa beasiswa2;
-
-    BeasiswaJpaController eq = new BeasiswaJpaController();
-    private MahasiswaJpaController Mah1;
-    private MahasiswaJpaController Mah2;
+    private Beasiswa user1;
+    private Beasiswa user2;
+    BeasiswaJpaController uq = new BeasiswaJpaController();
     
     public BeasiswaJpaControllerTest(String testName) {
         super(testName);
@@ -32,98 +26,85 @@ public class BeasiswaJpaControllerTest extends TestCase {
     @Override
     protected void setUp() throws Exception {
         super.setUp();
-        String TanggalHabis = "11-11-2010";
-        DateFormat formatter;
-        Date dateHabis;
-        formatter = new SimpleDateFormat("dd-MM-yyyy");
-        dateHabis = (Date) formatter.parse(TanggalHabis);
+        user1 = new Beasiswa();
+        user1.setIdbeasiswa("9898");
+        user1.setNamabeasiswa("boda");
+        //user1.setKeterangan(null)
 
-        String TanggalKadaluwarsa = "11-11-2011";
-        Date dateKadaluwarsa;
-        formatter = new SimpleDateFormat("dd-MM-yyyy");
-        dateKadaluwarsa = (Date) formatter.parse(TanggalKadaluwarsa);
+        user2 = new Beasiswa();
+        user2.setIdbeasiswa("1234");
+        user2.setNamabeasiswa("hahaha");
 
-        String TanggalMulai = "11-11-2011";
-        Date dateMulai;
-        formatter = new SimpleDateFormat("dd-MM-yyyy");
-        dateMulai = (Date) formatter.parse(TanggalMulai);
-
-        String TanggalPublish = "11-11-2011";
-        Date datePublish;
-        formatter = new SimpleDateFormat("dd-MM-yyyy");
-        datePublish = (Date) formatter.parse(TanggalPublish);
-
-
-        beasiswa1 = new Beasiswa();
-        beasiswa1.setIdbeasiswa("1213");
-        beasiswa1.setKeterangan("coba");
-        beasiswa1.setNamabeasiswa("supersemar");
-        beasiswa1.setTanggalhabis(dateHabis);
-        beasiswa1.setTanggalkadaluwarsa(dateKadaluwarsa);
-        beasiswa1.setTanggalmulai(dateMulai);
-        beasiswa1.setTanggalpublish(datePublish);
-
-        beasiswa2 = new Beasiswa();
-        beasiswa2.setIdbeasiswa("77727");
-        beasiswa2.setKeterangan("selalu");
-        beasiswa2.setNamabeasiswa("BCA");
-        beasiswa2.setTanggalhabis(dateHabis);
-        beasiswa2.setTanggalkadaluwarsa(dateKadaluwarsa);
-        beasiswa2.setTanggalmulai(dateMulai);
-        beasiswa2.setTanggalpublish(datePublish);
-
-        eq.create(beasiswa1);
-
-
+        
+        
     }
 
     @Override
     protected void tearDown() throws Exception {
         super.tearDown();
-        eq.destroy("1213");
-        beasiswa1 = null;
-        beasiswa2 = null;
+        
+        user1=null;
+        user2=null;
+
 
     }
 
     /**
      * Test of getEntityManager method, of class BeasiswaJpaController.
      */
-        public void testGetEntityManager() {
+    public void testGetEntityManager() {
+        System.out.println("getEntityManager");
         BeasiswaJpaController instance = new BeasiswaJpaController();
         EntityManager expResult = null;
         EntityManager result = instance.getEntityManager();
         assertEquals(expResult, result);
-        System.out.println("getEntityManager");
         // TODO review the generated test code and remove the default call to fail.
-        
+        fail("The test case is a prototype.");
     }
 
     /**
      * Test of create method, of class BeasiswaJpaController.
      */
     public void testCreate() throws Exception {
-        System.out.println("create");
-        Beasiswa beasiswa = null;
-        BeasiswaJpaController instance = new BeasiswaJpaController();
-        instance.create(beasiswa);
+        
+uq.create(user1);
+
+       // System.out.println("create");
+        //Beasiswa beasiswa = null;
+        //BeasiswaJpaController instance = new BeasiswaJpaController();
+        //instance.create(beasiswa);
         // TODO review the generated test code and remove the default call to fail.
-    }
+   }
 
     /**
      * Test of edit method, of class BeasiswaJpaController.
      */
     public void testEdit() throws Exception {
-        beasiswa1 = eq.findBeasiswaById("1213");
-        beasiswa1.setIdbeasiswa(beasiswa2.getIdbeasiswa());
-        eq.edit(beasiswa1);
-        assertEquals(beasiswa2.getIdbeasiswa(),eq.findBeasiswaById("1213"));
+        user1.setNamabeasiswa(user2.getNamabeasiswa());
+        uq.edit(user1);
+        assertEquals(uq.findBeasiswaById(user1.getIdbeasiswa()).getNamabeasiswa(), user2.getNamabeasiswa());
+        //user1.getNamabeasiswa()=uq.findBeasiswaById(user1.getIdbeasiswa()).getNamabeasiswa();
+        //Beasiswa beasiswa = null;
+        //BeasiswaJpaController instance = new BeasiswaJpaController();
+        //instance.edit(beasiswa);
+        // TODO review the generated test code
     }
 
     /**
      * Test of destroy method, of class BeasiswaJpaController.
      */
-    
+    public void testDestroy() throws Exception {
+        uq.destroy(user1.getIdbeasiswa());
+        //user1 = ;
+        //user2 = null;
+
+        //System.out.println("destroy");
+        //String id = "";
+        //BeasiswaJpaController instance = new BeasiswaJpaController();
+        //instance.destroy(id);
+        // TODO review the generated test code and remove the default call to fail.
+        //fail("The test case is a prototype.");
+    }
 
     /**
      * Test of findBeasiswaEntities method, of class BeasiswaJpaController.
