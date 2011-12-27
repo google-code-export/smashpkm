@@ -26,6 +26,7 @@ public class DispatcherPengajuan extends HttpServlet {
         String page = request.getParameter("page");
         RequestDispatcher dis = null;
         ControllerPengajuan controller = new ControllerPengajuan(request);
+         ControllerBeasiswa controllerBsw = new ControllerBeasiswa(request);
         Beasiswa beasiswa = new Beasiswa();
         Pengajuan pengajuan = new Pengajuan();
         String pesan = " ";
@@ -33,16 +34,27 @@ public class DispatcherPengajuan extends HttpServlet {
 
 
         if (page != null) {
+            
 
             if (page.equals("listDaftarBeasiswa")) {
-                controller.setListPengajuan(pengajuan);
+                controller.setListPengajuanByNrp(pengajuan);
                 dis = request.getRequestDispatcher("listDaftarBeasiswa.jsp");
 
             }
             if (page.equals("goDaftarBeasiswa")) {
-
                 dis = request.getRequestDispatcher("CommonsFileUploadServlet");
-
+            }
+            if (page.equals("listRekapitulasi")) {
+                controllerBsw.setListBeasiswa();
+                dis = request.getRequestDispatcher("halamanRekapitulasi.jsp");
+            }
+            if (page.equals("goListRekapitulasi")) {
+                controller.setListPengajuanByIdBeasiswa(pengajuan);
+                dis = request.getRequestDispatcher("halamanRekapitulasi.jsp");
+            }
+            if (page.equals("aturRekapitulasi")) {
+                controller.setPengajuan();
+                dis = request.getRequestDispatcher("halamanDownloadRekapitulasi.jsp");
             }
 
         } else {

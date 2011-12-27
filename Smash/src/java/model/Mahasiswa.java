@@ -5,13 +5,10 @@
 package model;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.Set;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -67,6 +64,8 @@ public class Mahasiswa implements Serializable {
     private Integer jumlahsaudara;
     @Column(name = "ISADMIN")
     private Boolean isadmin;
+    @Column(name = "TERIMABEASISWA")
+    private Boolean terimabeasiswa;
     //@OneToMany//(cascade = CascadeType.ALL, mappedBy = "idbeasiswa", fetch = FetchType.LAZY)
     //private Pengajuan pengajuan;
     @OneToMany(mappedBy = "nrp")

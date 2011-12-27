@@ -34,7 +34,88 @@ public class Pengajuan implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private String idpengajuan;
     //@Column(name = "PATHS", length = 767)
-    private String paths;
+    private String pathsipk;
+    private String pathsgaji;
+    private String pathssurattidakmampu;
+    private String pathsktp;
+    private String pathsktm;
+    private String pathskk;
+    private String pathscv;
+    private String pathssertifikat;
+    private String pathsrekening;
+
+    public String getPathscv() {
+        return pathscv;
+    }
+
+    public String getPathskk() {
+        return pathskk;
+    }
+
+    public String getPathsktm() {
+        return pathsktm;
+    }
+
+    public String getPathsktp() {
+        return pathsktp;
+    }
+
+    public String getPathsrekening() {
+        return pathsrekening;
+    }
+
+    public String getPathssertifikat() {
+        return pathssertifikat;
+    }
+
+    public String getPathssurattidakmampu() {
+        return pathssurattidakmampu;
+    }
+
+    public void setPathscv(String pathscv) {
+        this.pathscv = pathscv;
+    }
+
+    public void setPathskk(String pathskk) {
+        this.pathskk = pathskk;
+    }
+
+    public void setPathsktm(String pathsktm) {
+        this.pathsktm = pathsktm;
+    }
+
+    public void setPathsktp(String pathsktp) {
+        this.pathsktp = pathsktp;
+    }
+
+    public void setPathsrekening(String pathsrekening) {
+        this.pathsrekening = pathsrekening;
+    }
+
+    public void setPathssertifikat(String pathssertifikat) {
+        this.pathssertifikat = pathssertifikat;
+    }
+
+    public void setPathssurattidakmampu(String pathssurattidakmampu) {
+        this.pathssurattidakmampu = pathssurattidakmampu;
+    }
+    
+
+    public void setPathsgaji(String pathsgaji) {
+        this.pathsgaji = pathsgaji;
+    }
+
+    public void setPathsipk(String pathsipk) {
+        this.pathsipk = pathsipk;
+    }
+
+    public String getPathsgaji() {
+        return pathsgaji;
+    }
+
+    public String getPathsipk() {
+        return pathsipk;
+    }
     private String tanggalpengajuan;
     // @Column(name = "idbeasiswa", length = 767)
     @OneToOne(cascade = {CascadeType.REMOVE, CascadeType.MERGE})
@@ -65,9 +146,7 @@ public class Pengajuan implements Serializable {
         return nrp;
     }
 
-    public String getPaths() {
-        return paths;
-    }
+   
 
     public void setIdbeasiswa(Beasiswa idbeasiswa) {
         this.idbeasiswa = idbeasiswa;
@@ -81,9 +160,7 @@ public class Pengajuan implements Serializable {
         this.nrp = nrp;
     }
 
-    public void setPaths(String paths) {
-        this.paths = paths;
-    }
+   
 
     @Override
     public int hashCode() {

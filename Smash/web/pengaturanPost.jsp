@@ -158,10 +158,10 @@
                             <font color="black">${bsw.namabeasiswa}</font>
                         </td>
                         <td align="center">
-                            <font color="black">${tanggalpublish}</font>
+                            <font color="black">${bsw.tanggalpublish}</font>
                         </td>
                         <td align="center">
-                            <font color="black">${tanggalkadaluarsa}</font>
+                            <font color="black">${bsw.tanggalkadaluarsa}</font>
                         </td>
                         <td align="center">
                             <a href="DispatcherBeasiswa?page=editPost&&idbeasiswa=${bsw.idbeasiswa}"><img src="images/Modify.png"/></a>  <a href="DispatcherBeasiswa?page=deletePost&&idbeasiswa=${bsw.idbeasiswa}"><img src="images/Delete.png"/></a>

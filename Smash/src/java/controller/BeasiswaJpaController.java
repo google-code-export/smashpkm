@@ -23,7 +23,6 @@ import model.Beasiswa;
  * @author yosua
  */
 public class BeasiswaJpaController {
-
     public BeasiswaJpaController() {
         emf = Persistence.createEntityManagerFactory("SmashPU");
     }
@@ -147,7 +146,6 @@ public class BeasiswaJpaController {
         try {
             Query q = em.createQuery("SELECT o FROM Beasiswa o");
             beasiswa = q.getResultList();
-
         } finally {
             if (em != null) {
                 em.close();
@@ -163,10 +161,7 @@ public class BeasiswaJpaController {
             query.setParameter("idbeasiswa", idBeasiswa);
             List list = query.getResultList();
             if (list.size() == 1) {
-
                 return (Beasiswa) list.get(0);
-
-
             } else {
                 return null;
             }

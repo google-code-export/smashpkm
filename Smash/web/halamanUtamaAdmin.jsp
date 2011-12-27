@@ -103,7 +103,7 @@
 
             </div> <!-- end of header -->
             <br/>
-            <p align="right"><font color="black">Anda login sebagai ${mahasiswa.nama},</font><a style="color: red" href="DispatcherMahasiswa?name=logout">(logout)</a></p>
+            <p align="right"><font color="black">Anda login sebagai ${mahasiswa.nama},</font><a style="color: red" href="DispatcherMahasiswa?page=logout&&nrp=${mahasiswa.nrp}">(logout)</a></p>
 
             <div id="templatemo_main">
 
@@ -135,7 +135,7 @@
                         </tr>
                         <tr>
                             <td>
-                                <a href="Dispatcher?page=pengaturanMember"><img src="images/Rekapitulasi.png"/></a>
+                                <a href="DispatcherPengajuan?page=listRekapitulasi"><img src="images/Rekapitulasi.png"/></a>
                             </td>
                             <td>
                                 <img src="images/Rekapitulasi_text.png"/>
@@ -151,6 +151,7 @@
                 <div class="cleaner"></div>
             </div>
         </div>
+>>>>>>> .r60
     </body>
 </html>
 

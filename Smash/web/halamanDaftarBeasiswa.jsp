@@ -13,16 +13,60 @@
 </head>
 
 <body>
-<h1>Daftar Beasiswa    ${pengajuan.idpengajuan}...... ${pengajuan.nrp}....${pengajuan.nrp.nrp}  </h1>
+<h1>Daftar Beasiswa  </h1>
+   <table border=0>
+            <tr>
+             
+                <td>
+                    <form method='post' action='DispatcherMahasiswa?page=home&&nrp=${mahasiswa.nrp}'>
+                        <input type='submit' value='Menu Utama' />
+                    </form>
+                </td>
+                <td>
+                    <form method='post' action='DispatcherMahasiswa?page=logout&&nrp=${mahasiswa.nrp}'>
+                        <input type='submit' value='Logout' />
+                    </form>
+                </td>
+            </tr>
+        </table>
 <form  method="post"  enctype="multipart/form-data" action="DispatcherPengajuan?page=goDaftarBeasiswa&&nrp=${mahasiswa.nrp}&&idbeasiswa=${idbeasiswa}" >
   <table width="374" height="112" border="0">
     <tr>
       <td width="171" height="32">Scan Transkrip IPK</td>
-      <td> <input type="file" name="scanTranskripIpk" /></td>
+      <td> <input type="file" name="scan_ipk" /></td>
     </tr>
     <tr>
       <td height="32">Scan Slip gaji</td>
-      <td><input type="file" name="file1" /></td>
+      <td><input type="file" name="scan_gaji" /></td>
+    </tr>
+       <tr>
+      <td width="171" height="32">Scan Surat Tidak Mampu</td>
+      <td> <input type="file" name="scan_surat_tidak_mampu" /></td>
+    </tr>
+  
+      <tr>
+      <td width="171" height="32">Scan KTM</td>
+      <td> <input type="file" name="scan_ktm" /></td>
+    </tr>
+    <tr>
+      <td height="32">Scan KTP</td>
+      <td><input type="file" name="scan_ktp" /></td>
+    </tr>
+       <tr>
+      <td width="171" height="32">Scan Kartu Keluarga</td>
+      <td> <input type="file" name="scan_kk" /></td>
+    </tr>
+    <tr>
+      <td height="32">Scan Curriculum Vitae</td>
+      <td><input type="file" name="scan_cv" /></td>
+    </tr>
+       <tr>
+      <td width="171" height="32">Scan Sertifikat Kegiatan</td>
+      <td> <input type="file" name="scan_sertifikat" /></td>
+    </tr>
+      <tr>
+      <td width="171" height="32">Scan Rekening Bank</td>
+      <td> <input type="file" name="scan_rekening" /></td>
     </tr>
     <tr>
       <td height="40">&nbsp;</td>
