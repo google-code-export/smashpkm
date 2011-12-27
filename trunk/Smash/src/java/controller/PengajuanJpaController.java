@@ -159,4 +159,55 @@ public class PengajuanJpaController {
         return pengajuan;
     }
 
+    public List<Pengajuan> getAllPengajuanByIdBeasiswaOrderByIpk(String idbeasiswa) {
+
+        List<Pengajuan> pengajuan = new ArrayList<Pengajuan>();
+        EntityManager em = getEntityManager();
+        try {
+            Query q = em.createQuery("SELECT o FROM Pengajuan o WHERE o.idbeasiswa.idbeasiswa=:idbeasiswa ORDER BY o.nrp.ipk DESC");
+            q.setParameter("idbeasiswa", idbeasiswa);
+            pengajuan = q.getResultList();
+
+        } finally {
+            if (em != null) {
+                em.close();
+            }
+        }
+        return pengajuan;
+    }
+
+
+    public List<Pengajuan> getAllPengajuanByIdBeasiswaOrderByGaji(String idbeasiswa) {
+
+        List<Pengajuan> pengajuan = new ArrayList<Pengajuan>();
+        EntityManager em = getEntityManager();
+        try {
+            Query q = em.createQuery("SELECT o FROM Pengajuan o WHERE o.idbeasiswa.idbeasiswa=:idbeasiswa ORDER BY o.nrp.penghasilanayah ASC");
+            q.setParameter("idbeasiswa", idbeasiswa);
+            pengajuan = q.getResultList();
+
+        } finally {
+            if (em != null) {
+                em.close();
+            }
+        }
+        return pengajuan;
+    }
+
+    public Pengajuan findPengajuanById(String idPengajuan) {
+        EntityManager em = getEntityManager();
+        try {
+            Query query = em.createQuery("SELECT c FROM Pengajuan c WHERE c.idpengajuan =:idpengajuan");
+            query.setParameter("idpengajuan", idPengajuan);
+            List list = query.getResultList();
+            if (list.size() == 1) {
+                return (Pengajuan) list.get(0);
+            } else {
+                return null;
+            }
+        } finally {
+            em.close();
+        }
+    }
+
 }

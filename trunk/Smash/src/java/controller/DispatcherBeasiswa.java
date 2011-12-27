@@ -29,38 +29,30 @@ public class DispatcherBeasiswa extends HttpServlet {
         String pesan = " ";
         request.setAttribute("pesan", pesan);
 
-
         if (page != null) {
-
             if (page.equals("listPilihBeasiswa")) {
                 controller.setListBeasiswa();
                 dis = request.getRequestDispatcher("daftarBeasiswa.jsp");
-
             }
             if (page.equals("daftarBeasiswa")) {
                 controller.setBeasiswaPengajuan();
                 dis = request.getRequestDispatcher("halamanDaftarBeasiswa.jsp");
-
             }
             if (page.equals("pengaturanPost")) {
                 controller.setListBeasiswa();
                 dis = request.getRequestDispatcher("pengaturanPost.jsp");
-
             }
             if (page.equals("membuatPost")) {
                 dis = request.getRequestDispatcher("buatPost.jsp");
-
             }
             if (page.equals("goBuatPost")) {
                 controller.setBuatBeasiswa(beasiswa);
                 controller.setListBeasiswa();
                 dis = request.getRequestDispatcher("pengaturanPost.jsp");
-
             }
             if (page.equals("editPost")) {
                 controller.setPost(beasiswa);
                 dis = request.getRequestDispatcher("editPost.jsp");
-
             }
             if (page.equals("goEditPost")) {
                 controller.setEditPost(beasiswa);
@@ -72,17 +64,12 @@ public class DispatcherBeasiswa extends HttpServlet {
                 controller.setDeletePost();
                 controller.setListBeasiswa();
                 dis = request.getRequestDispatcher("pengaturanPost.jsp");
-
             }
-
-
         } else {
             dis = request.getRequestDispatcher("index.jsp");
         }
         dis.include(request, response);
-
     }
-
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.

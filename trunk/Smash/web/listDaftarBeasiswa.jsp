@@ -51,9 +51,9 @@
         </thead>
         <tbody>
             <%int i = 1;%>
-        <form method='post' action="DispatcherBeasiswa?page=daftarBeasiswa">
-            <c:forEach items="${list_pengajuan}" var="bsw">
-            </form>
+        
+            <c:forEach items="${list_pengajuan_by_nrp}" var="bsw">
+            
             <tr>
                 <td>
                     <%out.print(i);%>

@@ -65,7 +65,7 @@ public class CommonsFileUploadServlet extends HttpServlet {
             throws ServletException, IOException {
         PrintWriter out = response.getWriter();
         RequestDispatcher dis = null;
-        ControllerBeasiswa controller = new ControllerBeasiswa(request);
+        // ControllerBeasiswa controller = new ControllerBeasiswa(request);
         response.setContentType("text/plain");
 
 
@@ -91,6 +91,27 @@ public class CommonsFileUploadServlet extends HttpServlet {
 
             List items = uploadHandler.parseRequest(request);
             Iterator itr = items.iterator();
+
+            PengajuanJpaController daftar = new PengajuanJpaController();
+            MahasiswaJpaController cariMhs = new MahasiswaJpaController();
+            BeasiswaJpaController cariBsw = new BeasiswaJpaController();
+            Pengajuan pengajuan = new Pengajuan();
+            Mahasiswa mahasiswa = new Mahasiswa();
+            Beasiswa beasiswa = new Beasiswa();
+            String nrp = request.getParameter("nrp");
+            String idbeasiswa = request.getParameter("idbeasiswa");
+            HttpSession session = request.getSession();
+            Calendar currentDate = Calendar.getInstance();
+            SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+            String dateNow = formatter.format(currentDate.getTime());
+
+            mahasiswa = cariMhs.findMahasiswaByNrp(nrp);
+            beasiswa = cariBsw.findBeasiswaById(idbeasiswa);
+            pengajuan.setNrp(mahasiswa);
+            beasiswa.setIdbeasiswa(idbeasiswa);
+            pengajuan.setIdbeasiswa(beasiswa);
+            pengajuan.setTanggalpengajuan(dateNow);
+
             while (itr.hasNext()) {
                 FileItem item = (FileItem) itr.next();
                 //item.
@@ -98,55 +119,79 @@ public class CommonsFileUploadServlet extends HttpServlet {
                  * Handle Form Fields.
                  */
                 if (item.isFormField()) {
-                    //    out.println("File Name = " + item.getFieldName() + ", Value = " + item.getString());
+                   
+                    out.print(item.getFieldName());
                 } else {
-                    //      Handle Uploaded files.
+                    if (item.getFieldName().equals("scan_gaji")) {
+                        pengajuan.setPathsgaji(item.getName());
+                        File file = new File(destinationDir, item.getName());
+                        item.write(file);
 
-
-                    PengajuanJpaController daftar = new PengajuanJpaController();
-                    MahasiswaJpaController cariMhs = new MahasiswaJpaController();
-                    BeasiswaJpaController cariBsw = new BeasiswaJpaController();
-                    Pengajuan pengajuan = new Pengajuan();
-                    Mahasiswa mahasiswa = new Mahasiswa();
-                    Beasiswa beasiswa = new Beasiswa();
-                    String nrp = request.getParameter("nrp");
-                    String idbeasiswa = request.getParameter("idbeasiswa");
-                    HttpSession session = request.getSession();
-                    Calendar currentDate = Calendar.getInstance();
-                    SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
-                    String dateNow = formatter.format(currentDate.getTime());
-
-                    mahasiswa=cariMhs.findMahasiswaByNrp(nrp);
-                    beasiswa=cariBsw.findBeasiswaById(idbeasiswa);
-                    pengajuan.setNrp(mahasiswa);
-                    beasiswa.setIdbeasiswa(idbeasiswa);
-                    pengajuan.setPaths(item.getName());
-                    pengajuan.setIdbeasiswa(beasiswa);
-                    pengajuan.setTanggalpengajuan(dateNow);
-                    session.setAttribute("pengajuan",pengajuan);
-                    try {
-                        daftar.create(pengajuan);
-                    } catch (Exception e) {
-                        e.printStackTrace();
                     }
-                    
-                    File file = new File(destinationDir, item.getName());
-                    item.write(file);
+                    if (item.getFieldName().equals("scan_ipk")) {
+                        //      Handle Uploaded files.
+                        pengajuan.setPathsipk(item.getName());
+                        File file = new File(destinationDir, item.getName());
+                        item.write(file);
+                    }
+                    if (item.getFieldName().equals("scan_surat_tidak_mampu")) {
+                        //      Handle Uploaded files.
+                        pengajuan.setPathssurattidakmampu(item.getName());
+                        File file = new File(destinationDir, item.getName());
+                        item.write(file);
+                    }
+                    if (item.getFieldName().equals("scan_ktm")) {
+                        //      Handle Uploaded files.
+                        pengajuan.setPathsktm(item.getName());
+                        File file = new File(destinationDir, item.getName());
+                        item.write(file);
+                    }
+                     if (item.getFieldName().equals("scan_ktp")) {
+                        //      Handle Uploaded files.
+                        pengajuan.setPathsktp(item.getName());
+                        File file = new File(destinationDir, item.getName());
+                        item.write(file);
+                    }
+                    if (item.getFieldName().equals("scan_kk")) {
+                        //      Handle Uploaded files.
+                        pengajuan.setPathskk(item.getName());
+                        File file = new File(destinationDir, item.getName());
+                        item.write(file);
+                    }
+                    if (item.getFieldName().equals("scan_cv")) {
+                        //      Handle Uploaded files.
+                        pengajuan.setPathscv(item.getName());
+                        File file = new File(destinationDir, item.getName());
+                        item.write(file);
+                    }
+                    if (item.getFieldName().equals("scan_sertifikat")) {
+                        //      Handle Uploaded files.
+                        pengajuan.setPathssertifikat(item.getName());
+                        File file = new File(destinationDir, item.getName());
+                        item.write(file);
+                    }
+                    if (item.getFieldName().equals("scan_rekening")) {
+                        //      Handle Uploaded files.
+                        pengajuan.setPathsrekening(item.getName());
+                        File file = new File(destinationDir, item.getName());
+                        item.write(file);
+                    }
                 }
-
             }
-
+            try {
+                daftar.create(pengajuan);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         } catch (FileUploadException ex) {
             log("Error encountered while parsing the request", ex);
-
-
         } catch (Exception ex) {
             log("Error encountered while uploading file", ex);
-
-
         }
-        controller.setBeasiswaPengajuan();
-        dis = request.getRequestDispatcher("halamanDaftarBeasiswa.jsp");
+        Pengajuan pengajuan = new Pengajuan();
+        ControllerPengajuan controller = new ControllerPengajuan(request);
+        controller.setListPengajuanByNrp(pengajuan);
+        dis = request.getRequestDispatcher("listDaftarBeasiswa.jsp");
         dis.include(request, response);
 
 
