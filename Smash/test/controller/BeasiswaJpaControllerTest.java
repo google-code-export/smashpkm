@@ -52,15 +52,7 @@ public class BeasiswaJpaControllerTest extends TestCase {
     /**
      * Test of getEntityManager method, of class BeasiswaJpaController.
      */
-    public void testGetEntityManager() {
-        System.out.println("getEntityManager");
-        BeasiswaJpaController instance = new BeasiswaJpaController();
-        EntityManager expResult = null;
-        EntityManager result = instance.getEntityManager();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
+   
 
     /**
      * Test of create method, of class BeasiswaJpaController.
@@ -109,83 +101,37 @@ uq.create(user1);
     /**
      * Test of findBeasiswaEntities method, of class BeasiswaJpaController.
      */
-    public void testFindBeasiswaEntities_0args() {
-        System.out.println("findBeasiswaEntities");
-        BeasiswaJpaController instance = new BeasiswaJpaController();
-        List expResult = null;
-        List result = instance.findBeasiswaEntities();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of findBeasiswaEntities method, of class BeasiswaJpaController.
-     */
-    public void testFindBeasiswaEntities_int_int() {
-        System.out.println("findBeasiswaEntities");
-        int maxResults = 0;
-        int firstResult = 0;
-        BeasiswaJpaController instance = new BeasiswaJpaController();
-        List expResult = null;
-        List result = instance.findBeasiswaEntities(maxResults, firstResult);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of findBeasiswa method, of class BeasiswaJpaController.
-     */
-    public void testFindBeasiswa() {
-        System.out.println("findBeasiswa");
-        String id = "";
-        BeasiswaJpaController instance = new BeasiswaJpaController();
-        Beasiswa expResult = null;
-        Beasiswa result = instance.findBeasiswa(id);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getBeasiswaCount method, of class BeasiswaJpaController.
-     */
-    public void testGetBeasiswaCount() {
-        System.out.println("getBeasiswaCount");
-        BeasiswaJpaController instance = new BeasiswaJpaController();
-        int expResult = 0;
-        int result = instance.getBeasiswaCount();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
+   
     /**
      * Test of getAllBeasiswa method, of class BeasiswaJpaController.
      */
     public void testGetAllBeasiswa() {
-        System.out.println("getAllBeasiswa");
-        BeasiswaJpaController instance = new BeasiswaJpaController();
-        List expResult = null;
-        List result = instance.getAllBeasiswa();
-        assertEquals(expResult, result);
+        assertNotNull(uq.getAllBeasiswa());
+        //uq.getAllBeasiswa();
+        
+        //System.out.println("getAllBeasiswa");
+        //BeasiswaJpaController instance = new BeasiswaJpaController();
+        //List expResult = null;
+        //List result = instance.getAllBeasiswa();
+        //assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        //fail("The test case is a prototype.");
     }
 
     /**
      * Test of findBeasiswaById method, of class BeasiswaJpaController.
      */
     public void testFindBeasiswaById() {
-        System.out.println("findBeasiswaById");
-        String idBeasiswa = "";
-        BeasiswaJpaController instance = new BeasiswaJpaController();
-        Beasiswa expResult = null;
-        Beasiswa result = instance.findBeasiswaById(idBeasiswa);
-        assertEquals(expResult, result);
+        assertNull(uq.findBeasiswaById(user1.getIdbeasiswa()));
+        
+        //System.out.println("findBeasiswaById");
+        //String idBeasiswa = "";
+        //BeasiswaJpaController instance = new BeasiswaJpaController();
+        //Beasiswa expResult = null;
+        //Beasiswa result = instance.findBeasiswaById(idBeasiswa);
+        //assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        //fail("The test case is a prototype.");
     }
 
 }
