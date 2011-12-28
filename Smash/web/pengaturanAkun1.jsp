@@ -1,6 +1,6 @@
 <%--
-    Document   : registrasi
-    Created on : 04 Nov 11, 19:04:53
+    Document   : index
+    Created on : 03 Nov 11, 11:09:45
     Author     : Danang
 --%>
 
@@ -10,7 +10,7 @@
     <head>
         <link rel='icon' href="images/favicon.ico" />
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title>Registrasi - SMASH</title>
+        <title>SMASH</title>
         <meta name="keywords" content="Chrome Web Design, CSS, HTML, free template, piecemaker" />
         <meta name="description" content="Chrome Web Design is a free website template integrated with PieceMaker 3D Flash Slider." />
         <link href="templatemo_style.css" rel="stylesheet" type="text/css" />
@@ -70,11 +70,11 @@
 
                 <div id="templatemo_menu" class="ddsmoothmenu">
                     <ul>
-                        <li><a href="/Smash" class="selected">Home</a></li>
+                        <li><a href="index.html" class="selected">Home</a></li>
                         <li><a href="about.html">About</a>
                             <ul>
-                                <li><a href="DispatcherMahasiswa?page=home">SMASH</a></li>
-                                <li><a href="DispatcherMahasiswa?page=home">Our Team</a></li>
+                                <li><a href="http://www.templatemo.com/page/1">SMASH</a></li>
+                                <li><a href="http://www.templatemo.com/page/2">Our Team</a></li>
                             </ul>
                         </li>
                         <li><a href="contact.html">Contact</a></li>
@@ -95,19 +95,20 @@
 
             <div id="templatemo_main">
                 <div class="sb_box">
-                    <h3>Registration Form</h3>
+                    <h3>Login Form</h3>
                 </div>
                 <div class="col_fw">
                     <div class="col_w460 float_l">
                         <div class="cleaner h20"></div>
-                        <br/><br/>
+                        <br/>
                         <h2>SMASH</h2>
                         <h5>Smart Application Scholarhip</h5>
                         <div class="cleaner h20"></div>
-                        <h6>Jika Anda mengalami kesulitan melakukan pendaftaran, silahkan hubungi BAAK ITS atau email ke baak@its.ac.id</h6>
+                        <h6>Jika Anda mengalami kesulitan login, silahkan hubungi BAAK ITS atau email ke baak@its.ac.id</h6>
                         <div class="cleaner h20"></div>
                     </div>
                     <div class="col_w460 float_r">
+
                         <script language=JavaScript>
 
                             hariIni=new Date();
@@ -140,64 +141,41 @@
 
                         </script>
 
-                        <form method='post' action='DispatcherMahasiswa?page=goRegistrasi' onsubmit="">
-
+                        <form method='post' action='DispatcherMahasiswa?page=login'>
                             <br/><fieldset>
                                 <table border=0>
                                     <dd/><font color="red"><%= request.getAttribute("pesan")%></font>
                                     <br/>
                                     <tr>
                                         <td>
-                                            <dd/><h6>Nama Lengkap</h6>
+                                            <dd/><h5>Username (NIM)</h5>
                                         </td>
                                         <td>
-                                            <h6>: <input type=text name='nama' /></h6>
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>
-                                            <dd/><h6>Username (NIM)</h6>
-                                        </td>
-                                        <td>
-                                            <h6>: <input type=text name='nrp'/></h6>
+                                            <h5>: <input type=text name='nrp' /></h5>
                                         </td>
                                     </tr>
 
                                     <tr>
                                         <td>
-                                            <dd/><h6>Password</h6>
+                                            <dd/><h5>Password</h5>
                                         </td>
-
                                         <td>
-                                            <h6>: <input type=password name='password'/></h6>
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>
-                                            <dd/><h6>Ulangi password</h6>
-                                        </td>
-
-                                        <td>
-                                            <h6>: <input type=password name='password_ulangi'/></h6>
+                                            <h5>: <input type=password name='password'/></h5>
                                         </td>
                                     </tr>
                                 </table>
                                 <br/>
                                 <table>
-                                    <tr>
-                                        <td width="123">
-                                            </td>
+                                    <tr><td/>
                                         <td>
                                             <dd/>
-                                            <form>
-                                                <input type='submit' value='Daftar'/>
+                                            <form><input type='submit' value='Login'/>
                                             </form>
+                                            atau
                                         </td>
                                         <td>
-                                            <form method='post' action='DispatcherMahasiswa?page=index'/>
-                                            <input type='submit' value='Batal Mendaftar' />
+                                            <form method='post' action='DispatcherMahasiswa?page=registrasi'/>
+                                            <input type='submit' value='Daftar Sekarang >>' />
                                         </td>
                                     </tr>
                                 </table>
@@ -219,4 +197,4 @@
         </div>
 
     </body>
-</html>>
+</html>

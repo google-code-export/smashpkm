@@ -83,6 +83,13 @@
 
             </div> <!-- end of header -->
 
+            <br/>
+            <p align="right"><font color="black">Anda login sebagai ${mahasiswa.nama},</font><a style="color: red" href="DispatcherMahasiswa?page=logout&&nrp=${mahasiswa.nrp}">(logout)</a></p>
+            <br/>
+            <div class="sb_box">
+                <h3>Ganti Password</h3>
+            </div>
+
             <div id="templatemo_main">
                 <table border="0">
                     <tr>
@@ -105,7 +112,7 @@
                     <h2>SMASH</h2>
                     <h5>Smart Application Scholarhip</h5>
                     <div class="cleaner h20"></div>
-                    
+
                     <div class="cleaner h20"></div>
                 </div>
 
@@ -137,7 +144,7 @@
                                     </td>
 
                                 </tr>
-                               
+
                             </table>
                             <br/>
                             <input type='submit' value='update'/>

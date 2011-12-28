@@ -38,31 +38,37 @@ public class ControllerBeasiswa {
         String tanggalMulai = request.getParameter("tanggalmulai");
         String tanggalHabis = request.getParameter("tanggalhabis");
 
-        HttpSession session = request.getSession();
-        BeasiswaJpaController beasiswaBaru = new BeasiswaJpaController();
-        beasiswa.setNamabeasiswa(namaBeasiswa);
-        beasiswa.setKeterangan(keterangan);
-        DateFormat formatter;
-        Date datePublish;
-        Date dateKadaluwarsa;
-        Date dateMulai;
-        Date dateHabis;
-        formatter = new SimpleDateFormat("dd-MM-yyyy");
-        datePublish = (Date) formatter.parse(tanggalPublish);
-        dateKadaluwarsa = (Date) formatter.parse(tanggalKadaluwarsa);
-        dateMulai = (Date) formatter.parse(tanggalMulai);
-        dateHabis = (Date) formatter.parse(tanggalHabis);
-        beasiswa.setTanggalpublish(datePublish);
-        beasiswa.setTanggalkadaluarsa(dateKadaluwarsa);
-        beasiswa.setTanggalmulai(dateMulai);
-        beasiswa.setTanggalhabis(dateHabis);
-        session.setAttribute("beasiswa", beasiswa);
-        try {
-            beasiswaBaru.create(beasiswa);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        if (namaBeasiswa.equals("") || keterangan.equals("") || tanggalPublish.equals("")
+                || tanggalKadaluwarsa.equals("") || tanggalMulai.equals("") || tanggalHabis.equals("")) {
+            request.setAttribute("pesan", "Isikan seluruh field yang tersedia sesuai dengan data SK penawaran beasiswa");
+        } else {
 
+            HttpSession session = request.getSession();
+            BeasiswaJpaController beasiswaBaru = new BeasiswaJpaController();
+            beasiswa.setNamabeasiswa(namaBeasiswa);
+            beasiswa.setKeterangan(keterangan);
+            DateFormat formatter;
+            Date datePublish;
+            Date dateKadaluwarsa;
+            Date dateMulai;
+            Date dateHabis;
+            formatter = new SimpleDateFormat("dd-MM-yyyy");
+            datePublish = (Date) formatter.parse(tanggalPublish);
+            dateKadaluwarsa = (Date) formatter.parse(tanggalKadaluwarsa);
+            dateMulai = (Date) formatter.parse(tanggalMulai);
+            dateHabis = (Date) formatter.parse(tanggalHabis);
+            beasiswa.setTanggalpublish(datePublish);
+            beasiswa.setTanggalkadaluarsa(dateKadaluwarsa);
+            beasiswa.setTanggalmulai(dateMulai);
+            beasiswa.setTanggalhabis(dateHabis);
+            session.setAttribute("beasiswa", beasiswa);
+            try {
+                beasiswaBaru.create(beasiswa);
+                request.setAttribute("pesan", "Post '" + request.getParameter("namabeasiswa") + "' berhasil disimpan");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     public void setListBeasiswa() {
@@ -84,29 +90,38 @@ public class ControllerBeasiswa {
         String tanggalKadaluwarsa = request.getParameter("tanggalkadaluwarsa");
         String tanggalMulai = request.getParameter("tanggalmulai");
         String tanggalHabis = request.getParameter("tanggalhabis");
-        beasiswa.setNamabeasiswa(namaBeasiswa);
-        beasiswa.setKeterangan(keterangan);
-        DateFormat formatter;
-        Date datePublish;
-        Date dateKadaluwarsa;
-        Date dateMulai;
-        Date dateHabis;
-        Date date = new SimpleDateFormat("dd-MM-yyyy").parse(tanggalPublish);
-        formatter = new SimpleDateFormat("dd-MM-yyyy");
-        datePublish = (Date) formatter.parse(tanggalPublish);
-        dateKadaluwarsa = (Date) formatter.parse(tanggalKadaluwarsa);
-        dateMulai = (Date) formatter.parse(tanggalMulai);
-        dateHabis = (Date) formatter.parse(tanggalHabis);
-        beasiswa.setTanggalpublish(datePublish);
-        beasiswa.setTanggalkadaluarsa(dateKadaluwarsa);
-        beasiswa.setTanggalmulai(dateMulai);
-        beasiswa.setTanggalhabis(dateHabis);
 
-        try {
-            aturPost.edit(beasiswa);
-        } catch (Exception e) {
-            e.printStackTrace();
+        if (namaBeasiswa.equals("") || keterangan.equals("") || tanggalPublish.equals("")
+                || tanggalKadaluwarsa.equals("") || tanggalMulai.equals("") || tanggalHabis.equals("")) {
+            request.setAttribute("pesan", "Isikan seluruh field yang tersedia sesuai dengan data SK penawaran beasiswa");
+        } else {
+
+            beasiswa.setNamabeasiswa(namaBeasiswa);
+            beasiswa.setKeterangan(keterangan);
+            DateFormat formatter;
+            Date datePublish;
+            Date dateKadaluwarsa;
+            Date dateMulai;
+            Date dateHabis;
+            Date date = new SimpleDateFormat("dd-MM-yyyy").parse(tanggalPublish);
+            formatter = new SimpleDateFormat("dd-MM-yyyy");
+            datePublish = (Date) formatter.parse(tanggalPublish);
+            dateKadaluwarsa = (Date) formatter.parse(tanggalKadaluwarsa);
+            dateMulai = (Date) formatter.parse(tanggalMulai);
+            dateHabis = (Date) formatter.parse(tanggalHabis);
+            beasiswa.setTanggalpublish(datePublish);
+            beasiswa.setTanggalkadaluarsa(dateKadaluwarsa);
+            beasiswa.setTanggalmulai(dateMulai);
+            beasiswa.setTanggalhabis(dateHabis);
+
+            try {
+                aturPost.edit(beasiswa);
+                request.setAttribute("pesan", "Post '" + request.getParameter("namabeasiswa") + "' berhasil diedit");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
+
     }
 
     public void setPost(Beasiswa beasiswa) {

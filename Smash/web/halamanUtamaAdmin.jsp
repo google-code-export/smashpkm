@@ -7,6 +7,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
+        <link rel='icon' href="images/favicon.ico" />
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>Admin-SMASH</title>
         <meta name="keywords" content="Chrome Blog Theme, Web Design, CSS, HTML, free template" />
@@ -71,32 +72,16 @@
 
                 <div id="templatemo_menu" class="ddsmoothmenu">
                     <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="about.html">About</a>
+                        <li><a href="DispatcherMahasiswa?page=home&&nrp=${mahasiswa.nrp}" class="selected">Home</a></li>
+                        <li><a href="DispatcherMahasiswa?page=home&&nrp=${mahasiswa.nrp}">Menu Utama</a>
                             <ul>
-                                <li><a href="http://www.templatemo.com/page/1">Background</a></li>
-                                <li><a href="http://www.templatemo.com/page/2">Our Team</a></li>
-                                <li><a href="http://www.templatemo.com/page/3">Management</a></li>
+                                <li><a href="DispatcherBeasiswa?page=pengaturanPost">Posts</a></li>
+                                <li><a href="DispatcherMahasiswa?page=pengaturanMember">Members</a></li>
+                                <li><a href="DispatcherPengajuan?page=listRekapitulasi">Rekapitulasi</a></li>
                             </ul>
                         </li>
-                        <li><a href="portfolio.html">Portfolio</a>
-                            <ul>
-                                <li><a href="http://www.templatemo.com/page/1">Web Design</a></li>
-                                <li><a href="http://www.templatemo.com/page/2">Multimedia</a></li>
-                                <li><a href="http://www.templatemo.com/page/3">3D Animations</a></li>
-                                <li><a href="http://www.templatemo.com/page/4">Templates</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="blog.html" class="selected">Blog</a>
-                            <ul>
-                                <li><a href="http://www.templatemo.com/page/1">Useful Tips</a></li>
-                                <li><a href="http://www.templatemo.com/page/2">Archives</a></li>
-                                <li><a href="http://www.templatemo.com/page/3">Popular Posts</a></li>
-                                <li><a href="http://www.templatemo.com/page/4">Comments</a></li>
-                                <li><a href="http://www.templatemo.com/page/5">Authors</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="contact.html">Panduan</a></li>
+                        <li><a href="contact.html">Kontak</a></li>
                     </ul>
                     <br style="clear: left" />
                 </div> <!-- end of templatemo_menu -->
@@ -151,7 +136,7 @@
                 <div class="cleaner"></div>
             </div>
         </div>
->>>>>>> .r60
+        >>>>>>> .r60
     </body>
 </html>
 

@@ -48,7 +48,7 @@ public class DispatcherBeasiswa extends HttpServlet {
             if (page.equals("goBuatPost")) {
                 controller.setBuatBeasiswa(beasiswa);
                 controller.setListBeasiswa();
-                dis = request.getRequestDispatcher("pengaturanPost.jsp");
+                dis = request.getRequestDispatcher("buatPost.jsp");
             }
             if (page.equals("editPost")) {
                 controller.setPost(beasiswa);
@@ -58,7 +58,7 @@ public class DispatcherBeasiswa extends HttpServlet {
                 controller.setEditPost(beasiswa);
                 controller.setListBeasiswa();
                 controller.setPost(beasiswa);
-                dis = request.getRequestDispatcher("pengaturanPost.jsp");
+                dis = request.getRequestDispatcher("editPost.jsp");
             }
             if (page.equals("deletePost")) {
                 controller.setDeletePost();

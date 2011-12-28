@@ -144,7 +144,7 @@
                         <form method='post' action='DispatcherMahasiswa?page=login'>
                             <br/><fieldset>
                                 <table border=0>
-                                    <dd/><font color="red"><%= request.getAttribute("pesan")%></font>
+                                    <dd/><font color="red"><b><%= request.getAttribute("pesan")%></b></font>
                                     <br/>
                                     <tr>
                                         <td>
