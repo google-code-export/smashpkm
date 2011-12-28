@@ -1,21 +1,64 @@
 <%--
     Document   : buatPost
-    Created on : Nov 9, 2011, 12:12:14 AM
-    Author     : yosua
+    Created on : Nov 9, 2011, 18:24:14 AM
+    Author     : danang
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-    "http://www.w3.org/TR/html4/loose.dtd">
-
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rev="made" href="mailto:contact@rainforestnet.com">
-        <meta name="generator" content="NoteTab Light 4.9">
-        <meta name="author" content="TengYong Ng">
-        <meta name="description" content="">
-        <meta name="keywords" content="">
+        <link rel='icon' href="images/favicon.ico" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>Edit Post-SMASH</title>
+        <meta name="keywords" content="Chrome Web Design, CSS, HTML, free template, piecemaker" />
+        <meta name="description" content="Chrome Web Design is a free website template integrated with PieceMaker 3D Flash Slider." />
+        <link href="templatemo_style.css" rel="stylesheet" type="text/css" />
+
+        <script type="text/javascript" src="scripts/swfobject/swfobject.js"></script>
+        <script type="text/javascript">
+            var flashvars = {};
+            flashvars.cssSource = "css/piecemaker.css";
+            flashvars.xmlSource = "piecemaker.xml";
+
+            var params = {};
+            params.play = "true";
+            params.menu = "false";
+            params.scale = "showall";
+            params.wmode = "transparent";
+            params.allowfullscreen = "true";
+            params.allowscriptaccess = "always";
+            params.allownetworking = "all";
+
+            swfobject.embedSWF('piecemaker.swf', 'piecemaker', '960', '500', '10', null, flashvars,
+            params, null);
+
+        </script>
+
+        <link rel="stylesheet" type="text/css" href="css/ddsmoothmenu.css" />
+
+        <script type="text/javascript" src="scripts/jquery.min.js"></script>
+        <script type="text/javascript" src="scripts/ddsmoothmenu.js">
+
+            /***********************************************
+             * Smooth Navigational Menu- (c) Dynamic Drive DHTML code library (www.dynamicdrive.com)
+             * This notice MUST stay intact for legal use
+             * Visit Dynamic Drive at http://www.dynamicdrive.com/ for full source code
+             ***********************************************/
+
+        </script>
+
+        <script type="text/javascript">
+
+            ddsmoothmenu.init({
+                mainmenuid: "templatemo_menu", //menu DIV id
+                orientation: 'h', //Horizontal or vertical menu: Set to "h" or "v"
+                classname: 'ddsmoothmenu', //class added to menu's outer DIV
+                //customtheme: ["#1c5a80", "#18374a"],
+                contentsource: "markup" //"markup" or ["container_id", "path_to_menu_file"]
+            })
+        </script>
+        <link rel="stylesheet" media="screen" href="buttonstyle.css"/>
 
         <script language="javascript" type="text/javascript" src="datetimepicker.js">
 
@@ -27,99 +70,119 @@
 
     </head>
     <body>
-        <br>
-        <h1>login </h1>
-        <table border=0>
-            <tr>
-                <td>
-                    <form method='post' action='DispatcherBeasiswa?page=pengaturanPost'>
-                        <input type='submit' value='Posts' >
-                    </form>
-                </td>
-                <td
-                       <form  method='post' action='DispatcherMahasiswa?page=logout&&nrp=${mahasiswa.nrp}'>
-                            <input type='submit' value='Logout' >
+
+        <div id="templatemo_wrapper">
+
+            <div id="templatemo_header">
+
+                <img src="images/logo.png"/>
+
+                <div id="templatemo_menu" class="ddsmoothmenu">
+                    <ul>
+                        <li><a href="DispatcherMahasiswa?page=home&&nrp=${mahasiswa.nrp}">Home</a></li>
+                        <li><a href="DispatcherMahasiswa?page=home&&nrp=${mahasiswa.nrp}">Menu Utama</a>
+                            <ul>
+                                <li><a href="DispatcherBeasiswa?page=pengaturanPost">Posts</a></li>
+                                <li><a href="DispatcherMahasiswa?page=pengaturanMember">Members</a></li>
+                                <li><a href="DispatcherPengajuan?page=listRekapitulasi">Rekapitulasi</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="contact.html">Panduan</a></li>
+                        <li><a href="contact.html">Kontak</a></li>
+                    </ul>
+                    <br style="clear: left" />
+                </div> <!-- end of templatemo_menu -->
+
+            </div> <!-- end of header -->
+            <br/>
+            <p align="right"><font color="black">Anda login sebagai ${mahasiswa.nama},</font><a style="color: red" href="DispatcherMahasiswa?page=logout&&nrp=${mahasiswa.nrp}">(logout)</a></p>
+
+            <div id="templatemo_main">
+
+                <div class="sb_box">
+                    <h3>Edit Post</h3>
+                </div>
+
+                <div class="col_w240 float_l">
+                    <img src="images/track_Post.png"/>
+                </div>
+
+                <div class="col_w480 float_r">
+                    <div id="contact_form">
+                        <p align="right">
+                            <font color="#E56717">
+                                <b><%= request.getAttribute("pesan")%></b>
+                            </font>
+                        </p>
+
+                        <input type="hidden" name="post" value="Send" />
+                        <form method='post' action='DispatcherBeasiswa?page=goEditPost&&idbeasiswa=${beasiswa.idbeasiswa}'>
+                            <table align="right">
+                                <tr>
+                                    <td>
+                                        <font color="black">Tanggal publish</font>
+                                    </td>
+                                    <td>
+                                        : <input id="demo1" type="text" name="tanggalpublish" size="20" value="${tanggalpublish}"><a href="javascript:NewCal('demo1','ddmmyyyy')"><img src="images/cal.gif" width="16" height="16" border="0" alt="Pick a date"/></a></input>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <font color="black">Tanggal kadaluarsa</font>
+                                    </td>
+                                    <td>
+                                        : <input id="demo2" type="text" name="tanggalkadaluwarsa" size="20" value="${tanggalkadaluwarsa}"><a href="javascript:NewCal('demo2','ddmmyyyy')"><img src="images/cal.gif" width="16" height="16" border="0" alt="Pick a date"/></a></input>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <font color="black">Tanggal mulai kontrak</font>
+                                    </td>
+                                    <td>
+                                        : <input id="demo3" type="text" name="tanggalmulai" size="20" value="${tanggalmulai}"><a href="javascript:NewCal('demo3','ddmmyyyy')"><img src="images/cal.gif" width="16" height="16" border="0" alt="Pick a date"/></a></input>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <font color="black">Tanggal berakhir kontrak</font>
+                                    </td>
+                                    <td>
+                                        : <input id="demo4" type="text" name="tanggalhabis" size="20" value="${tanggalhabis}"><a href="javascript:NewCal('demo4','ddmmyyyy')"><img src="images/cal.gif" width="16" height="16" border="0" alt="Pick a date"/></a></input>
+                                    </td>
+                                </tr>
+                            </table>
+
+                            <br/><br/><br/><br/><br/><br/>
+                            <label for="author"><font color="black">Judul Post</font></label> <input type=text name='namabeasiswa' class="input_field" value="${beasiswa.namabeasiswa}"/>
+                            <div class="cleaner h10"></div>
+
+                            <label for="text"><font color="black">Keterangan</font></label> <textarea id="text" name="keterangan" rows="0" cols="0" value="${beasiswa.keterangan}">${beasiswa.keterangan}</textarea>
+                            <div class="cleaner h10"></div>
+                            <table>
+                                <tr>
+                                    <td>
+                                        <input type="submit" class="submit_btn float_l" name="submit" id="submit" value="Edit Post"  />
+                                    </td>
+                                    <td>
+                                        <input type="reset" class="submit_btn float_r" name="reset" id="reset" value="Reset" />
+                                    </td>
+                                    <td>
+                                        <a href="DispatcherBeasiswa?page=pengaturanPost"><input type="button" class="submit_btn float_r" value="Kembali"/></a>
+                                    </td>
+                                </tr>
+                            </table>
                         </form>
-                </td>
-                <td>
-                    <form method='post' action='DispatcherMahasiswa?page=home&&nrp=${mahasiswa.nrp}'>
-                        <input type='submit' value='Menu Utama' >
-                    </form>
-                </td>
-            </tr>
-        </table>
-        <br>
-        <fieldset>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-            <form method='post' action='DispatcherBeasiswa?page=goEditPost&&idbeasiswa=${beasiswa.idbeasiswa}'>
-                <table border="0">
-                    <tr>
-                        <td >
-                            nama beasiswa:
-                        </td>
-                        <td >
-                            <input type=text name='namabeasiswa' value="${beasiswa.namabeasiswa}"/>
-                            &nbsp; &nbsp;
+        <div id="templatemo_footer_wrapper">
+            <div id="templatemo_footer">
+                Copyright © 2011 <a href="#">Smash Inc.</a> | Institut Teknologi Sepuluh Nopember
+                <div class="cleaner"></div>
+            </div>
+        </div>
 
-                        </td>
-                        <td>
-                            tanggal publish:
-                        </td>
-                        <td>
-                           <input id="demo1" type="text" name="tanggalpublish" size="25" value="${tanggalpublish}"><a href="javascript:NewCal('demo1','ddmmyyyy')"><img src="images/cal.gif" width="16" height="16" border="0" alt="Pick a date"></a>
-
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            &nbsp;
-                        </td>
-                        <td>
-                            &nbsp;
-                        </td>
-                        <td>
-                            tanggal kadaluwarsa:
-                        </td>
-                        <td>
-                            <input id="demo2" type="text" name="tanggalkadaluwarsa" size="25" value="${tanggalkadaluwarsa}"><a href="javascript:NewCal('demo2','ddmmyyyy')"><img src="images/cal.gif" width="16" height="16" border="0" alt="Pick a date"></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            &nbsp;
-                        </td>
-                        <td>
-                            &nbsp;
-                        </td>
-                        <td>
-                            tanggal mulai:
-                        </td>
-                        <td>
-                            <input id="demo3" type="text" name="tanggalmulai" size="25" value="${tanggalmulai}"><a href="javascript:NewCal('demo3','ddmmyyyy')"><img src="images/cal.gif" width="16" height="16" border="0" alt="Pick a date"></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            &nbsp;
-                        </td>
-                        <td>
-                            &nbsp;
-                        </td>
-                        <td>
-                            tanggal mulai:
-                        </td>
-                        <td>
-                            <input id="demo4" type="text" name="tanggalhabis" size="25" value="${tanggalhabis}"><a href="javascript:NewCal('demo4','ddmmyyyy')"><img src="images/cal.gif" width="16" height="16" border="0" alt="Pick a date"></a>
-                        </td>
-                    </tr>
-
-
-                </table>
-                <p>keterangan</p>
-                <textarea rows="10" cols="30" name="keterangan" value="${beasiswa.keterangan}">${beasiswa.keterangan}</textarea>
-                <input type='submit' value='add'/>
-            </form>
-
-        </fieldset>
     </body>
 </html>

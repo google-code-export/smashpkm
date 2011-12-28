@@ -8,8 +8,6 @@ package controller;
  *
  * @author yosua
  */
-
-
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
@@ -37,7 +35,7 @@ public class ControllerMahasiswa {
         HttpSession session = request.getSession();
         MahasiswaJpaController registrasi = new MahasiswaJpaController();
         registrasi.findMahasiswaByNrp(nrp);
-       
+
 
         if (nrp.equals("") || nama.equals("") || password.equals("") || passwordUlangi.equals("")) {
             request.setAttribute("pesan", "Isikan seluruh field yang tersedia sesuai dengan data diri Anda");
@@ -67,7 +65,7 @@ public class ControllerMahasiswa {
 
                     try {
                         registrasi.create(mahasiswa);
-                      /*  session.setAttribute("nrp", nrp);
+                        /*  session.setAttribute("nrp", nrp);
                         session.setAttribute("mahasiswa", mahasiswa);
                         session.setAttribute("password", password);
                         session.setAttribute("pesan", "");
@@ -87,8 +85,6 @@ public class ControllerMahasiswa {
             }
         }
     }
-
-
 
     public Mahasiswa getLogin() {
         String nrp = request.getParameter("nrp");
@@ -154,13 +150,11 @@ public class ControllerMahasiswa {
         MahasiswaJpaController aturMember = new MahasiswaJpaController();
         mahasiswa = aturMember.findMahasiswaByNrp(nrp);
         session.setAttribute("member", mahasiswa);
-       // session.setAttribute("nrp", nrp);
+        // session.setAttribute("nrp", nrp);
 
     }
 
-   
-
-     public void setListMahasiswa() {
+    public void setListMahasiswa() {
         MahasiswaJpaController listMahasiswa = new MahasiswaJpaController();
         HttpSession session = request.getSession();
         List<Mahasiswa> list = new ArrayList<Mahasiswa>();
@@ -169,7 +163,7 @@ public class ControllerMahasiswa {
         session.setAttribute("list_mahasiswa", list);
     }
 
-     public void setDeleteMahasiswa() {
+    public void setDeleteMahasiswa() {
         String nrp = request.getParameter("nrp");
         HttpSession session = request.getSession();
         Mahasiswa mahasiswa = new Mahasiswa();
@@ -206,47 +200,49 @@ public class ControllerMahasiswa {
             request.setAttribute("pesan", "Isikan seluruh field yang tersedia sesuai dengan data diri Anda");
 
         } else {
-            int nilaiToefl = Integer.parseInt(nilaiToefl1);
-            int semester = Integer.parseInt(semester1);
-            Double ipk = Double.parseDouble(ipk1);
-            int penghasilanAyah = Integer.parseInt(penghasilanAyah1);
-            int penghasilanIbu = Integer.parseInt(penghasilanIbu1);
-            int jumlahSaudara = Integer.parseInt(jumlahSaudara1);
-
-            MahasiswaJpaController aturAkun = new MahasiswaJpaController();
-            HttpSession session = request.getSession();
-            mahasiswa = aturAkun.findMahasiswaByNrp(nrp);
-
-            mahasiswa.setNama(nama);
-            mahasiswa.setNohp(noHp);
-            mahasiswa.setAlamatasal(alamatAsal);
-            mahasiswa.setAlamatsurabaya(alamatSurabaya);
-            mahasiswa.setNilaitoefl(nilaiToefl);
-            mahasiswa.setSemester(semester);
-            mahasiswa.setIpk(ipk);
-            mahasiswa.setNamaayah(namaAyah);
-            mahasiswa.setNamaibu(namaIbu);
-            mahasiswa.setPekerjaanayah(pekerjaanAyah);
-            mahasiswa.setPekerjaanibu(pekerjaanIbu);
-            mahasiswa.setPenghasilanayah(penghasilanAyah);
-            mahasiswa.setPenghasilanibu(penghasilanIbu);
-            mahasiswa.setJumlahsaudara(jumlahSaudara);
-            mahasiswa.setIsadmin(false);
-            session.setAttribute("mahasiswa", mahasiswa);
-
             try {
-                aturAkun.edit(mahasiswa);
+                int nilaiToefl = Integer.parseInt(nilaiToefl1);
+                int semester = Integer.parseInt(semester1);
+                Double ipk = Double.parseDouble(ipk1);
+                int penghasilanAyah = Integer.parseInt(penghasilanAyah1);
+                int penghasilanIbu = Integer.parseInt(penghasilanIbu1);
+                int jumlahSaudara = Integer.parseInt(jumlahSaudara1);
 
-            } catch (Exception e) {
-                e.printStackTrace();
+                MahasiswaJpaController aturAkun = new MahasiswaJpaController();
+                HttpSession session = request.getSession();
+                mahasiswa = aturAkun.findMahasiswaByNrp(nrp);
+
+                mahasiswa.setNama(nama);
+                mahasiswa.setNohp(noHp);
+                mahasiswa.setAlamatasal(alamatAsal);
+                mahasiswa.setAlamatsurabaya(alamatSurabaya);
+                mahasiswa.setNilaitoefl(nilaiToefl);
+                mahasiswa.setSemester(semester);
+                mahasiswa.setIpk(ipk);
+                mahasiswa.setNamaayah(namaAyah);
+                mahasiswa.setNamaibu(namaIbu);
+                mahasiswa.setPekerjaanayah(pekerjaanAyah);
+                mahasiswa.setPekerjaanibu(pekerjaanIbu);
+                mahasiswa.setPenghasilanayah(penghasilanAyah);
+                mahasiswa.setPenghasilanibu(penghasilanIbu);
+                mahasiswa.setJumlahsaudara(jumlahSaudara);
+                mahasiswa.setIsadmin(false);
+                session.setAttribute("mahasiswa", mahasiswa);
+
+                try {
+                    aturAkun.edit(mahasiswa);
+                    request.setAttribute("pesan1", "Data yang Anda masukkan telah tersimpan. Pastikan data yang Anda masukkan adalah benar");
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            } catch (NumberFormatException nfe) {
+                request.setAttribute("pesan", "Isikan seluruh field dengan ketentuan format yang ada");
             }
-            request.setAttribute("pesan1", "Data yang Anda masukkan telah tersimpan. Pastikan data yang Anda masukkan adalah benar");
 
         }
 
     }
-
-  
 
     public void setAturPassword(Mahasiswa mahasiswa) {
         String nrp = request.getParameter("nrp");
@@ -259,7 +255,7 @@ public class ControllerMahasiswa {
 
         if (passwordLama.equals("") || passwordBaru.equals("") || ulangiPassword.equals("")) {
             request.setAttribute("pesan", "Isikan seluruh field yang tersedia sesuai dengan data diri Anda");
-            
+
         } else {
 
             if (passwordBaru.equals(ulangiPassword)) {
@@ -274,7 +270,7 @@ public class ControllerMahasiswa {
                     }
                 } else {
                     request.setAttribute("pesan", "Password yang Anda masukkan tidak sesuai");
-                  
+
                 }
             } else {
                 request.setAttribute("pesan", "Password Baru yang Anda masukkan tidak sesuai dengan ulangi Password");
@@ -289,20 +285,19 @@ public class ControllerMahasiswa {
         HttpSession session = request.getSession();
         mahasiswa = aturPassword.findMahasiswaByNrp(nrp);
 
-        if ( passwordBaru.equals("")) {
+        if (passwordBaru.equals("")) {
             request.setAttribute("pesan", "Isikan seluruh field yang tersedia sesuai dengan data diri Anda");
             mahasiswa.setLoginstat(false);
         } else {
-                    mahasiswa.setPassword(passwordBaru);
-                    try {
-                        aturPassword.edit(mahasiswa);
-                        request.setAttribute("pesan", "Password Anda telah diganti");
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                
+            mahasiswa.setPassword(passwordBaru);
+            try {
+                aturPassword.edit(mahasiswa);
+                request.setAttribute("pesan", "Password Anda telah diganti");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
 
         }
     }
-    
 }

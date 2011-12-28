@@ -9,6 +9,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
+        <link rel='icon' href="images/favicon.ico" />
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>Pengaturan Post-SMASH</title>
         <meta name="keywords" content="Chrome Blog Theme, Web Design, CSS, HTML, free template" />
@@ -61,6 +62,7 @@
 
         </script>
 
+        <link rel="stylesheet" media="screen" href="buttonstyle.css">
 
     </head>
     <body>
@@ -72,103 +74,77 @@
 
                 <div id="templatemo_menu" class="ddsmoothmenu">
                     <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="about.html">About</a>
+                        <li><a href="DispatcherMahasiswa?page=home&&nrp=${mahasiswa.nrp}">Home</a></li>
+                        <li><a href="DispatcherMahasiswa?page=home&&nrp=${mahasiswa.nrp}">Menu Utama</a>
                             <ul>
-                                <li><a href="http://www.templatemo.com/page/1">Background</a></li>
-                                <li><a href="http://www.templatemo.com/page/2">Our Team</a></li>
-                                <li><a href="http://www.templatemo.com/page/3">Management</a></li>
+                                <li><a href="DispatcherBeasiswa?page=pengaturanPost">Posts</a></li>
+                                <li><a href="DispatcherMahasiswa?page=pengaturanMember">Members</a></li>
+                                <li><a href="DispatcherPengajuan?page=listRekapitulasi">Rekapitulasi</a></li>
                             </ul>
                         </li>
-                        <li><a href="portfolio.html">Portfolio</a>
-                            <ul>
-                                <li><a href="http://www.templatemo.com/page/1">Web Design</a></li>
-                                <li><a href="http://www.templatemo.com/page/2">Multimedia</a></li>
-                                <li><a href="http://www.templatemo.com/page/3">3D Animations</a></li>
-                                <li><a href="http://www.templatemo.com/page/4">Templates</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="blog.html" class="selected">Blog</a>
-                            <ul>
-                                <li><a href="http://www.templatemo.com/page/1">Useful Tips</a></li>
-                                <li><a href="http://www.templatemo.com/page/2">Archives</a></li>
-                                <li><a href="http://www.templatemo.com/page/3">Popular Posts</a></li>
-                                <li><a href="http://www.templatemo.com/page/4">Comments</a></li>
-                                <li><a href="http://www.templatemo.com/page/5">Authors</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="contact.html">Panduan</a></li>
+                        <li><a href="contact.html">Kontak</a></li>
                     </ul>
                     <br style="clear: left" />
                 </div> <!-- end of templatemo_menu -->
 
             </div> <!-- end of header -->
             <br/>
-            <p align="right"><font color="black">Anda login sebagai ${mahasiswa.nama},</font><a style="color: red" href="DispatcherMahasiswa?name=logout">(logout)</a></p>
+            <p align="right"><font color="black">Anda login sebagai ${mahasiswa.nama},</font><a style="color: red" href="DispatcherMahasiswa?page=logout&&nrp=${mahasiswa.nrp}">(logout)</a></p>
 
-            <div class="sb_box">
-                <h3>Pengaturan Post</h3>
-            </div>
+            <div id="templatemo_main">
 
-            <div class="col_w280 float_l">
-                <img src="images/track_Post.png"/>
-            </div>
+                <div class="sb_box">
+                    <h3>Pengaturan Post</h3>
+                </div>
 
-            <table>
-                <tr>
-                    <td>
-                        <form method='post' action='DispatcherBeasiswa?page=membuatPost'>
-                            <input type='submit' value='Add New Post' >
-                        </form>
-                    </td>
-                    <td>
-                        <form method='post' action='DispatcherMahasiswa?page=home&&nrp=${mahasiswa.nrp}'>
-                            <input type='submit' value='Menu Utama' >
-                        </form>
-                    </td>
-                    <td>
-                        <form  method='post' action='DispatcherMahasiswa?page=logout&&nrp=${mahasiswa.nrp}'>
-                            <input type='submit' value='Logout' >
-                        </form>
+                <div class="col_w280 float_l">
+                    <img src="images/track_Post.png"/>
+                </div>
 
-                    </td>
-                </tr>
-            </table>
-            <br/>
-            <table border="1">
-                <tr>
-                    <td align="center"width="200px">
-                        <font color="black"><b> Nama Beasiswa </b></font>
-                    </td>
-                    <td align="center" width="200px">
-                        <font color="black"><b> Tanggal Publish </b></font>
-                    </td>
-                    <td align="center" width="200px">
-                        <font color="black"><b> Tanggal Kadaluarsa </b></font>
-                    </td>
-                    <td align="center" width="100px">
-                        <font color="black"><b> Action </b></font>
-                    </td>
-                </tr>
-
-                <c:forEach items="${list_beasiswa}" var="bsw">
-
+                <table>
                     <tr>
-                        <td align="center">
-                            <font color="black">${bsw.namabeasiswa}</font>
-                        </td>
-                        <td align="center">
-                            <font color="black">${bsw.tanggalpublish}</font>
-                        </td>
-                        <td align="center">
-                            <font color="black">${bsw.tanggalkadaluarsa}</font>
-                        </td>
-                        <td align="center">
-                            <a href="DispatcherBeasiswa?page=editPost&&idbeasiswa=${bsw.idbeasiswa}"><img src="images/Modify.png"/></a>  <a href="DispatcherBeasiswa?page=deletePost&&idbeasiswa=${bsw.idbeasiswa}"><img src="images/Delete.png"/></a>
+                        <td>
+                            <a href="DispatcherBeasiswa?page=membuatPost" title="" class="btn medium green">Tambah Post</a>
                         </td>
                     </tr>
-                </c:forEach>
-            </table>
+                </table>
+                <br/>
+                <table border="1">
+                    <tr>
+                        <td align="center"width="200px">
+                            <font color="black"><b> Nama Beasiswa </b></font>
+                        </td>
+                        <td align="center" width="200px">
+                            <font color="black"><b> Tanggal Publish </b></font>
+                        </td>
+                        <td align="center" width="200px">
+                            <font color="black"><b> Tanggal Kadaluarsa </b></font>
+                        </td>
+                        <td align="center" width="100px">
+                            <font color="black"><b> Action </b></font>
+                        </td>
+                    </tr>
+
+                    <c:forEach items="${list_beasiswa}" var="bsw">
+
+                        <tr>
+                            <td align="center">
+                                <font color="black">${bsw.namabeasiswa}</font>
+                            </td>
+                            <td align="center">
+                                <font color="black">${bsw.tanggalpublish}</font>
+                            </td>
+                            <td align="center">
+                                <font color="black">${bsw.tanggalkadaluarsa}</font>
+                            </td>
+                            <td align="center">
+                                <a href="DispatcherBeasiswa?page=editPost&&idbeasiswa=${bsw.idbeasiswa}"><img src="images/Modify.png"/></a>  <a href="DispatcherBeasiswa?page=deletePost&&idbeasiswa=${bsw.idbeasiswa}"><img src="images/Delete.png"/></a>
+                            </td>
+                        </tr>
+                    </c:forEach>
+                </table>
+            </div>
         </div>
         <div id="templatemo_footer_wrapper">
             <div id="templatemo_footer">

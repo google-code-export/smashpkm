@@ -38,6 +38,9 @@ public class DispatcherMahasiswa extends HttpServlet {
                 }
             }
 
+            if (page.equals("index")) {
+                dis = request.getRequestDispatcher("index.jsp");
+            }
             if (page.equals("registrasi")) {
                 dis = request.getRequestDispatcher("registrasi.jsp");
             }
@@ -74,8 +77,6 @@ public class DispatcherMahasiswa extends HttpServlet {
             if (page.equals("pengaturanAkun")) {
                 mahasiswa = controller.getMahasiswa();
                 dis = request.getRequestDispatcher("pengaturanAkun.jsp");
-
-
 
             }
             if (page.equals("setPengaturanAkun")) {
