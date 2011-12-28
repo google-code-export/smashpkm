@@ -64,8 +64,24 @@ public class Mahasiswa implements Serializable {
     private Integer jumlahsaudara;
     @Column(name = "ISADMIN")
     private Boolean isadmin;
-    @Column(name = "TERIMABEASISWA")
-    private Boolean terimabeasiswa;
+    @Column(name = "STATUSPENERIMA")
+    private String statuspenerima;
+
+    public Set<Pengajuan> getPengajuanCollection() {
+        return pengajuanCollection;
+    }
+
+    public String getStatuspenerima() {
+        return statuspenerima;
+    }
+
+    public void setPengajuanCollection(Set<Pengajuan> pengajuanCollection) {
+        this.pengajuanCollection = pengajuanCollection;
+    }
+
+    public void setStatuspenerima(String statuspenerima) {
+        this.statuspenerima = statuspenerima;
+    }
     //@OneToMany//(cascade = CascadeType.ALL, mappedBy = "idbeasiswa", fetch = FetchType.LAZY)
     //private Pengajuan pengajuan;
     @OneToMany(mappedBy = "nrp")

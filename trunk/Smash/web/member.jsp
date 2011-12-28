@@ -117,10 +117,7 @@
 
             <table>
                 <tr>
-                    <td>
-                        <form method='post' action='DispatcherMahasiswa?page=buatMember'>
-                            <input type='submit' value='Add New Member' >
-                        </form>
+                    <td                    
                     </td>
                     <td>
                         <form method='post' action='DispatcherMahasiswa?page=home&&nrp=${mahasiswa.nrp}'>
@@ -182,7 +179,7 @@
                             none
                         </td>
                         <td align="center">
-                            <a href="DispatcherMahasiswa?page=editMember&&nrp=${mhs.nrp}"><img src="images/Modify.png"/></a>  <a href="DispatcherMahasiswa?page=deleteMember&&nrp=${mhs.nrp}"><img src="images/Delete.png"/></a>
+                            <a href="DispatcherMahasiswa?page=editMember&&nrp=${mhs.nrp}"><img src="images/Modify.png"/></a>  <a href="DispatcherMahasiswa?page=deleteMember&&nrp_member=${mhs.nrp}"><img src="images/Delete.png"/></a>
                         </td>
                     </tr>
                     <tr>

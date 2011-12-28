@@ -97,7 +97,7 @@
                             <a href="DispatcherMahasiswa?page=pengaturanMember" title="" class="btn medium green">Profil</a>
                         </td>
                         <td>
-                            <a href="DispatcherMahasiswa?page=pengaturanPasswordMember&&nrp=${member.nrp}" title="" class="btn medium green">Ganti Password</a>
+                            <a href="DispatcherMahasiswa?page=pengaturanPasswordMember&&nrp_member=${member.nrp}" title="" class="btn medium green">Ganti Password</a>
                         </td>
                         <td>
                             <a href="DispatcherMahasiswa?page=home&&nrp=${mahasiswa.nrp}" title="" class="btn medium green">Menu Utama</a>
@@ -108,7 +108,7 @@
 
             <br/>
 
-            <form method='post'  action='DispatcherMahasiswa?page=goEditMember&&nrp=${member.nrp}'>
+            <form method='post'  action='DispatcherMahasiswa?page=goEditMember&&nrp_member=${member.nrp}'>
                 <fieldset>
                     <table border=0>
                         <font color="red"><%= request.getAttribute("pesan")%></font>

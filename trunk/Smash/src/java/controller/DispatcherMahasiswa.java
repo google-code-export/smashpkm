@@ -115,23 +115,24 @@ public class DispatcherMahasiswa extends HttpServlet {
             }
 
             if (page.equals("editMember")) {
-                controller.setMahasiswa(mahasiswa);
+                controller.setMember(mahasiswa);
                 dis = request.getRequestDispatcher("pengaturanMember.jsp");
 
             }
             if (page.equals("goEditMember")) {
-                controller.setAturAkun(mahasiswa);
+                controller.setAturAkunMember(mahasiswa);
+                controller.setMember(mahasiswa);
                 dis = request.getRequestDispatcher("pengaturanMember.jsp");
 
             }
             if (page.equals("pengaturanPasswordMember")) {
-                controller.setMahasiswa(mahasiswa);
+                controller.setMember(mahasiswa);
                 dis = request.getRequestDispatcher("pengaturanPasswordMember.jsp");
 
             }
             if (page.equals("goAturPasswordMember")) {
                 controller.setAturPasswordMember(mahasiswa);
-                controller.setMahasiswa(mahasiswa);
+                controller.setMember(mahasiswa);
                 dis = request.getRequestDispatcher("pengaturanPasswordMember.jsp");
 
             }

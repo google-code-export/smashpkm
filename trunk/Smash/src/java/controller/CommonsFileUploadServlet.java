@@ -92,6 +92,7 @@ public class CommonsFileUploadServlet extends HttpServlet {
             List items = uploadHandler.parseRequest(request);
             Iterator itr = items.iterator();
 
+
             PengajuanJpaController daftar = new PengajuanJpaController();
             MahasiswaJpaController cariMhs = new MahasiswaJpaController();
             BeasiswaJpaController cariBsw = new BeasiswaJpaController();
@@ -111,6 +112,7 @@ public class CommonsFileUploadServlet extends HttpServlet {
             beasiswa.setIdbeasiswa(idbeasiswa);
             pengajuan.setIdbeasiswa(beasiswa);
             pengajuan.setTanggalpengajuan(dateNow);
+            pengajuan.setStatusPengajuan(false);
 
             while (itr.hasNext()) {
                 FileItem item = (FileItem) itr.next();

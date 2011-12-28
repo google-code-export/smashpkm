@@ -43,6 +43,15 @@ public class Pengajuan implements Serializable {
     private String pathscv;
     private String pathssertifikat;
     private String pathsrekening;
+    private Boolean statusPengajuan;
+
+    public void setStatusPengajuan(Boolean statusPengajuan) {
+        this.statusPengajuan = statusPengajuan;
+    }
+
+    public Boolean getStatusPengajuan() {
+        return statusPengajuan;
+    }
 
     public String getPathscv() {
         return pathscv;

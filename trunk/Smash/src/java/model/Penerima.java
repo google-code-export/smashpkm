@@ -26,28 +26,14 @@ public class Penerima implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @Column(name = "ID", nullable = false)
-    private Long id;
+    @Column(name = "IDPENERIMA", nullable = false)
+    private Long idpenerima;
 
-    public Penerima() {
-    }
-
-    public Penerima(Long id) {
-        this.id = id;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
+    
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        hash += (idpenerima != null ? idpenerima.hashCode() : 0);
         return hash;
     }
 
@@ -58,7 +44,7 @@ public class Penerima implements Serializable {
             return false;
         }
         Penerima other = (Penerima) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if ((this.idpenerima == null && other.idpenerima != null) || (this.idpenerima != null && !this.idpenerima.equals(other.idpenerima))) {
             return false;
         }
         return true;
@@ -66,7 +52,7 @@ public class Penerima implements Serializable {
 
     @Override
     public String toString() {
-        return "model.Penerima[id=" + id + "]";
+        return "model.Penerima[id=" + idpenerima + "]";
     }
 
 }

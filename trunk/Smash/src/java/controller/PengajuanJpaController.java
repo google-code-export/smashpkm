@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package controller;
 
 import controller.exceptions.NonexistentEntityException;
@@ -33,7 +32,7 @@ public class PengajuanJpaController {
         return emf.createEntityManager();
     }
 
-       public void create(Pengajuan pengajuan) throws PreexistingEntityException, Exception {
+    public void create(Pengajuan pengajuan) throws PreexistingEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
@@ -159,6 +158,22 @@ public class PengajuanJpaController {
         return pengajuan;
     }
 
+    public List<Pengajuan> getAllPengajuan() {
+
+        List<Pengajuan> pengajuan = new ArrayList<Pengajuan>();
+        EntityManager em = getEntityManager();
+        try {
+            Query q = em.createQuery("SELECT o FROM Pengajuan o ");
+            pengajuan = q.getResultList();
+
+        } finally {
+            if (em != null) {
+                em.close();
+            }
+        }
+        return pengajuan;
+    }
+
     public List<Pengajuan> getAllPengajuanByIdBeasiswaOrderByIpk(String idbeasiswa) {
 
         List<Pengajuan> pengajuan = new ArrayList<Pengajuan>();
@@ -176,7 +191,6 @@ public class PengajuanJpaController {
         return pengajuan;
     }
 
-
     public List<Pengajuan> getAllPengajuanByIdBeasiswaOrderByGaji(String idbeasiswa) {
 
         List<Pengajuan> pengajuan = new ArrayList<Pengajuan>();
@@ -184,6 +198,23 @@ public class PengajuanJpaController {
         try {
             Query q = em.createQuery("SELECT o FROM Pengajuan o WHERE o.idbeasiswa.idbeasiswa=:idbeasiswa ORDER BY o.nrp.penghasilanayah ASC");
             q.setParameter("idbeasiswa", idbeasiswa);
+            pengajuan = q.getResultList();
+
+        } finally {
+            if (em != null) {
+                em.close();
+            }
+        }
+        return pengajuan;
+    }
+
+    public List<Pengajuan> getAllPengajuanByStatus() {
+        String status="Sedang Menerima Beasiswa";
+        List<Pengajuan> pengajuan = new ArrayList<Pengajuan>();
+        EntityManager em = getEntityManager();
+        try {
+            Query q = em.createQuery("SELECT o FROM Pengajuan o WHERE o.nrp.statuspenerima=:status");
+            q.setParameter("status", status);
             pengajuan = q.getResultList();
 
         } finally {
@@ -209,5 +240,6 @@ public class PengajuanJpaController {
             em.close();
         }
     }
+
 
 }
