@@ -120,7 +120,7 @@
                 <div class="col_w460 float_r">
                     <div class="cleaner h20"></div>
 
-                    <form method='post'  action='DispatcherMahasiswa?page=goAturPasswordMember&&nrp=${member.nrp}'>
+                    <form method='post'  action='DispatcherMahasiswa?page=goAturPasswordMember&&nrp_member=${member.nrp}'>
                         <br/>
                         <fieldset>
                             <table border=0>

@@ -40,6 +40,14 @@
         </tr>
         <tr>
             <th align="left">
+                Nama Beasiswa :
+            </th>
+            <td>
+                ${pengajuan.idbeasiswa.namabeasiswa}
+            </td>
+        </tr>
+        <tr>
+            <th align="left">
                 Nama Pemohon :
             </th>
             <td>
@@ -53,6 +61,21 @@
             <td>
                 ${pengajuan.nrp.nrp}
             </td>
+
+        </tr>
+         <tr>
+            <th align="left">
+                Status :
+            </th>
+            <td>
+                ${pengajuan.nrp.statuspenerima}
+            </td>
+            <td>
+            <form  method='post' action='DispatcherPengajuan?page=aturStatus&&nrp=${pengajuan.nrp.nrp}&&idpengajuan=${pengajuan.idpengajuan}'>
+                <input type='submit' value='Ubah Status' >
+            </form>
+        <td>
+
 
         </tr>
         <tr>

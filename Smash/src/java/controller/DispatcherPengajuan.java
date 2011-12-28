@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Beasiswa;
+import model.Mahasiswa;
 import model.Pengajuan;
 
 /**
@@ -26,7 +27,7 @@ public class DispatcherPengajuan extends HttpServlet {
         String page = request.getParameter("page");
         RequestDispatcher dis = null;
         ControllerPengajuan controller = new ControllerPengajuan(request);
-         ControllerBeasiswa controllerBsw = new ControllerBeasiswa(request);
+        ControllerBeasiswa controllerBsw = new ControllerBeasiswa(request);
         Beasiswa beasiswa = new Beasiswa();
         Pengajuan pengajuan = new Pengajuan();
         String pesan = " ";
@@ -34,7 +35,11 @@ public class DispatcherPengajuan extends HttpServlet {
 
 
         if (page != null) {
-            
+        if (page.equals("statusBeasiswa")) {
+                controller.setListPengajuanByNrp(pengajuan);
+                dis = request.getRequestDispatcher("listDaftarBeasiswa.jsp");
+
+            }
 
             if (page.equals("listDaftarBeasiswa")) {
                 controller.setListPengajuanByNrp(pengajuan);
@@ -45,7 +50,9 @@ public class DispatcherPengajuan extends HttpServlet {
                 dis = request.getRequestDispatcher("CommonsFileUploadServlet");
             }
             if (page.equals("listRekapitulasi")) {
+                controller.setStatusPenerima();
                 controllerBsw.setListBeasiswa();
+                controller.setListPengajuan(pengajuan);
                 dis = request.getRequestDispatcher("halamanRekapitulasi.jsp");
             }
             if (page.equals("goListRekapitulasi")) {
@@ -53,6 +60,11 @@ public class DispatcherPengajuan extends HttpServlet {
                 dis = request.getRequestDispatcher("halamanRekapitulasi.jsp");
             }
             if (page.equals("aturRekapitulasi")) {
+                controller.setPengajuan();
+                dis = request.getRequestDispatcher("halamanDownloadRekapitulasi.jsp");
+            }
+            if (page.equals("aturStatus")) {
+                controller.setAturStatus();
                 controller.setPengajuan();
                 dis = request.getRequestDispatcher("halamanDownloadRekapitulasi.jsp");
             }

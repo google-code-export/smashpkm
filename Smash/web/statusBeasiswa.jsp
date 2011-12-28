@@ -1,6 +1,6 @@
-<%--
-    Document   : halamanDaftarBeasiswa
-    Created on : Nov 22, 2011, 8:52:32 AM
+<%-- 
+    Document   : statusBeasiswa
+    Created on : Dec 28, 2011, 8:48:08 PM
     Author     : yosua
 --%>
 
@@ -15,7 +15,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Halaman Rekapitulasi</h1>
+        <h1>Halaman Status Beasiswa</h1>
  <table border=0>
             <tr>
 
@@ -31,18 +31,6 @@
                 </td>
             </tr>
         </table>
-        <form method='post' action="DispatcherPengajuan?page=goListRekapitulasi">
-            <select name="pilih">
-                <c:forEach items="${list_beasiswa}" var="bsw">
-                    <option value=${bsw.idbeasiswa} > ${bsw.namabeasiswa} </option>
-                </c:forEach>
-            </select>
-            <select name="pilih_sort">
-                    <option value="gaji" > Berdasarkan Gaji </option>
-                    <option value="ipk" > Berdasarkan IPK </option>
-            </select>
-            <input type='submit' value='Pilih' >
-        </form>
         <table border="1">
             <thead>
                 <tr>
@@ -50,21 +38,14 @@
                         No
                     </th>
                     <th>
-                        Nama
+                        Nama Beasiswa
                     </th>
                     <th>
-                        NRP
+                        Tanggal Mulai Berlaku
                     </th>
                      <th>
-                        IPK
+                        Tanggal Kadaluwarsa
                     </th>
-                    <th>
-                        Penghasilan Orang tua
-                    </th>
-                    <th>
-                        Status
-                    </th>
-
                 </tr>
             </thead>
             <tbody>
@@ -78,25 +59,15 @@
                             <%i++;%>
                         </td>
                         <td>
-                            ${bsw.nrp.nama}
+                            ${bsw.idbeasiswa.namabeasiswa}
                         </td>
                         <td>
-                            ${bsw.nrp.nrp}
+                            ${bsw.idbeasiswa.tanggalmulai}
                         </td>
                         <td>
-                            ${bsw.nrp.ipk}
+                            ${bsw.idbeasiswa.tanggalkadaluwarsa}
                         </td>
-                        <td>
-                            ${bsw.nrp.penghasilanayah+bsw.nrp.penghasilanibu}
-                        </td>
-                         <td>
-                            ${bsw.nrp.statuspenerima}
-                        </td>
-                        <td>
-                            <form method='post' action='DispatcherPengajuan?page=aturRekapitulasi&&idpengajuan=${bsw.idpengajuan}'>
-                        <input type='submit' value='Rekap' >
-                    </form>
-                        </td>
+
                     </tr>
                 </c:forEach>
             </tbody>
