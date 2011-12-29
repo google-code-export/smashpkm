@@ -14,19 +14,25 @@
     </head>
     <body>
         <br>
-        <h1>login </h1>
+        <h1>Daftar Beasiswa</h1>
         <table border=0>
             <tr>
+                <td>
+                    <form method='post' action='DispatcherPengajuan?page=listDaftarBeasiswa&&nrp=${mahasiswa.nrp}'>
+                        <input type='submit' value='Kembali' >
+                    </form>
+                </td>
+                <td>
+                        <form method='post' action='DispatcherMahasiswa?page=home&&nrp=${mahasiswa.nrp}'>
+                            <input type='submit' value='Menu Utama' />
+                        </form>
+                    </td>
                 <td>
                     <form method='post' action='DispatcherMahasiswa?page=logout&&nrp=${mahasiswa.nrp}'>
                         <input type='submit' value='Logout' >
                     </form>
                 </td>
-                <td>
-                    <form method='post' action='DispatcherMahasiswa?page=home&&nrp=${mahasiswa.nrp}'>
-                        <input type='submit' value='Menu Utama' >
-                    </form>
-                </td>
+                
             </tr>
         </table>
         <br>

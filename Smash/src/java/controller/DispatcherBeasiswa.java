@@ -30,6 +30,14 @@ public class DispatcherBeasiswa extends HttpServlet {
         request.setAttribute("pesan", pesan);
 
         if (page != null) {
+            if (page.equals("beasiswaYangTersedia")) {
+                controller.setListBeasiswaBerlaku();
+                dis = request.getRequestDispatcher("beasiswaYangTersedia.jsp");
+            }
+            if (page.equals("detailBeasiswa")) {
+                controller.setBeasiswa();
+                dis = request.getRequestDispatcher("detailBeasiswa.jsp");
+            }
             if (page.equals("listPilihBeasiswa")) {
                 controller.setListBeasiswa();
                 dis = request.getRequestDispatcher("daftarBeasiswa.jsp");

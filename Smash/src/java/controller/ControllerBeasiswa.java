@@ -12,8 +12,12 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import model.Beasiswa;
@@ -76,6 +80,36 @@ public class ControllerBeasiswa {
         HttpSession session = request.getSession();
         List<Beasiswa> list = new ArrayList<Beasiswa>();
         list = listBeasiswa.getAllBeasiswa();
+        session.setAttribute("list_beasiswa", list);
+    }
+
+    public void setListBeasiswaBerlaku() {
+        BeasiswaJpaController listBeasiswa = new BeasiswaJpaController();
+        HttpSession session = request.getSession();
+        List<Beasiswa> list = new ArrayList<Beasiswa>();
+        list = listBeasiswa.getAllBeasiswa();
+        Iterator itr = list.listIterator();
+        Date tglSaatIni = null;
+        Calendar currentDate = Calendar.getInstance();
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+        String dateNow = formatter.format(currentDate.getTime());
+        try {
+            tglSaatIni = (Date) formatter.parse(dateNow);
+        } catch (ParseException ex) {
+            Logger.getLogger(ControllerPengajuan.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        while (itr.hasNext()) {
+            Beasiswa beasiswa = (Beasiswa) itr.next();
+
+            if (beasiswa.getTanggalpublish().before(tglSaatIni) == true) {
+                if (beasiswa.getTanggalkadaluarsa().after(tglSaatIni) == true) {
+                } else {
+                    itr.remove();
+                }
+            } else {
+                itr.remove();
+            }
+        }
         session.setAttribute("list_beasiswa", list);
     }
 
@@ -163,5 +197,14 @@ public class ControllerBeasiswa {
         String idBeasiswa = request.getParameter("pilih");
         HttpSession session = request.getSession();
         session.setAttribute("idbeasiswa", idBeasiswa);
+    }
+
+    public void setBeasiswa() {
+        String idbeasiswa = request.getParameter("idbeasiswa");
+        HttpSession session = request.getSession();
+        BeasiswaJpaController cari = new BeasiswaJpaController();
+        Beasiswa beasiswa = new Beasiswa();
+        beasiswa = cari.findBeasiswaById(idbeasiswa);
+        session.setAttribute("beasiswa", beasiswa);
     }
 }
