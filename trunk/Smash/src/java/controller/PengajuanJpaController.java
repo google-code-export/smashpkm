@@ -208,22 +208,7 @@ public class PengajuanJpaController {
         return pengajuan;
     }
 
-    public List<Pengajuan> getAllPengajuanByStatus() {
-        String status="Sedang Menerima Beasiswa";
-        List<Pengajuan> pengajuan = new ArrayList<Pengajuan>();
-        EntityManager em = getEntityManager();
-        try {
-            Query q = em.createQuery("SELECT o FROM Pengajuan o WHERE o.nrp.statuspenerima=:status");
-            q.setParameter("status", status);
-            pengajuan = q.getResultList();
-
-        } finally {
-            if (em != null) {
-                em.close();
-            }
-        }
-        return pengajuan;
-    }
+   
 
     public Pengajuan findPengajuanById(String idPengajuan) {
         EntityManager em = getEntityManager();

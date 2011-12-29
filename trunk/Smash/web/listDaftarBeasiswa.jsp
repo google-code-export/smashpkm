@@ -15,11 +15,13 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <table border=0>
+       
+        <h1>List Daftar Beasiswa</h1>
+         <table border=0>
             <tr>
                 <td>
                     <form method='post' action='DispatcherBeasiswa?page=listPilihBeasiswa'>
-                        <input type='submit' value='Daftar' >
+                        <input type='submit' value='Daftar Baru' >
                     </form>
                 </td>
                 <td>
@@ -34,7 +36,6 @@
                 </td>
             </tr>
         </table>
-        <h1>List Daftar Beasiswa</h1>
     </body><table border="1">
         <thead>
             <tr>

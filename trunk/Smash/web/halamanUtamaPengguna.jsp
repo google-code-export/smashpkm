@@ -114,8 +114,8 @@
                                             <img src="images/list.png" alt="Image 3"/>
                                         </td>
                                         <td>
-                                            <a href="#"> </a>
-                                            <h4>Beasiswa yang Tersedia</h4>
+                                            <a href="DispatcherBeasiswa?page=beasiswaYangTersedia"> <h4>Beasiswa yang Tersedia</h4></a>
+                                            
                                         </td>
                                     </tr>
                                 </table>

@@ -18,10 +18,15 @@
             <tr>
              
                 <td>
-                    <form method='post' action='DispatcherMahasiswa?page=home&&nrp=${mahasiswa.nrp}'>
-                        <input type='submit' value='Menu Utama' />
+                    <form method='post' action='DispatcherBeasiswa?page=listPilihBeasiswa'>
+                        <input type='submit' value='Kembali' />
                     </form>
                 </td>
+                <td>
+                        <form method='post' action='DispatcherMahasiswa?page=home&&nrp=${mahasiswa.nrp}'>
+                            <input type='submit' value='Menu Utama' />
+                        </form>
+                    </td>
                 <td>
                     <form method='post' action='DispatcherMahasiswa?page=logout&&nrp=${mahasiswa.nrp}'>
                         <input type='submit' value='Logout' />
