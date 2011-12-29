@@ -29,42 +29,38 @@ public class DispatcherMahasiswa extends HttpServlet {
         String pesan = "  ";
         request.setAttribute("pesan", pesan);
         if (page != null) {
-            if (page.equals("home")) {
+            if (page.equals("home")) {//dispatch ke menu utama
                 mahasiswa = controller.getMahasiswa();
-                if (mahasiswa.getIsadmin() == false) {
+                if (mahasiswa.getIsadmin() == false) {//validasi antara admin dan pengguna
                     dis = request.getRequestDispatcher("halamanUtamaPengguna.jsp");
                 } else {
                     dis = request.getRequestDispatcher("halamanUtamaAdmin.jsp");
                 }
             }
-
-            if (page.equals("index")) {
+            if (page.equals("index")) {//dispatch ke index
                 dis = request.getRequestDispatcher("index.jsp");
             }
-            if (page.equals("registrasi")) {
+            if (page.equals("registrasi")) {//dispatch ke laman registrasi
                 dis = request.getRequestDispatcher("registrasi.jsp");
             }
-            if (page.equals("goRegistrasi")) {
+            if (page.equals("goRegistrasi")) {//membuat pengguna baru
                 controller.setRegistrasi(mahasiswa);
-
-                if (mahasiswa.getLoginstat() == true) {
+                if (mahasiswa.getLoginstat() == true) {//dispatch laman keberhasilan registrasi
                     dis = request.getRequestDispatcher("index.jsp");
                 } else {
                     dis = request.getRequestDispatcher("registrasi.jsp");
                 }
-
             }
-            if (page.equals("login")) {
+            if (page.equals("login")) {//validasi login
                 mahasiswa = controller.getLogin();
-                if (mahasiswa.getIsadmin() == true) {
-                    if (mahasiswa.getLoginstat() == true) {
+                if (mahasiswa.getIsadmin() == true) {//validasi admin dan pengguna
+                    if (mahasiswa.getLoginstat() == true) {// validasi status login admin
                         dis = request.getRequestDispatcher("halamanUtamaAdmin.jsp");
                     } else {
                         dis = request.getRequestDispatcher("index.jsp");
                     }
-
                 } else {
-                    if (mahasiswa.getLoginstat() == true) {
+                    if (mahasiswa.getLoginstat() == true) {// validasi status login pengguna
                         dis = request.getRequestDispatcher("halamanUtamaPengguna.jsp");
                     } else if (mahasiswa.getLoginstat() == false) {
                         dis = request.getRequestDispatcher("index.jsp");
@@ -73,79 +69,64 @@ public class DispatcherMahasiswa extends HttpServlet {
                     }
                 }
             }
-
-            if (page.equals("pengaturanAkun")) {
-                mahasiswa = controller.getMahasiswa();
+            if (page.equals("pengaturanAkun")) {//melakukan set data akun sebelumnya untuk ditampilkan
+                controller.setMahasiswa();
                 dis = request.getRequestDispatcher("pengaturanAkun.jsp");
-
             }
-            if (page.equals("setPengaturanAkun")) {
-                controller.setAturAkun(mahasiswa);
+            if (page.equals("setPengaturanAkun")) {//menyimpan hasil perubahan data akun
+                controller.setAturAkun();
                 dis = request.getRequestDispatcher("pengaturanAkun.jsp");
-
             }
-            if (page.equals("pengaturanPassword")) {
-
+            if (page.equals("pengaturanPassword")) {//dispatch halaman pengaturan password
                 dis = request.getRequestDispatcher("pengaturanPassword.jsp");
             }
-            if (page.equals("setPengaturanPassword")) {
-                controller.setAturPassword(mahasiswa);
+            if (page.equals("setPengaturanPassword")) {//menyimpan hasil perubahan password
+                controller.setAturPassword();
                 dis = request.getRequestDispatcher("pengaturanPassword.jsp");
-
             }
-            if (page.equals("pengaturanMember")) {
+            if (page.equals("pengaturanMember")) {//melakukan list mahasiswa untuk dipilih untuk di edit
                 controller.setListMahasiswa();
                 dis = request.getRequestDispatcher("member.jsp");
 
             }
-            if (page.equals("buatMember")) {
+            if (page.equals("buatMember")) {//membuat pengguna baru dari halaman admin
                 dis = request.getRequestDispatcher("buatMember.jsp");
 
             }
-            if (page.equals("goBuatMember")) {
+            if (page.equals("goBuatMember")) {//menyimpan pengguna baru
                 controller.setRegistrasi(mahasiswa);
                 controller.setListMahasiswa();
                 dis = request.getRequestDispatcher("member.jsp");
-
             }
-            if (page.equals("setPengaturanMember")) {
-                controller.setAturAkun(mahasiswa);
+            if (page.equals("setPengaturanMember")) {//menyimpan hasil perubahan data akun member dari halaman admin
+                controller.setAturAkun();
                 dis = request.getRequestDispatcher("pengaturanMember.jsp");
-
             }
-
-            if (page.equals("editMember")) {
-                controller.setMember(mahasiswa);
+            if (page.equals("editMember")) {//menyimpan data member kedalam session dan menampilkan sebagai input awal data akun
+                controller.setMember();
                 dis = request.getRequestDispatcher("pengaturanMember.jsp");
-
             }
-            if (page.equals("goEditMember")) {
-                controller.setAturAkunMember(mahasiswa);
-                controller.setMember(mahasiswa);
+            if (page.equals("goEditMember")) {//menyimpan data hasil perubahan data member kemdian menampilkan kembali hasil perubahan
+                controller.setAturAkunMember();
+                controller.setMember();
                 dis = request.getRequestDispatcher("pengaturanMember.jsp");
-
             }
-            if (page.equals("pengaturanPasswordMember")) {
-                controller.setMember(mahasiswa);
+            if (page.equals("pengaturanPasswordMember")) {//menyimpan data member kedalam session dan menampilkan sebagai input awal password
+                controller.setMember();
                 dis = request.getRequestDispatcher("pengaturanPasswordMember.jsp");
-
             }
-            if (page.equals("goAturPasswordMember")) {
-                controller.setAturPasswordMember(mahasiswa);
-                controller.setMember(mahasiswa);
+            if (page.equals("goAturPasswordMember")) {//menyimpan data hasil perubahan data member kemdian menampilkan kembali hasil perubahan
+                controller.setAturPasswordMember();
+                controller.setMember();
                 dis = request.getRequestDispatcher("pengaturanPasswordMember.jsp");
-
             }
-
-            if (page.equals("deleteMember")) {
+            if (page.equals("deleteMember")) {//menghapus member berdasarkan nrp member
                 controller.setDeleteMahasiswa();
                 controller.setListMahasiswa();
                 dis = request.getRequestDispatcher("member.jsp");
-
             }
-
-            if (page.equals("logout")) {
-                controller.setLogout(mahasiswa);
+            if (page.equals("logout")) {//keluar dari aplikasi
+                controller.setLogout();
                 dis = request.getRequestDispatcher("index.jsp");
                 out.println("anda berhasil logout");
             }

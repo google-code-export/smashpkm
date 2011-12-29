@@ -13,17 +13,15 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
 import model.Pengajuan;
 
 /**
  *
  * @author yosua
  */
-public class PengajuanJpaController {
+public class JpaPengajuan {
 
-    public PengajuanJpaController() {
+    public JpaPengajuan() {
         emf = Persistence.createEntityManagerFactory("SmashPU");
     }
     private EntityManagerFactory emf = null;
@@ -32,6 +30,9 @@ public class PengajuanJpaController {
         return emf.createEntityManager();
     }
 
+    /**
+     * Fungsi untuk membuat pengajuan baru
+     */
     public void create(Pengajuan pengajuan) throws PreexistingEntityException, Exception {
         EntityManager em = null;
         try {
@@ -51,6 +52,9 @@ public class PengajuanJpaController {
         }
     }
 
+    /**
+     * Fungsi untuk mengedit pengajuan dengan input berupa objek pengajuan
+     */
     public void edit(Pengajuan pengajuan) throws NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
@@ -74,6 +78,9 @@ public class PengajuanJpaController {
         }
     }
 
+    /**
+     * Fungsi untuk menghapus pengajuan yang ada dengan input berupa idpengajuan
+     */
     public void destroy(String id) throws NonexistentEntityException {
         EntityManager em = null;
         try {
@@ -95,30 +102,6 @@ public class PengajuanJpaController {
         }
     }
 
-    public List<Pengajuan> findPengajuanEntities() {
-        return findPengajuanEntities(true, -1, -1);
-    }
-
-    public List<Pengajuan> findPengajuanEntities(int maxResults, int firstResult) {
-        return findPengajuanEntities(false, maxResults, firstResult);
-    }
-
-    private List<Pengajuan> findPengajuanEntities(boolean all, int maxResults, int firstResult) {
-        EntityManager em = getEntityManager();
-        try {
-            CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            cq.select(cq.from(Pengajuan.class));
-            Query q = em.createQuery(cq);
-            if (!all) {
-                q.setMaxResults(maxResults);
-                q.setFirstResult(firstResult);
-            }
-            return q.getResultList();
-        } finally {
-            em.close();
-        }
-    }
-
     public Pengajuan findPengajuan(String id) {
         EntityManager em = getEntityManager();
         try {
@@ -128,19 +111,11 @@ public class PengajuanJpaController {
         }
     }
 
-    public int getPengajuanCount() {
-        EntityManager em = getEntityManager();
-        try {
-            CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            Root<Pengajuan> rt = cq.from(Pengajuan.class);
-            cq.select(em.getCriteriaBuilder().count(rt));
-            Query q = em.createQuery(cq);
-            return ((Long) q.getSingleResult()).intValue();
-        } finally {
-            em.close();
-        }
-    }
-
+ 
+    /**
+     * Fungsi untuk mengambil seluruh pengajuan yang tersimpan dalam DB sesuai
+     * dengan nrp mahasiswa
+     */
     public List<Pengajuan> getAllPengajuanByNrp(String nrp) {
 
         List<Pengajuan> pengajuan = new ArrayList<Pengajuan>();
@@ -158,6 +133,9 @@ public class PengajuanJpaController {
         return pengajuan;
     }
 
+    /**
+     * Fungsi untuk mengambil seluruh pengajuan yang tersimpan dalam DB
+     */
     public List<Pengajuan> getAllPengajuan() {
 
         List<Pengajuan> pengajuan = new ArrayList<Pengajuan>();
@@ -174,6 +152,11 @@ public class PengajuanJpaController {
         return pengajuan;
     }
 
+    /**
+     * Fungsi untuk mengambil seluruh pengajuan yang tersimpan dalam DB sesuai
+     * dengan id beasiswa dan melakukan order dari list secara descending
+     * berdasarkan ipk
+     */
     public List<Pengajuan> getAllPengajuanByIdBeasiswaOrderByIpk(String idbeasiswa) {
 
         List<Pengajuan> pengajuan = new ArrayList<Pengajuan>();
@@ -191,6 +174,11 @@ public class PengajuanJpaController {
         return pengajuan;
     }
 
+    /**
+     * Fungsi untuk mengambil seluruh pengajuan yang tersimpan dalam DB sesuai
+     * dengan id beasiswa dan melakukan order dari list secara ascending
+     * berdasarkan gaji
+     */
     public List<Pengajuan> getAllPengajuanByIdBeasiswaOrderByGaji(String idbeasiswa) {
 
         List<Pengajuan> pengajuan = new ArrayList<Pengajuan>();
@@ -209,7 +197,9 @@ public class PengajuanJpaController {
     }
 
    
-
+    /**
+     * Fungsi untuk mencari pengajuan berdasarkan idpengajuan
+     */
     public Pengajuan findPengajuanById(String idPengajuan) {
         EntityManager em = getEntityManager();
         try {

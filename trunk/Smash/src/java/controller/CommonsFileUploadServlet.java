@@ -39,11 +39,19 @@ public class CommonsFileUploadServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+
+     /**
+     * Membuat direktori temporari dalam poject dan file
+     */
     private static final String TMP_DIR_PATH = "C://tmp";
     private File tmpDir;
     private static final String DESTINATION_DIR_PATH = "gambar";
     private File destinationDir;
 
+
+    /**
+     * Melakukan inisialisasi dari direktori yang telah dibuat sebelumnya
+     */
     @Override
     public void init(ServletConfig config) throws ServletException {
 
@@ -65,44 +73,42 @@ public class CommonsFileUploadServlet extends HttpServlet {
             throws ServletException, IOException {
         PrintWriter out = response.getWriter();
         RequestDispatcher dis = null;
-        // ControllerBeasiswa controller = new ControllerBeasiswa(request);
         response.setContentType("text/plain");
-
-
-
         DiskFileItemFactory fileItemFactory = new DiskFileItemFactory();
         /*
-         *Set the size threshold, above which content will be stored on disk.
+         * Membatasi dimensi dari file yang akan di-upload
          */
-        fileItemFactory.setSizeThreshold(1 * 1600 * 1600); //
-		/*
-         * Set the temporary directory to store the uploaded files of size above threshold.
+        fileItemFactory.setSizeThreshold(1 * 1600 * 1600);
+        /*
+         * Melakukan pengaturan direktori temporari
          */
-
-
         fileItemFactory.setRepository(tmpDir);
 
         ServletFileUpload uploadHandler = new ServletFileUpload(fileItemFactory);
 
         try {
             /*
-             * Parse the request
+             * Memasukkan semua file yang ada (request) kedalam list item yang nantinya akan
+             * di iterasi untuk disimpan sesuai kolomnya dalam db
              */
-
             List items = uploadHandler.parseRequest(request);
             Iterator itr = items.iterator();
 
-
-            PengajuanJpaController daftar = new PengajuanJpaController();
-            MahasiswaJpaController cariMhs = new MahasiswaJpaController();
-            BeasiswaJpaController cariBsw = new BeasiswaJpaController();
+            /**
+             * Membuat objek-objek untuk proses penyimpanan path dari file kedalam db.
+             * Nantinya semua file akan di simpan dalam folder gambar dan path-nya akan disimpan dalam db
+             * sesuai dengan nama file-nya masing-masing
+             */
+            JpaPengajuan daftar = new JpaPengajuan();
+            JpaMahasiswa cariMhs = new JpaMahasiswa();
+            JpaBeasiswa cariBsw = new JpaBeasiswa();
             Pengajuan pengajuan = new Pengajuan();
             Mahasiswa mahasiswa = new Mahasiswa();
             Beasiswa beasiswa = new Beasiswa();
-            String nrp = request.getParameter("nrp");
-            String idbeasiswa = request.getParameter("idbeasiswa");
+            String nrp = request.getParameter("nrp"); //Menentukan record pengguna yang akan di-edit
+            String idbeasiswa = request.getParameter("idbeasiswa"); //Menentukan record beasiswa yang akan diedit
             HttpSession session = request.getSession();
-            Calendar currentDate = Calendar.getInstance();
+            Calendar currentDate = Calendar.getInstance(); //Melakukan pengaturan tanggal
             SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
             String dateNow = formatter.format(currentDate.getTime());
 
@@ -113,75 +119,69 @@ public class CommonsFileUploadServlet extends HttpServlet {
             pengajuan.setIdbeasiswa(beasiswa);
             pengajuan.setTanggalpengajuan(dateNow);
             pengajuan.setStatuspengajuan("Daftar");
-
-            while (itr.hasNext()) {
-                FileItem item = (FileItem) itr.next();
                 //item.
                 /*
-                 * Handle Form Fields.
+                 * Melakukan proses iterasi dari list yang sudah didapat
+                 * list satu persatu melakukan create pengajuan dimana setiap file jpeg akan di
+                 * simpan sesuai dengan nama file dalam db
                  */
+            while (itr.hasNext()) {
+                FileItem item = (FileItem) itr.next();
+                
                 if (item.isFormField()) {
-                   
+
                     out.print(item.getFieldName());
                 } else {
-                    if (item.getFieldName().equals("scan_gaji")) {
-                        pengajuan.setPathsgaji(item.getName());
+                    if (item.getFieldName().equals("scan_gaji")) { //melakukan pencocokan nama field
+                        pengajuan.setPathsgaji(item.getName()); //melakuan set sesuai dengan nama file
                         File file = new File(destinationDir, item.getName());
                         item.write(file);
 
                     }
-                    if (item.getFieldName().equals("scan_ipk")) {
-                        //      Handle Uploaded files.
-                        pengajuan.setPathsipk(item.getName());
+                    if (item.getFieldName().equals("scan_ipk")) {//melakukan pencocokan nama field
+                        pengajuan.setPathsipk(item.getName());//melakuan set sesuai dengan nama file
                         File file = new File(destinationDir, item.getName());
                         item.write(file);
                     }
-                    if (item.getFieldName().equals("scan_surat_tidak_mampu")) {
-                        //      Handle Uploaded files.
-                        pengajuan.setPathssurattidakmampu(item.getName());
+                    if (item.getFieldName().equals("scan_surat_tidak_mampu")) {//melakukan pencocokan nama field
+                        pengajuan.setPathssurattidakmampu(item.getName());//melakuan set sesuai dengan nama file
                         File file = new File(destinationDir, item.getName());
                         item.write(file);
                     }
-                    if (item.getFieldName().equals("scan_ktm")) {
-                        //      Handle Uploaded files.
-                        pengajuan.setPathsktm(item.getName());
+                    if (item.getFieldName().equals("scan_ktm")) {//melakukan pencocokan nama field
+                        pengajuan.setPathsktm(item.getName());//melakuan set sesuai dengan nama file
                         File file = new File(destinationDir, item.getName());
                         item.write(file);
                     }
-                     if (item.getFieldName().equals("scan_ktp")) {
-                        //      Handle Uploaded files.
-                        pengajuan.setPathsktp(item.getName());
+                    if (item.getFieldName().equals("scan_ktp")) {//melakukan pencocokan nama field
+                        pengajuan.setPathsktp(item.getName());//melakuan set sesuai dengan nama file
                         File file = new File(destinationDir, item.getName());
                         item.write(file);
                     }
-                    if (item.getFieldName().equals("scan_kk")) {
-                        //      Handle Uploaded files.
-                        pengajuan.setPathskk(item.getName());
+                    if (item.getFieldName().equals("scan_kk")) {//melakukan pencocokan nama field
+                        pengajuan.setPathskk(item.getName());//melakuan set sesuai dengan nama file
                         File file = new File(destinationDir, item.getName());
                         item.write(file);
                     }
-                    if (item.getFieldName().equals("scan_cv")) {
-                        //      Handle Uploaded files.
-                        pengajuan.setPathscv(item.getName());
+                    if (item.getFieldName().equals("scan_cv")) {//melakukan pencocokan nama field
+                        pengajuan.setPathscv(item.getName());//melakuan set sesuai dengan nama file
                         File file = new File(destinationDir, item.getName());
                         item.write(file);
                     }
-                    if (item.getFieldName().equals("scan_sertifikat")) {
-                        //      Handle Uploaded files.
-                        pengajuan.setPathssertifikat(item.getName());
+                    if (item.getFieldName().equals("scan_sertifikat")) {//melakukan pencocokan nama field
+                        pengajuan.setPathssertifikat(item.getName());//melakuan set sesuai dengan nama file
                         File file = new File(destinationDir, item.getName());
                         item.write(file);
                     }
-                    if (item.getFieldName().equals("scan_rekening")) {
-                        //      Handle Uploaded files.
-                        pengajuan.setPathsrekening(item.getName());
+                    if (item.getFieldName().equals("scan_rekening")) {//melakukan pencocokan nama field
+                        pengajuan.setPathsrekening(item.getName());//melakuan set sesuai dengan nama file
                         File file = new File(destinationDir, item.getName());
                         item.write(file);
                     }
                 }
             }
             try {
-                daftar.create(pengajuan);
+                daftar.create(pengajuan);//menyimpan file
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -192,8 +192,8 @@ public class CommonsFileUploadServlet extends HttpServlet {
         }
         Pengajuan pengajuan = new Pengajuan();
         ControllerPengajuan controller = new ControllerPengajuan(request);
-        controller.setListPengajuanByNrp(pengajuan);
-        dis = request.getRequestDispatcher("listDaftarBeasiswa.jsp");
+        controller.setListPengajuanByNrp();
+        dis = request.getRequestDispatcher("listDaftarBeasiswa.jsp"); //dispatch ke halaman listDaftarBeasiswa
         dis.include(request, response);
 
 
