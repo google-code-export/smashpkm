@@ -41,11 +41,10 @@
         <url-pattern>/ControllerPengajuan</url-pattern>
     </servlet-mapping>
     <session-config>
-        <session-timeout>
-            30
-        </session-timeout>
+        <session-timeout>60</session-timeout>
     </session-config>
     <welcome-file-list>
         <welcome-file>DispatcherMahasiswa</welcome-file>
     </welcome-file-list>
+    
 </web-app>

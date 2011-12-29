@@ -34,88 +34,117 @@ public class ControllerPengajuan {
         this.request = request;
     }
 
+    /**
+     * Melakukan list pengajuan berdasarkan nrp dengan me-remove objek yang nilai status bernilai "Daftar"
+     */
     public void setListStatusByNrp() {
-        String nrp = request.getParameter("nrp");
-        PengajuanJpaController listPengajuan = new PengajuanJpaController();
+        String nrp = request.getParameter("nrp");//menangkap input parameter nrp
+        JpaPengajuan listPengajuan = new JpaPengajuan();
         HttpSession session = request.getSession();
-        List<Pengajuan> list = new ArrayList<Pengajuan>();
+        List<Pengajuan> list = new ArrayList<Pengajuan>();//membuat arraylist
         list = listPengajuan.getAllPengajuanByNrp(nrp);
         Iterator itr = list.listIterator();
-        while (itr.hasNext()) {
+        while (itr.hasNext()) {//melakukan iterasi untuk me-remove objek bernilai status "daftar"
             Pengajuan pengajuan = (Pengajuan) itr.next();
 
             if (pengajuan.getStatuspengajuan().equals("Daftar")) {
-                itr.remove();
+                itr.remove();//me-remove objek
             }
         }
-        session.setAttribute("list_pengajuan_by_nrp", list);
+        session.setAttribute("list_pengajuan_by_nrp", list);//menyimpan hasil list kedalam session
     }
 
-    public void setListPengajuanByNrp(Pengajuan pengajuan) {
-        String nrp = request.getParameter("nrp");
-        PengajuanJpaController listPengajuan = new PengajuanJpaController();
+    /**
+     * Melakukan list pengajuan berdasarkan nrp
+     */
+    public void setListPengajuanByNrp() {
+        Pengajuan pengajuan = new Pengajuan();
+        String nrp = request.getParameter("nrp");//menangkap input parameter nrp
+        JpaPengajuan listPengajuan = new JpaPengajuan();
         HttpSession session = request.getSession();
-        List<Pengajuan> list = new ArrayList<Pengajuan>();
+        List<Pengajuan> list = new ArrayList<Pengajuan>();//membuat arraylist
         list = listPengajuan.getAllPengajuanByNrp(nrp);
-        session.setAttribute("list_pengajuan_by_nrp", list);
+        session.setAttribute("list_pengajuan_by_nrp", list);//menyimpan hasil list kedalam session
     }
 
-    public void setListPengajuan(Pengajuan pengajuan) {
-        PengajuanJpaController listPengajuan = new PengajuanJpaController();
+    /**
+     * Melakukan list seluruh pengajuan yang ada dalam db
+     */
+    public void setListPengajuan() {
+        Pengajuan pengajuan = new Pengajuan();
+        JpaPengajuan listPengajuan = new JpaPengajuan();
         HttpSession session = request.getSession();
-        List<Pengajuan> list = new ArrayList<Pengajuan>();
+        List<Pengajuan> list = new ArrayList<Pengajuan>();//membuat arraylist
         list = listPengajuan.getAllPengajuan();
-        session.setAttribute("list_all_pengajuan", list);
+        session.setAttribute("list_all_pengajuan", list);//menyimpan hasil list kedalam session
     }
 
-    public void setListPengajuanByIdBeasiswa(Pengajuan pengajuan) {
-        String idbeasiswa = request.getParameter("pilih");
-        String sort = request.getParameter("pilih_sort");
-        PengajuanJpaController listPengajuan = new PengajuanJpaController();
+    /**
+     * Melakukan list pengajuan berdasarkan idbeasiswa
+     */
+    public void setListPengajuanByIdBeasiswa() {
+        Pengajuan pengajuan = new Pengajuan();
+        String idbeasiswa = request.getParameter("pilih");//menangkap input parameter pilih yang berisi idbeasiswa
+        String sort = request.getParameter("pilih_sort");//menangkap input parameter sort berdasarkan gaji atau ipk
+        JpaPengajuan listPengajuan = new JpaPengajuan();
         HttpSession session = request.getSession();
         List<Pengajuan> list = new ArrayList<Pengajuan>();
         if (sort.equals("ipk")) {
-            list = listPengajuan.getAllPengajuanByIdBeasiswaOrderByIpk(idbeasiswa);
+            list = listPengajuan.getAllPengajuanByIdBeasiswaOrderByIpk(idbeasiswa);//order descending berdasarkan ipk
         } else if (sort.equals("gaji")) {
-            list = listPengajuan.getAllPengajuanByIdBeasiswaOrderByGaji(idbeasiswa);
+            list = listPengajuan.getAllPengajuanByIdBeasiswaOrderByGaji(idbeasiswa);//order ascending berdasarkan gaji
         } else {
             list = listPengajuan.getAllPengajuan();
         }
 
-        session.setAttribute("list_all_pengajuan", list);
+        session.setAttribute("list_all_pengajuan", list);//menyimpan list kedalam session
     }
 
+    /**
+     * Fungsi untuk melakukan pencarian objek berdasarkan
+     * idpengajuan kemudian menyimpan dalam session pengajuan
+     */
     public void setPengajuan() {
-        String idPengajuan = request.getParameter("idpengajuan");
-        PengajuanJpaController cariPengajuan = new PengajuanJpaController();
+        String idPengajuan = request.getParameter("idpengajuan");//menangkap input parameter
+        JpaPengajuan cariPengajuan = new JpaPengajuan();
         Pengajuan pengajuan = new Pengajuan();
-        pengajuan = cariPengajuan.findPengajuanById(idPengajuan);
+        pengajuan = cariPengajuan.findPengajuanById(idPengajuan);//mencari objek berdasarkan idpengajuannya
         HttpSession session = request.getSession();
-        session.setAttribute("pengajuan", pengajuan);
+        session.setAttribute("pengajuan", pengajuan);//menyimpan kedalam session
     }
 
+    /**
+     * Fungsi automasi untuk status pengajuan yang telah diterima menjadi kadaluarsa
+     * fungsi ini berjalan otomatis setiap admin ingin melakukan rekapitulasi
+     */
     public void setStatusPenerima() {
-        PengajuanJpaController listPengajuan = new PengajuanJpaController();
-        MahasiswaJpaController aturPengajuan = new MahasiswaJpaController();
+        JpaPengajuan listPengajuan = new JpaPengajuan();
+        JpaMahasiswa aturPengajuan = new JpaMahasiswa();
         HttpSession session = request.getSession();
         List<Pengajuan> list = new ArrayList<Pengajuan>();
-        list = listPengajuan.getAllPengajuan();
-        Iterator itr = list.listIterator();
+        list = listPengajuan.getAllPengajuan();//mengambil semua pengajuan
+        Iterator itr = list.listIterator();//memasukkan pengajuan kedalam list
         Date tglSaatIni = null;
         Calendar currentDate = Calendar.getInstance();
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
         String dateNow = formatter.format(currentDate.getTime());
         try {
-            tglSaatIni = (Date) formatter.parse(dateNow);
+            tglSaatIni = (Date) formatter.parse(dateNow);//mengatur tanggal saat ini
         } catch (ParseException ex) {
             Logger.getLogger(ControllerPengajuan.class.getName()).log(Level.SEVERE, null, ex);
         }
-        while (itr.hasNext()) {
-            Pengajuan pengajuan = (Pengajuan) itr.next();
+        while (itr.hasNext()) {// melakukan iterasi
+            Pengajuan pengajuan = (Pengajuan) itr.next();//menginisialisasi tiap objek saat iterasi
             Mahasiswa mahasiswa = new Mahasiswa();
             mahasiswa.setNrp(pengajuan.getNrp().getNrp());
-            mahasiswa = aturPengajuan.findMahasiswaByNrp(mahasiswa.getNrp());
+            mahasiswa = aturPengajuan.findMahasiswaByNrp(mahasiswa.getNrp());//mencari mahasiswa sesuai nrp
 
+            /**
+             * jika tanggal saat ini telah melewati tanggal habis dan jika status pengajuan berupa "terima"
+             * maka objek pengajuan tersebut sebelumnya bernilai masih menerima beasiswa
+             * kemudian objek pengajuan tersebut diubah menjadi "berakhir" dan statu mahasiswa
+             * yang mendapat beasiswa terbut diubah menjadi "tidak sedang menerima beasiswa"
+             */
             if (tglSaatIni.after(pengajuan.getIdbeasiswa().getTanggalhabis()) == true) {
                 if (pengajuan.getStatuspengajuan().equals("Terima")) {
                     pengajuan.setStatuspengajuan("Berakhir");
@@ -130,6 +159,11 @@ public class ControllerPengajuan {
                     itr.remove();
                 }
             }
+            /**
+             * untuk pengajuan yang diterima namun berstatus habis namun tanggal habis belum berakhir
+             * atau diperpanjang maka statusnya akan diubah kembali menjadi "Terima"
+             * sedangkan untuk mahasiswa yang mengajukan statusnya diubah menjadi "Sedang Menerima Beasiswa"
+             */
             if (tglSaatIni.before(pengajuan.getIdbeasiswa().getTanggalhabis()) == true) {
                 if (pengajuan.getStatuspengajuan().equals("Berakhir")) {
                     pengajuan.setStatuspengajuan("Terima");
@@ -151,26 +185,35 @@ public class ControllerPengajuan {
 
     }
 
+    /**
+     * Fungsi yang digunakan dalam rekapitulasi untuk merubah status penerima beasiswa
+     */
     public void setAturStatus() {
         Mahasiswa mahasiswa = new Mahasiswa();
-        String nrp = request.getParameter("nrp");
+        String nrp = request.getParameter("nrp");//meanangkap input parameter nrp
         String idpengajuan = request.getParameter("idpengajuan");
-        MahasiswaJpaController aturStatus = new MahasiswaJpaController();
-        PengajuanJpaController aturPengajuan = new PengajuanJpaController();
+        JpaMahasiswa aturStatus = new JpaMahasiswa();
+        JpaPengajuan aturPengajuan = new JpaPengajuan();
         mahasiswa = aturStatus.findMahasiswaByNrp(nrp);
         Pengajuan pengajuan = new Pengajuan();
         pengajuan = aturPengajuan.findPengajuanById(idpengajuan);
         if (mahasiswa.getStatuspenerima().equals("Sedang Menerima Beasiswa")) {
-            mahasiswa.setStatuspenerima("Tidak Sedang Menerima Beasiswa");
-        } else {
-            mahasiswa.setStatuspenerima("Sedang Menerima Beasiswa");
-            pengajuan.setStatuspengajuan("Terima");
+            pengajuan.setStatuspengajuan("Daftar");
+            mahasiswa.setStatuspenerima("Tidak Sedang Menerima Beasiswa");//mengatur status
             try {
-                aturPengajuan.edit(pengajuan);
+                aturPengajuan.edit(pengajuan);//eksekusi perubahan status
             } catch (Exception e) {
                 e.printStackTrace();
             }
 
+        } else {
+            mahasiswa.setStatuspenerima("Sedang Menerima Beasiswa");
+            pengajuan.setStatuspengajuan("Terima");
+            try {
+                aturPengajuan.edit(pengajuan);//eksekusi perubahan status
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
         try {
             aturStatus.edit(mahasiswa);

@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Beasiswa;
-import model.Mahasiswa;
 import model.Pengajuan;
 
 /**
@@ -35,34 +34,34 @@ public class DispatcherPengajuan extends HttpServlet {
 
 
         if (page != null) {
-        if (page.equals("statusBeasiswa")) {
+        if (page.equals("statusBeasiswa")) {//melakukan list pengajuan selain yang berstatus "daftar"
                 controller.setListStatusByNrp();
                 dis = request.getRequestDispatcher("statusBeasiswa.jsp");
             }
 
-            if (page.equals("listDaftarBeasiswa")) {
-                controller.setListPengajuanByNrp(pengajuan);
+            if (page.equals("listDaftarBeasiswa")) {//melakuakn list pengajuan berdasarkan nrp member
+                controller.setListPengajuanByNrp();
                 dis = request.getRequestDispatcher("listDaftarBeasiswa.jsp");
 
             }
-            if (page.equals("goDaftarBeasiswa")) {
+            if (page.equals("goDaftarBeasiswa")) {//membuat pengajuan baru
                 dis = request.getRequestDispatcher("CommonsFileUploadServlet");
             }
             if (page.equals("listRekapitulasi")) {
-                controller.setStatusPenerima();
-                controllerBsw.setListBeasiswa();
-                controller.setListPengajuan(pengajuan);
+                controller.setStatusPenerima(); //automasi pemeriksaan kadaluarsa pengajuan yang berstatus "terima"
+                controllerBsw.setListBeasiswa();//list beasiswa untuk filtering
+                controller.setListPengajuan();//list pengajuan yang ada
                 dis = request.getRequestDispatcher("halamanRekapitulasi.jsp");
             }
             if (page.equals("goListRekapitulasi")) {
-                controller.setListPengajuanByIdBeasiswa(pengajuan);
+                controller.setListPengajuanByIdBeasiswa();//melakukan sorting dari pengajuan berdasarkan idbeasiswa
                 dis = request.getRequestDispatcher("halamanRekapitulasi.jsp");
             }
-            if (page.equals("aturRekapitulasi")) {
+            if (page.equals("aturRekapitulasi")) {//mencari data dari pengajuan yang akan di rekap berdasarkan nrp member
                 controller.setPengajuan();
                 dis = request.getRequestDispatcher("halamanDownloadRekapitulasi.jsp");
             }
-            if (page.equals("aturStatus")) {
+            if (page.equals("aturStatus")) {//menyimpan perubahan status dari pengajuan dan mahasiswa/member
                 controller.setAturStatus();
                 controller.setPengajuan();
                 dis = request.getRequestDispatcher("halamanDownloadRekapitulasi.jsp");

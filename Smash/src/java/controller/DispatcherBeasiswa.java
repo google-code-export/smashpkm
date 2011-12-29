@@ -30,45 +30,45 @@ public class DispatcherBeasiswa extends HttpServlet {
         request.setAttribute("pesan", pesan);
 
         if (page != null) {
-            if (page.equals("beasiswaYangTersedia")) {
+            if (page.equals("beasiswaYangTersedia")) {//melihat beasiswa yang tersedia untuk didaftar
                 controller.setListBeasiswaBerlaku();
                 dis = request.getRequestDispatcher("beasiswaYangTersedia.jsp");
             }
-            if (page.equals("detailBeasiswa")) {
-                controller.setBeasiswa();
+            if (page.equals("detailBeasiswa")) {//melihat detail dari beasiswa
+                controller.setPost();
                 dis = request.getRequestDispatcher("detailBeasiswa.jsp");
             }
-            if (page.equals("listPilihBeasiswa")) {
-                controller.setListBeasiswa();
+            if (page.equals("listPilihBeasiswa")) {//memilih beasiswa yang tersedia
+                controller.setListBeasiswaBerlaku();
                 dis = request.getRequestDispatcher("daftarBeasiswa.jsp");
             }
-            if (page.equals("daftarBeasiswa")) {
+            if (page.equals("daftarBeasiswa")) {//melakukan set dari idbeasiswa yang dipilih
                 controller.setBeasiswaPengajuan();
                 dis = request.getRequestDispatcher("halamanDaftarBeasiswa.jsp");
             }
-            if (page.equals("pengaturanPost")) {
+            if (page.equals("pengaturanPost")) {//melakukan list dari seluruh beasiswa
                 controller.setListBeasiswa();
                 dis = request.getRequestDispatcher("pengaturanPost.jsp");
             }
-            if (page.equals("membuatPost")) {
+            if (page.equals("membuatPost")) {//membuat post baru
                 dis = request.getRequestDispatcher("buatPost.jsp");
             }
-            if (page.equals("goBuatPost")) {
-                controller.setBuatBeasiswa(beasiswa);
+            if (page.equals("goBuatPost")) {//menyimpan post baru kemudian melakukan list seluruh beasiswa
+                controller.setBuatBeasiswa();
                 controller.setListBeasiswa();
                 dis = request.getRequestDispatcher("buatPost.jsp");
             }
-            if (page.equals("editPost")) {
-                controller.setPost(beasiswa);
+            if (page.equals("editPost")) {//mencari objek yang ingin di edit
+                controller.setPost();
                 dis = request.getRequestDispatcher("editPost.jsp");
             }
-            if (page.equals("goEditPost")) {
-                controller.setEditPost(beasiswa);
+            if (page.equals("goEditPost")) {//menyimpan hasil perubahan post
+                controller.setEditPost();
                 controller.setListBeasiswa();
-                controller.setPost(beasiswa);
+                controller.setPost();
                 dis = request.getRequestDispatcher("editPost.jsp");
             }
-            if (page.equals("deletePost")) {
+            if (page.equals("deletePost")) {//menghapus post berdasarkan idpengajuan
                 controller.setDeletePost();
                 controller.setListBeasiswa();
                 dis = request.getRequestDispatcher("pengaturanPost.jsp");

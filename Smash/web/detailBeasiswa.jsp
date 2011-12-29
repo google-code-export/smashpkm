@@ -14,7 +14,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Detail Beasiswa ${beasiswa.namabeasiswa}</h1>
+        <h1>Detail Beasiswa</h1>
          <table>
         <td>
             <form method='post' action='DispatcherBeasiswa?page=beasiswaYangTersedia'>
@@ -35,11 +35,11 @@
     </tr>
     <tr>
       <th>Tanggal Mulai Masa Berlaku :</th>
-      <td>${beasiswa.tanggalmulai}</td>
+      <td>${tanggalmulai}</td>
     </tr>
        <tr>
       <th>Tanggal Habis Habis Masa Berlaku :</th>
-      <td>${beasiswa.tanggalmulai}</td>
+      <td>${tanggalmulai}</td>
     </tr>
 
       <tr>

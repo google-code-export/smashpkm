@@ -14,8 +14,6 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
 import model.Beasiswa;
 import model.Mahasiswa;
 
@@ -23,9 +21,9 @@ import model.Mahasiswa;
  *
  * @author yosua
  */
-public class MahasiswaJpaController {
+public class JpaMahasiswa {
 
-    public MahasiswaJpaController() {
+    public JpaMahasiswa() {
         emf = Persistence.createEntityManagerFactory("SmashPU");
     }
     private EntityManagerFactory emf = null;
@@ -34,6 +32,9 @@ public class MahasiswaJpaController {
         return emf.createEntityManager();
     }
 
+    /**
+     * Fungsi untuk membuat mahasiswa baru
+     */
     public void create(Mahasiswa mahasiswa) throws PreexistingEntityException, Exception {
         EntityManager em = null;
         try {
@@ -53,6 +54,9 @@ public class MahasiswaJpaController {
         }
     }
 
+    /**
+     * Fungsi untuk mengedit mahasiswa dengan input berupa objek mahasiswa
+     */
     public void edit(Mahasiswa mahasiswa) throws NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
@@ -76,6 +80,9 @@ public class MahasiswaJpaController {
         }
     }
 
+    /**
+     * Fungsi untuk menghapus mahasiswa yang ada dengan input berupa nrp
+     */
     public void destroy(String id) throws NonexistentEntityException {
         EntityManager em = null;
         try {
@@ -97,29 +104,6 @@ public class MahasiswaJpaController {
         }
     }
 
-    public List<Mahasiswa> findMahasiswaEntities() {
-        return findMahasiswaEntities(true, -1, -1);
-    }
-
-    public List<Mahasiswa> findMahasiswaEntities(int maxResults, int firstResult) {
-        return findMahasiswaEntities(false, maxResults, firstResult);
-    }
-
-    private List<Mahasiswa> findMahasiswaEntities(boolean all, int maxResults, int firstResult) {
-        EntityManager em = getEntityManager();
-        try {
-            CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            cq.select(cq.from(Mahasiswa.class));
-            Query q = em.createQuery(cq);
-            if (!all) {
-                q.setMaxResults(maxResults);
-                q.setFirstResult(firstResult);
-            }
-            return q.getResultList();
-        } finally {
-            em.close();
-        }
-    }
 
     public Mahasiswa findMahasiswa(String id) {
         EntityManager em = getEntityManager();
@@ -130,19 +114,9 @@ public class MahasiswaJpaController {
         }
     }
 
-    public int getMahasiswaCount() {
-        EntityManager em = getEntityManager();
-        try {
-            CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            Root<Mahasiswa> rt = cq.from(Mahasiswa.class);
-            cq.select(em.getCriteriaBuilder().count(rt));
-            Query q = em.createQuery(cq);
-            return ((Long) q.getSingleResult()).intValue();
-        } finally {
-            em.close();
-        }
-    }
-
+    /**
+     * Fungsi untuk mencari mahasiswa berdasarkan nrp
+     */
      public Mahasiswa findMahasiswaByNrp(String nrp) {
         EntityManager em = getEntityManager();
         try {
@@ -162,6 +136,9 @@ public class MahasiswaJpaController {
         }
     }
 
+     /**
+     * Fungsi untuk mengambil seluruh mahasiswa yang tersimpan dalam DB
+     */
       public List<Mahasiswa> getAllMahasiswa() {
         List<Mahasiswa> mahasiswa = new ArrayList<Mahasiswa>();
         EntityManager em = getEntityManager();
@@ -178,20 +155,6 @@ public class MahasiswaJpaController {
         return mahasiswa;
     }
 
-       public List<Beasiswa> getAllBeasiswa() {
-        List<Beasiswa> beasiswa = new ArrayList<Beasiswa>();
-        EntityManager em = getEntityManager();
-        try {
-            Query q = em.createQuery("SELECT o FROM Beasiswa o");
-            beasiswa = q.getResultList();
-
-        } finally {
-            if (em != null) {
-                em.close();
-            }
-        }
-        return beasiswa;
-    }
 
     public Beasiswa findBeasiswaById(String idBeasiswa) {
         EntityManager em = getEntityManager();

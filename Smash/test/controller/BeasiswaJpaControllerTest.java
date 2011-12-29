@@ -17,7 +17,7 @@ import model.Beasiswa;
 public class BeasiswaJpaControllerTest extends TestCase {
     private Beasiswa user1;
     private Beasiswa user2;
-    BeasiswaJpaController uq = new BeasiswaJpaController();
+    JpaBeasiswa uq = new JpaBeasiswa();
     
     public BeasiswaJpaControllerTest(String testName) {
         super(testName);
@@ -50,12 +50,12 @@ public class BeasiswaJpaControllerTest extends TestCase {
     }
 
     /**
-     * Test of getEntityManager method, of class BeasiswaJpaController.
+     * Test of getEntityManager method, of class JpaBeasiswa.
      */
    
 
     /**
-     * Test of create method, of class BeasiswaJpaController.
+     * Test of create method, of class JpaBeasiswa.
      */
     public void testCreate() throws Exception {
         
@@ -63,13 +63,13 @@ uq.create(user1);
 
        // System.out.println("create");
         //Beasiswa beasiswa = null;
-        //BeasiswaJpaController instance = new BeasiswaJpaController();
+        //JpaBeasiswa instance = new JpaBeasiswa();
         //instance.create(beasiswa);
         // TODO review the generated test code and remove the default call to fail.
    }
 
     /**
-     * Test of edit method, of class BeasiswaJpaController.
+     * Test of edit method, of class JpaBeasiswa.
      */
     public void testEdit() throws Exception {
         user1.setNamabeasiswa(user2.getNamabeasiswa());
@@ -77,13 +77,13 @@ uq.create(user1);
         assertEquals(uq.findBeasiswaById(user1.getIdbeasiswa()).getNamabeasiswa(), user2.getNamabeasiswa());
         //user1.getNamabeasiswa()=uq.findBeasiswaById(user1.getIdbeasiswa()).getNamabeasiswa();
         //Beasiswa beasiswa = null;
-        //BeasiswaJpaController instance = new BeasiswaJpaController();
+        //JpaBeasiswa instance = new JpaBeasiswa();
         //instance.edit(beasiswa);
         // TODO review the generated test code
     }
 
     /**
-     * Test of destroy method, of class BeasiswaJpaController.
+     * Test of destroy method, of class JpaBeasiswa.
      */
     public void testDestroy() throws Exception {
         uq.destroy(user1.getIdbeasiswa());
@@ -92,25 +92,25 @@ uq.create(user1);
 
         //System.out.println("destroy");
         //String id = "";
-        //BeasiswaJpaController instance = new BeasiswaJpaController();
+        //JpaBeasiswa instance = new JpaBeasiswa();
         //instance.destroy(id);
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");
     }
 
     /**
-     * Test of findBeasiswaEntities method, of class BeasiswaJpaController.
+     * Test of findBeasiswaEntities method, of class JpaBeasiswa.
      */
    
     /**
-     * Test of getAllBeasiswa method, of class BeasiswaJpaController.
+     * Test of getAllBeasiswa method, of class JpaBeasiswa.
      */
     public void testGetAllBeasiswa() {
         assertNotNull(uq.getAllBeasiswa());
         //uq.getAllBeasiswa();
         
         //System.out.println("getAllBeasiswa");
-        //BeasiswaJpaController instance = new BeasiswaJpaController();
+        //JpaBeasiswa instance = new JpaBeasiswa();
         //List expResult = null;
         //List result = instance.getAllBeasiswa();
         //assertEquals(expResult, result);
@@ -119,14 +119,14 @@ uq.create(user1);
     }
 
     /**
-     * Test of findBeasiswaById method, of class BeasiswaJpaController.
+     * Test of findBeasiswaById method, of class JpaBeasiswa.
      */
     public void testFindBeasiswaById() {
         assertNull(uq.findBeasiswaById(user1.getIdbeasiswa()));
         
         //System.out.println("findBeasiswaById");
         //String idBeasiswa = "";
-        //BeasiswaJpaController instance = new BeasiswaJpaController();
+        //JpaBeasiswa instance = new JpaBeasiswa();
         //Beasiswa expResult = null;
         //Beasiswa result = instance.findBeasiswaById(idBeasiswa);
         //assertEquals(expResult, result);
