@@ -43,14 +43,23 @@ public class Pengajuan implements Serializable {
     private String pathscv;
     private String pathssertifikat;
     private String pathsrekening;
-    private Boolean statusPengajuan;
+    private String statuspengajuan;
+    private String tanggalpengajuan;
+    // @Column(name = "idbeasiswa", length = 767)
+    @OneToOne(cascade = {CascadeType.REMOVE, CascadeType.MERGE})
+    @JoinColumn(name = "IDBEASISWA", nullable = false)
+    private Beasiswa idbeasiswa;
+    //@Column(name = "nrp", length = 767)
+    @OneToOne(cascade = {CascadeType.REMOVE, CascadeType.MERGE})
+    @JoinColumn(name = "NRP", nullable = false)
+    private Mahasiswa nrp;
 
-    public void setStatusPengajuan(Boolean statusPengajuan) {
-        this.statusPengajuan = statusPengajuan;
+    public void setStatuspengajuan(String statuspengajuan) {
+        this.statuspengajuan = statuspengajuan;
     }
 
-    public Boolean getStatusPengajuan() {
-        return statusPengajuan;
+    public String getStatuspengajuan() {
+        return statuspengajuan;
     }
 
     public String getPathscv() {
@@ -108,7 +117,6 @@ public class Pengajuan implements Serializable {
     public void setPathssurattidakmampu(String pathssurattidakmampu) {
         this.pathssurattidakmampu = pathssurattidakmampu;
     }
-    
 
     public void setPathsgaji(String pathsgaji) {
         this.pathsgaji = pathsgaji;
@@ -125,15 +133,6 @@ public class Pengajuan implements Serializable {
     public String getPathsipk() {
         return pathsipk;
     }
-    private String tanggalpengajuan;
-    // @Column(name = "idbeasiswa", length = 767)
-    @OneToOne(cascade = {CascadeType.REMOVE, CascadeType.MERGE})
-    @JoinColumn(name = "IDBEASISWA", nullable= false)
-    private Beasiswa idbeasiswa;
-    //@Column(name = "nrp", length = 767)
-    @OneToOne(cascade = {CascadeType.REMOVE, CascadeType.MERGE})
-    @JoinColumn(name = "NRP", nullable = false)
-    private Mahasiswa nrp;
 
     public void setTanggalpengajuan(String tanggalpengajuan) {
         this.tanggalpengajuan = tanggalpengajuan;
@@ -155,8 +154,6 @@ public class Pengajuan implements Serializable {
         return nrp;
     }
 
-   
-
     public void setIdbeasiswa(Beasiswa idbeasiswa) {
         this.idbeasiswa = idbeasiswa;
     }
@@ -168,8 +165,6 @@ public class Pengajuan implements Serializable {
     public void setNrp(Mahasiswa nrp) {
         this.nrp = nrp;
     }
-
-   
 
     @Override
     public int hashCode() {

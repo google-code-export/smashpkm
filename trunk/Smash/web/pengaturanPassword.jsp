@@ -135,7 +135,7 @@
                                         Password Baru
                                     </td>
                                     <td>
-                                        : <input type=text name='password_baru' />
+                                        : <input type=password name='password_baru' />
                                     </td>
 
                                 </tr>
@@ -144,7 +144,7 @@
                                         Ulangi Passord Baru
                                     </td>
                                     <td>
-                                        : <input type=text name='password_baru_ulangi' />
+                                        : <input type=password name='password_baru_ulangi' />
                                     </td>
 
                                 </tr>

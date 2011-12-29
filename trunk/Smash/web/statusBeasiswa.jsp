@@ -46,12 +46,15 @@
                      <th>
                         Tanggal Kadaluwarsa
                     </th>
+                    <th>
+                        Status Pengajuan
+                    </th>
                 </tr>
             </thead>
             <tbody>
                 <%int i = 1;%>
 
-                <c:forEach items="${list_all_pengajuan}" var="bsw">
+                <c:forEach items="${list_pengajuan_by_nrp}" var="bsw">
 
                     <tr>
                         <td>
@@ -65,7 +68,10 @@
                             ${bsw.idbeasiswa.tanggalmulai}
                         </td>
                         <td>
-                            ${bsw.idbeasiswa.tanggalkadaluwarsa}
+                            ${bsw.idbeasiswa.tanggalkadaluarsa}
+                        </td>
+                        <td>
+                            ${bsw.statuspengajuan}
                         </td>
 
                     </tr>

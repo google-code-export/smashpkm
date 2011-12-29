@@ -112,7 +112,7 @@ public class CommonsFileUploadServlet extends HttpServlet {
             beasiswa.setIdbeasiswa(idbeasiswa);
             pengajuan.setIdbeasiswa(beasiswa);
             pengajuan.setTanggalpengajuan(dateNow);
-            pengajuan.setStatusPengajuan(false);
+            pengajuan.setStatuspengajuan("Daftar");
 
             while (itr.hasNext()) {
                 FileItem item = (FileItem) itr.next();
