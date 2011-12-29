@@ -364,10 +364,7 @@ public class ControllerMahasiswa {
         String nrp = request.getParameter("nrp_member");
         HttpSession session = request.getSession();
         MahasiswaJpaController aturMember = new MahasiswaJpaController();
-        
         mahasiswa = aturMember.findMahasiswaByNrp(nrp);
-
-
         session.setAttribute("member", mahasiswa);
     }
 

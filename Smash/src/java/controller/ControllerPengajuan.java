@@ -15,6 +15,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import model.Mahasiswa;
@@ -32,6 +34,23 @@ public class ControllerPengajuan {
         this.request = request;
     }
 
+    public void setListStatusByNrp() {
+        String nrp = request.getParameter("nrp");
+        PengajuanJpaController listPengajuan = new PengajuanJpaController();
+        HttpSession session = request.getSession();
+        List<Pengajuan> list = new ArrayList<Pengajuan>();
+        list = listPengajuan.getAllPengajuanByNrp(nrp);
+        Iterator itr = list.listIterator();
+        while (itr.hasNext()) {
+            Pengajuan pengajuan = (Pengajuan) itr.next();
+
+            if (pengajuan.getStatuspengajuan().equals("Daftar")) {
+                itr.remove();
+            }
+        }
+        session.setAttribute("list_pengajuan_by_nrp", list);
+    }
+
     public void setListPengajuanByNrp(Pengajuan pengajuan) {
         String nrp = request.getParameter("nrp");
         PengajuanJpaController listPengajuan = new PengajuanJpaController();
@@ -42,7 +61,6 @@ public class ControllerPengajuan {
     }
 
     public void setListPengajuan(Pengajuan pengajuan) {
-        String nrp = request.getParameter("nrp");
         PengajuanJpaController listPengajuan = new PengajuanJpaController();
         HttpSession session = request.getSession();
         List<Pengajuan> list = new ArrayList<Pengajuan>();
@@ -76,34 +94,61 @@ public class ControllerPengajuan {
         session.setAttribute("pengajuan", pengajuan);
     }
 
-    public void setStatusPenerima() throws ParseException {
+    public void setStatusPenerima() {
         PengajuanJpaController listPengajuan = new PengajuanJpaController();
-        MahasiswaJpaController aturStatus = new MahasiswaJpaController();
+        MahasiswaJpaController aturPengajuan = new MahasiswaJpaController();
         HttpSession session = request.getSession();
-        Mahasiswa mahasiswa = new Mahasiswa();
         List<Pengajuan> list = new ArrayList<Pengajuan>();
-        list = listPengajuan.getAllPengajuanByStatus();
+        list = listPengajuan.getAllPengajuan();
         Iterator itr = list.listIterator();
         Date tglSaatIni = null;
         Calendar currentDate = Calendar.getInstance();
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
         String dateNow = formatter.format(currentDate.getTime());
-        tglSaatIni = (Date) formatter.parse(dateNow);
-
-
+        try {
+            tglSaatIni = (Date) formatter.parse(dateNow);
+        } catch (ParseException ex) {
+            Logger.getLogger(ControllerPengajuan.class.getName()).log(Level.SEVERE, null, ex);
+        }
         while (itr.hasNext()) {
             Pengajuan pengajuan = (Pengajuan) itr.next();
+            Mahasiswa mahasiswa = new Mahasiswa();
             mahasiswa.setNrp(pengajuan.getNrp().getNrp());
-            if (tglSaatIni.after(pengajuan.getIdbeasiswa().getTanggalkadaluarsa())) {
-                mahasiswa = aturStatus.findMahasiswa(pengajuan.getNrp().getNrp());
-                mahasiswa.setStatuspenerima("Tidak Sedang Menerima Beasiswa");
-                try {
-                    aturStatus.edit(mahasiswa);
-                } catch (Exception e) {
-                    e.printStackTrace();
+            mahasiswa = aturPengajuan.findMahasiswaByNrp(mahasiswa.getNrp());
+
+            if (tglSaatIni.after(pengajuan.getIdbeasiswa().getTanggalkadaluarsa()) == true) {
+                if (pengajuan.getStatuspengajuan().equals("Terima")) {
+                    pengajuan.setStatuspengajuan("Berakhir");
+                    mahasiswa.setStatuspenerima("Tidak Sedang Menerima Beasiswa");
+                    try {
+                        listPengajuan.edit(pengajuan);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
+                } else {
+                    itr.remove();
                 }
             }
+            if (tglSaatIni.before(pengajuan.getIdbeasiswa().getTanggalkadaluarsa()) == true) {
+                if (pengajuan.getStatuspengajuan().equals("Berakhir")) {
+                    pengajuan.setStatuspengajuan("Terima");
+                    mahasiswa.setStatuspenerima("Sedang Menerima Beasiswa");
+                    try {
+                        listPengajuan.edit(pengajuan);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+            try {
+                aturPengajuan.edit(mahasiswa);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
+
+
     }
 
     public void setAturStatus() {
@@ -119,14 +164,21 @@ public class ControllerPengajuan {
             mahasiswa.setStatuspenerima("Tidak Sedang Menerima Beasiswa");
         } else {
             mahasiswa.setStatuspenerima("Sedang Menerima Beasiswa");
-            pengajuan.setStatusPengajuan(true);
-        }
+            pengajuan.setStatuspengajuan("Terima");
+            try {
+                aturPengajuan.edit(pengajuan);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
 
+        }
         try {
             aturStatus.edit(mahasiswa);
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+
 
     }
 }

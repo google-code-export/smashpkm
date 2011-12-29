@@ -99,8 +99,8 @@
                                             <img src="images/32_64x64.png" alt="Image 2" />
                                         </td>
                                         <td>
-                                            <a href="#"> </a>
-                                            <h4>Status Beasiswa</h4>
+                                            <a href="DispatcherPengajuan?page=statusBeasiswa&&nrp=${mahasiswa.nrp}"> <h4>Status Beasiswa</h4></a>
+                                            
                                         </td>
                                     </tr>
                                 </table>

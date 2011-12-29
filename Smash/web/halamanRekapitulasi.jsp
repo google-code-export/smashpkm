@@ -15,7 +15,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Halaman Rekapitulasi</h1>
+        <h1>Halaman Rekapitulasi  ${aaa}</h1>
  <table border=0>
             <tr>
 
@@ -64,6 +64,9 @@
                     <th>
                         Status
                     </th>
+                    <th>
+                        Tgl kadaluarsa
+                    </th>
 
                 </tr>
             </thead>
@@ -91,6 +94,9 @@
                         </td>
                          <td>
                             ${bsw.nrp.statuspenerima}
+                        </td>
+                        <td>
+                            ${bsw.idbeasiswa.tanggalkadaluarsa}
                         </td>
                         <td>
                             <form method='post' action='DispatcherPengajuan?page=aturRekapitulasi&&idpengajuan=${bsw.idpengajuan}'>
