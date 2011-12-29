@@ -116,7 +116,7 @@ public class ControllerPengajuan {
             mahasiswa.setNrp(pengajuan.getNrp().getNrp());
             mahasiswa = aturPengajuan.findMahasiswaByNrp(mahasiswa.getNrp());
 
-            if (tglSaatIni.after(pengajuan.getIdbeasiswa().getTanggalkadaluarsa()) == true) {
+            if (tglSaatIni.after(pengajuan.getIdbeasiswa().getTanggalhabis()) == true) {
                 if (pengajuan.getStatuspengajuan().equals("Terima")) {
                     pengajuan.setStatuspengajuan("Berakhir");
                     mahasiswa.setStatuspenerima("Tidak Sedang Menerima Beasiswa");
@@ -130,7 +130,7 @@ public class ControllerPengajuan {
                     itr.remove();
                 }
             }
-            if (tglSaatIni.before(pengajuan.getIdbeasiswa().getTanggalkadaluarsa()) == true) {
+            if (tglSaatIni.before(pengajuan.getIdbeasiswa().getTanggalhabis()) == true) {
                 if (pengajuan.getStatuspengajuan().equals("Berakhir")) {
                     pengajuan.setStatuspengajuan("Terima");
                     mahasiswa.setStatuspenerima("Sedang Menerima Beasiswa");
