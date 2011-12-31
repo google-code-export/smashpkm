@@ -102,7 +102,7 @@
                         <div class="cleaner h20"></div>
                         <br/>
                         <h2>SMASH</h2>
-                        <h5>Smart Application Scholarhip</h5>
+                        <h5>Smart Application Scholarship</h5>
                         <div class="cleaner h20"></div>
                         <h6>Jika Anda mengalami kesulitan login, silahkan hubungi BAAK ITS atau email ke baak@its.ac.id</h6>
                         <div class="cleaner h20"></div>
@@ -141,46 +141,47 @@
 
                         </script>
 
-                        <form method='post' action='DispatcherMahasiswa?page=login'>
-                            <br/><fieldset>
-                                <table border=0>
-                                    <dd/><font color="red"><b><%= request.getAttribute("pesan")%></b></font>
-                                    <br/>
-                                    <tr>
-                                        <td>
-                                            <dd/><h5>Username (NIM)</h5>
-                                        </td>
-                                        <td>
-                                            <h5>: <input type=text name='nrp' /></h5>
-                                        </td>
-                                    </tr>
+                        <div id="contact_form">
 
-                                    <tr>
-                                        <td>
-                                            <dd/><h5>Password</h5>
-                                        </td>
-                                        <td>
-                                            <h5>: <input type=password name='password'/></h5>
-                                        </td>
-                                    </tr>
-                                </table>
-                                <br/>
-                                <table>
-                                    <tr><td/>
-                                        <td>
-                                            <dd/>
-                                            <form><input type='submit' value='Login'/>
-                                            </form>
-                                            atau
-                                        </td>
-                                        <td>
-                                            <form method='post' action='DispatcherMahasiswa?page=registrasi'/>
-                                            <input type='submit' value='Daftar Sekarang >>' />
-                                        </td>
-                                    </tr>
-                                </table>
-                            </fieldset>
-                        </form>
+                            <form method='post' action='DispatcherMahasiswa?page=login'>
+                                <br/><fieldset>
+                                    <table border=0>
+                                        <font color="#E56717">
+                                            <b><%= request.getAttribute("pesan")%></b>
+                                        </font>
+                                        <br/>
+                                        <tr>
+                                            <td>
+                                                <dd/><h5>Username (NIM)</h5>
+                                            </td>
+                                            <td>
+                                                <h5>: <input type=text name='nrp' /></h5>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>
+                                                <dd/><h5>Password</h5>
+                                            </td>
+                                            <td>
+                                                <h5>: <input type=password name='password'/></h5>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <br/>
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                <dd/><input type="submit" class="submit_btn float_l" name="submit" id="submit" value="Login"  />
+                                            </td>
+                                            <td>
+                                                <a href="DispatcherMahasiswa?page=registrasi"><input type="button" class="submit_btn float_r" value="Daftar Sekarang >>"/></a>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </fieldset>
+                            </form>
+                        </div>
                     </div>
                     <div class="cleaner"></div>
                 </div>

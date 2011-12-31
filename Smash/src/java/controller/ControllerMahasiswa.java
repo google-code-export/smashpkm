@@ -217,7 +217,7 @@ public class ControllerMahasiswa {
         /**
          * Validasi input untuk menghindari input kosong
          */
-        if (nama.equals("") || noHp.equals("") || alamatAsal.equals("") || nilaiToefl1.equals("")
+        if (nama.equals("") || noHp.equals("") || nilaiToefl1.equals("")
                 || semester1.equals("") || ipk1.equals("") || namaAyah.equals("")
                 || penghasilanAyah1.equals("") || pekerjaanAyah.equals("") || namaIbu.equals("")
                 || penghasilanIbu1.equals("") || pekerjaanIbu.equals("") || jumlahSaudara1.equals("")) {
@@ -255,7 +255,7 @@ public class ControllerMahasiswa {
 
                 try {
                     aturAkun.edit(mahasiswa);//eksekusi edit objek
-                    request.setAttribute("pesan1", "Data yang Anda masukkan telah tersimpan. Pastikan data yang Anda masukkan adalah benar");
+                    request.setAttribute("pesan", "Data yang Anda masukkan telah tersimpan. Pastikan data yang Anda masukkan adalah benar");
 
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -336,14 +336,15 @@ public class ControllerMahasiswa {
         /**
          * Validasi input untuk menghindari input kosong
          */
-        if (nama.equals("") || noHp.equals("") || alamatAsal.equals("") || nilaiToefl1.equals("")
+        if (nama.equals("") || noHp.equals("") || nilaiToefl1.equals("")
                 || semester1.equals("") || ipk1.equals("") || namaAyah.equals("")
                 || penghasilanAyah1.equals("") || pekerjaanAyah.equals("") || namaIbu.equals("")
                 || penghasilanIbu1.equals("") || pekerjaanIbu.equals("") || jumlahSaudara1.equals("")) {
-            request.setAttribute("pesan", "Isikan seluruh field yang tersedia sesuai dengan data diri Anda");
+            request.setAttribute("pesan", "Isikan seluruh field yang tersedia sesuai dengan data diri Mahasiswa terkait");
 
         } else {
-            int nilaiToefl = Integer.parseInt(nilaiToefl1);//merubah input string menjadi int
+            try {//merubah input string menjadi int
+                int nilaiToefl = Integer.parseInt(nilaiToefl1);//merubah input string menjadi int
             int semester = Integer.parseInt(semester1);
             Double ipk = Double.parseDouble(ipk1);//merubah input string menjadi double
             int penghasilanAyah = Integer.parseInt(penghasilanAyah1);
@@ -369,14 +370,18 @@ public class ControllerMahasiswa {
             mahasiswa.setPenghasilanibu(penghasilanIbu);
             mahasiswa.setJumlahsaudara(jumlahSaudara);
             mahasiswa.setIsadmin(false);
-            try {
-                aturAkun.edit(mahasiswa);//eksekusi edit objek
 
-            } catch (Exception e) {
-                e.printStackTrace();
+                try {
+                    aturAkun.edit(mahasiswa);//eksekusi edit objek
+                    request.setAttribute("pesan", "Data mahasiswa yang Anda masukkan telah tersimpan. Pastikan data mahasiswa yang Anda masukkan adalah benar");
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            } catch (NumberFormatException nfe) {
+                request.setAttribute("pesan", "Isikan seluruh field dengan ketentuan format yang ada");
             }
-            request.setAttribute("pesan1", "Data yang Anda masukkan telah tersimpan. Pastikan data yang Anda masukkan adalah benar");
-
+            
         }
 
     }
@@ -388,7 +393,7 @@ public class ControllerMahasiswa {
     public void setAturPasswordMember() {
         Mahasiswa mahasiswa = new Mahasiswa();
         String nrp = request.getParameter("nrp_member");
-        String passwordBaru = request.getParameter("password_baru");
+        String passwordBaru = request.getParameter("password");
         JpaMahasiswa aturPassword = new JpaMahasiswa();
         HttpSession session = request.getSession();
         mahasiswa = aturPassword.findMahasiswaByNrp(nrp);
@@ -400,7 +405,6 @@ public class ControllerMahasiswa {
             mahasiswa.setPassword(passwordBaru);
             try {
                 aturPassword.edit(mahasiswa);//eksekusi edit password
-                request.setAttribute("pesan", "Password Anda telah diganti");
             } catch (Exception e) {
                 e.printStackTrace();
             }

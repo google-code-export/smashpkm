@@ -102,7 +102,7 @@
                         <div class="cleaner h20"></div>
                         <br/><br/>
                         <h2>SMASH</h2>
-                        <h5>Smart Application Scholarhip</h5>
+                        <h5>Smart Application Scholarship</h5>
                         <div class="cleaner h20"></div>
                         <h6>Jika Anda mengalami kesulitan melakukan pendaftaran, silahkan hubungi BAAK ITS atau email ke baak@its.ac.id</h6>
                         <div class="cleaner h20"></div>
@@ -140,83 +140,82 @@
 
                         </script>
 
-                        <form method='post' action='DispatcherMahasiswa?page=goRegistrasi' onsubmit="">
+                        <div id="contact_form">
 
-                            <br/><fieldset>
-                                <table border=0>
-                                    <dd/><font color="red"><%= request.getAttribute("pesan")%></font>
-                                    <br/>
-                                    <tr>
-                                        <td>
-                                            <dd/><h6>Nama Lengkap</h6>
-                                        </td>
-                                        <td>
-                                            <h6>: <input type=text name='nama' /></h6>
-                                        </td>
-                                    </tr>
+                            <form method='post' action='DispatcherMahasiswa?page=goRegistrasi' onsubmit="">
 
-                                    <tr>
-                                        <td>
-                                            <dd/><h6>Username (NIM)</h6>
-                                        </td>
-                                        <td>
-                                            <h6>: <input type=text name='nrp'/></h6>
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>
-                                            <dd/><h6>Password</h6>
-                                        </td>
-
-                                        <td>
-                                            <h6>: <input type=password name='password'/></h6>
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>
-                                            <dd/><h6>Ulangi password</h6>
-                                        </td>
-
-                                        <td>
-                                            <h6>: <input type=password name='password_ulangi'/></h6>
-                                        </td>
-                                    </tr>
-                                </table>
-                                <br/>
-                                <table>
-                                    <tr>
-                                        <td width="123">
+                                <br/><fieldset>
+                                    <table border=0>
+                                        <dd/><font color="red"><b><%= request.getAttribute("pesan")%></b></font>
+                                        <br/>
+                                        <tr>
+                                            <td>
+                                                <dd/><h6>Nama Lengkap</h6>
                                             </td>
-                                        <td>
-                                            <dd/>
-                                            <form>
-                                                <input type='submit' value='Daftar'/>
-                                            </form>
-                                        </td>
-                                        <td>
-                                            <form method='post' action='DispatcherMahasiswa?page=index'/>
-                                            <input type='submit' value='Batal Mendaftar' />
-                                        </td>
-                                    </tr>
-                                </table>
-                            </fieldset>
-                        </form>
+                                            <td>
+                                                <h6>: <input type=text name='nama' /></h6>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>
+                                                <dd/><h6>Username (NIM)</h6>
+                                            </td>
+                                            <td>
+                                                <h6>: <input type=text name='nrp'/></h6>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>
+                                                <dd/><h6>Password</h6>
+                                            </td>
+
+                                            <td>
+                                                <h6>: <input type=password name='password'/></h6>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>
+                                                <dd/><h6>Ulangi password</h6>
+                                            </td>
+
+                                            <td>
+                                                <h6>: <input type=password name='password_ulangi'/></h6>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <br/>
+                                    <table>
+                                        <tr>
+                                            <td width="123">
+                                            </td>
+                                            <td>
+                                                <dd/>
+                                                <input type="submit" class="submit_btn float_l" name="submit" id="submit" value="Daftar"  />
+                                            </td>
+                                            <td>
+                                                <a href="DispatcherMahasiswa?page=index"><input type="button" class="submit_btn float_r" value="Batal Mendaftar"/></a>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </fieldset>
+                            </form>
+                        </div>
+                        <div class="cleaner"></div>
                     </div>
+                </div>
+            </div>
+
+            <div class="cleaner"></div>
+
+            <div id="templatemo_footer_wrapper">
+                <div id="templatemo_footer">
+                    Copyright © 2011 <a href="#">Smash Inc.</a> | Institut Teknologi Sepuluh Nopember
                     <div class="cleaner"></div>
                 </div>
             </div>
-        </div>
-
-        <div class="cleaner"></div>
-
-        <div id="templatemo_footer_wrapper">
-            <div id="templatemo_footer">
-                Copyright © 2011 <a href="#">Smash Inc.</a> | Institut Teknologi Sepuluh Nopember
-                <div class="cleaner"></div>
-            </div>
-        </div>
 
     </body>
-</html>>
+</html>

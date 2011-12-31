@@ -62,6 +62,7 @@
 
         </script>
 
+        <link rel="stylesheet" media="screen" href="buttonstyle.css">
 
     </head>
     <body>
@@ -73,32 +74,16 @@
 
                 <div id="templatemo_menu" class="ddsmoothmenu">
                     <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="about.html">About</a>
+                        <li><a href="DispatcherMahasiswa?page=home&&nrp=${mahasiswa.nrp}">Home</a></li>
+                        <li><a href="DispatcherMahasiswa?page=home&&nrp=${mahasiswa.nrp}">Menu Utama</a>
                             <ul>
-                                <li><a href="http://www.templatemo.com/page/1">Background</a></li>
-                                <li><a href="http://www.templatemo.com/page/2">Our Team</a></li>
-                                <li><a href="http://www.templatemo.com/page/3">Management</a></li>
+                                <li><a href="DispatcherBeasiswa?page=pengaturanPost">Posts</a></li>
+                                <li><a href="DispatcherMahasiswa?page=pengaturanMember">Members</a></li>
+                                <li><a href="DispatcherPengajuan?page=listRekapitulasi">Rekapitulasi</a></li>
                             </ul>
                         </li>
-                        <li><a href="portfolio.html">Portfolio</a>
-                            <ul>
-                                <li><a href="http://www.templatemo.com/page/1">Web Design</a></li>
-                                <li><a href="http://www.templatemo.com/page/2">Multimedia</a></li>
-                                <li><a href="http://www.templatemo.com/page/3">3D Animations</a></li>
-                                <li><a href="http://www.templatemo.com/page/4">Templates</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="blog.html" class="selected">Blog</a>
-                            <ul>
-                                <li><a href="http://www.templatemo.com/page/1">Useful Tips</a></li>
-                                <li><a href="http://www.templatemo.com/page/2">Archives</a></li>
-                                <li><a href="http://www.templatemo.com/page/3">Popular Posts</a></li>
-                                <li><a href="http://www.templatemo.com/page/4">Comments</a></li>
-                                <li><a href="http://www.templatemo.com/page/5">Authors</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="contact.html">Panduan</a></li>
+                        <li><a href="contact.html">Kontak</a></li>
                     </ul>
                     <br style="clear: left" />
                 </div> <!-- end of templatemo_menu -->
@@ -117,18 +102,8 @@
 
             <table>
                 <tr>
-                    <td                    
-                    </td>
                     <td>
-                        <form method='post' action='DispatcherMahasiswa?page=home&&nrp=${mahasiswa.nrp}'>
-                            <input type='submit' value='Menu Utama' >
-                        </form>
-                    </td>
-                    <td>
-                        <form  method='post' action='DispatcherMahasiswa?page=logout&&nrp=${mahasiswa.nrp}'>
-                            <input type='submit' value='Logout' >
-                        </form>
-
+                        <a href="DispatcherMahasiswa?page=buatMember" title="" class="btn medium green">Tambah Member Baru</a>
                     </td>
                 </tr>
             </table>

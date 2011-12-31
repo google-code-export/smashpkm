@@ -103,21 +103,19 @@
                     <h3>Tambah Posting Baru</h3>
                 </div>
 
-                <div class="col_w240 float_l">
+                <div class="col_w300 float_l">
                     <img src="images/track_Post.png"/>
                 </div>
 
-                <div class="col_w480 float_r">
+                <div class="col_w630 float_r">
                     <div id="contact_form">
-                        <p align="right">
-                            <font color="#E56717">
-                                <b><%= request.getAttribute("pesan")%></b>
-                            </font>
-                        </p>
+                        <font color="#E56717">
+                            <b><%= request.getAttribute("pesan")%></b>
+                        </font>
 
                         <input type="hidden" name="post" value="Send" />
                         <form method='post' action='DispatcherBeasiswa?page=goBuatPost'>
-                            <table align="right">
+                            <table align="left">
                                 <tr>
                                     <td>
                                         <font color="black">Tanggal publish</font>
@@ -152,11 +150,21 @@
                                 </tr>
                             </table>
 
-                            <br/><br/><br/><br/><br/><br/>
-                            <label for="author"><font color="black">Judul Post</font></label> <input type=text name='namabeasiswa' class="input_field"/>
+                            <br/><br/><br/><br/><br/><br/><br/>
+                            <p align="right">
+                                <label for="author">
+                                    <font color="black">Judul Post</font>
+                                </label>
+                                <input type=text name='namabeasiswa' class="input_field"/>
+                            </p>
                             <div class="cleaner h10"></div>
 
-                            <label for="text"><font color="black">Keterangan</font></label> <textarea id="text" name="keterangan" rows="0" cols="0"></textarea>
+                            <p align="right">
+                                <label for="text">
+                                    <font color="black">Keterangan</font>
+                                </label>
+                            <textarea id="text" name="keterangan" rows="0" cols="0"></textarea>
+                            </p>
                             <div class="cleaner h10"></div>
                             <table>
                                 <tr>
