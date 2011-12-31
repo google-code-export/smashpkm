@@ -108,6 +108,7 @@ public class DispatcherMahasiswa extends HttpServlet {
             }
             if (page.equals("goEditMember")) {//menyimpan data hasil perubahan data member kemdian menampilkan kembali hasil perubahan
                 controller.setAturAkunMember();
+                controller.setAturPasswordMember();
                 controller.setMember();
                 dis = request.getRequestDispatcher("pengaturanMember.jsp");
             }
@@ -128,7 +129,6 @@ public class DispatcherMahasiswa extends HttpServlet {
             if (page.equals("logout")) {//keluar dari aplikasi
                 controller.setLogout();
                 dis = request.getRequestDispatcher("index.jsp");
-                out.println("anda berhasil logout");
             }
         } else {
             dis = request.getRequestDispatcher("index.jsp");

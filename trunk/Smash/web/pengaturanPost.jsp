@@ -105,7 +105,7 @@
                 <table>
                     <tr>
                         <td>
-                            <a href="DispatcherBeasiswa?page=membuatPost" title="" class="btn medium green">Tambah Post</a>
+                            <a href="DispatcherBeasiswa?page=membuatPost" title="" class="btn medium green">Tambah Post Baru</a>
                         </td>
                     </tr>
                 </table>
