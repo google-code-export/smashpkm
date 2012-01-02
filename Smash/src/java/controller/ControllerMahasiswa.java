@@ -8,6 +8,7 @@ package controller;
  *
  * @author yosua
  */
+import model.JpaMahasiswa;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;

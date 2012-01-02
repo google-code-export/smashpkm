@@ -2,7 +2,8 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package controller;
+
+package model;
 
 import controller.exceptions.NonexistentEntityException;
 import controller.exceptions.PreexistingEntityException;
@@ -14,14 +15,15 @@ import javax.persistence.Persistence;
 import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
 import model.Beasiswa;
+import model.Mahasiswa;
 
 /**
  *
  * @author yosua
  */
-public class JpaBeasiswa {
+public class JpaMahasiswa {
 
-    public JpaBeasiswa() {
+    public JpaMahasiswa() {
         emf = Persistence.createEntityManagerFactory("SmashPU");
     }
     private EntityManagerFactory emf = null;
@@ -31,18 +33,18 @@ public class JpaBeasiswa {
     }
 
     /**
-     * Fungsi untuk membuat beasiswa baru
+     * Fungsi untuk membuat mahasiswa baru
      */
-    public void create(Beasiswa beasiswa) throws PreexistingEntityException, Exception {
+    public void create(Mahasiswa mahasiswa) throws PreexistingEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            em.persist(beasiswa);
+            em.persist(mahasiswa);
             em.getTransaction().commit();
         } catch (Exception ex) {
-            if (findBeasiswa(beasiswa.getIdbeasiswa()) != null) {
-                throw new PreexistingEntityException("Beasiswa " + beasiswa + " already exists.", ex);
+            if (findMahasiswa(mahasiswa.getNama()) != null) {
+                throw new PreexistingEntityException("Mahasiswa " + mahasiswa + " already exists.", ex);
             }
             throw ex;
         } finally {
@@ -53,21 +55,21 @@ public class JpaBeasiswa {
     }
 
     /**
-     * Fungsi untuk mengedit beasiswa dengan input berupa objek beasiswa
+     * Fungsi untuk mengedit mahasiswa dengan input berupa objek mahasiswa
      */
-    public void edit(Beasiswa beasiswa) throws NonexistentEntityException, Exception {
+    public void edit(Mahasiswa mahasiswa) throws NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            beasiswa = em.merge(beasiswa);
+            mahasiswa = em.merge(mahasiswa);
             em.getTransaction().commit();
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
-                String id = beasiswa.getIdbeasiswa();
-                if (findBeasiswa(id) == null) {
-                    throw new NonexistentEntityException("The beasiswa with id " + id + " no longer exists.");
+                String id = mahasiswa.getNama();
+                if (findMahasiswa(id) == null) {
+                    throw new NonexistentEntityException("The mahasiswa with id " + id + " no longer exists.");
                 }
             }
             throw ex;
@@ -79,21 +81,21 @@ public class JpaBeasiswa {
     }
 
     /**
-     * Fungsi untuk menghapus beasiswa yang ada dengan input berupa idbeasiswa
+     * Fungsi untuk menghapus mahasiswa yang ada dengan input berupa nrp
      */
     public void destroy(String id) throws NonexistentEntityException {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Beasiswa beasiswa;
+            Mahasiswa mahasiswa;
             try {
-                beasiswa = em.getReference(Beasiswa.class, id);
-                beasiswa.getIdbeasiswa();
+                mahasiswa = em.getReference(Mahasiswa.class, id);
+                mahasiswa.getNama();
             } catch (EntityNotFoundException enfe) {
-                throw new NonexistentEntityException("The beasiswa with id " + id + " no longer exists.", enfe);
+                throw new NonexistentEntityException("The mahasiswa with id " + id + " no longer exists.", enfe);
             }
-            em.remove(beasiswa);
+            em.remove(mahasiswa);
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -102,43 +104,30 @@ public class JpaBeasiswa {
         }
     }
 
-    public Beasiswa findBeasiswa(String id) {
+
+    public Mahasiswa findMahasiswa(String id) {
         EntityManager em = getEntityManager();
         try {
-            return em.find(Beasiswa.class, id);
+            return em.find(Mahasiswa.class, id);
         } finally {
             em.close();
         }
     }
 
     /**
-     * Fungsi untuk mengambil seluruh beasiswa yang tersimpan dalam DB
+     * Fungsi untuk mencari mahasiswa berdasarkan nrp
      */
-    public List<Beasiswa> getAllBeasiswa() {
-        List<Beasiswa> beasiswa = new ArrayList<Beasiswa>();
+     public Mahasiswa findMahasiswaByNrp(String nrp) {
         EntityManager em = getEntityManager();
         try {
-            Query q = em.createQuery("SELECT o FROM Beasiswa o");
-            beasiswa = q.getResultList();
-        } finally {
-            if (em != null) {
-                em.close();
-            }
-        }
-        return beasiswa;
-    }
-
-    /**
-     * Fungsi untuk mencari beasiswa berdasarkan idbeasiswa
-     */
-    public Beasiswa findBeasiswaById(String idBeasiswa) {
-        EntityManager em = getEntityManager();
-        try {
-            Query query = em.createQuery("SELECT c FROM Beasiswa c WHERE c.idbeasiswa =:idbeasiswa");
-            query.setParameter("idbeasiswa", idBeasiswa);
+            Query query = em.createQuery("SELECT c FROM Mahasiswa c WHERE c.nrp =:nrp");
+            query.setParameter("nrp", nrp);
             List list = query.getResultList();
             if (list.size() == 1) {
-                return (Beasiswa) list.get(0);
+
+                return (Mahasiswa) list.get(0);
+
+
             } else {
                 return null;
             }
@@ -146,4 +135,44 @@ public class JpaBeasiswa {
             em.close();
         }
     }
+
+     /**
+     * Fungsi untuk mengambil seluruh mahasiswa yang tersimpan dalam DB
+     */
+      public List<Mahasiswa> getAllMahasiswa() {
+        List<Mahasiswa> mahasiswa = new ArrayList<Mahasiswa>();
+        EntityManager em = getEntityManager();
+        try {
+            Query q = em.createQuery("SELECT o FROM Mahasiswa o WHERE o.isadmin=:isadmin");
+            q.setParameter("isadmin", false);
+            mahasiswa = q.getResultList();
+
+        } finally {
+            if (em != null) {
+                em.close();
+            }
+        }
+        return mahasiswa;
+    }
+
+
+    public Beasiswa findBeasiswaById(String idBeasiswa) {
+        EntityManager em = getEntityManager();
+        try {
+            Query query = em.createQuery("SELECT c FROM Beasiswa c WHERE c.idbeasiswa =:idbeasiswa");
+            query.setParameter("idbeasiswa", idBeasiswa);
+            List list = query.getResultList();
+            if (list.size() == 1) {
+
+                return (Beasiswa) list.get(0);
+
+
+            } else {
+                return null;
+            }
+        } finally {
+            em.close();
+        }
+    }
+
 }

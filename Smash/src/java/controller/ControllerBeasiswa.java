@@ -8,6 +8,7 @@ package controller;
  *
  * @author yosua
  */
+import model.JpaBeasiswa;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

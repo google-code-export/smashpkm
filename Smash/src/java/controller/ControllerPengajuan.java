@@ -8,6 +8,8 @@ package controller;
  *
  * @author yosua
  */
+import model.JpaPengajuan;
+import model.JpaMahasiswa;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;

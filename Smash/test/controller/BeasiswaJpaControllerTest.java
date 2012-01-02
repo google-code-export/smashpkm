@@ -5,6 +5,7 @@
 
 package controller;
 
+import model.JpaBeasiswa;
 import java.util.List;
 import javax.persistence.EntityManager;
 import junit.framework.TestCase;
