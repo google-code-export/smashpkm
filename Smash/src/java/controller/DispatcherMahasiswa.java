@@ -96,7 +96,7 @@ public class DispatcherMahasiswa extends HttpServlet {
             if (page.equals("goBuatMember")) {//menyimpan pengguna baru
                 controller.setRegistrasi(mahasiswa);
                 controller.setListMahasiswa();
-                dis = request.getRequestDispatcher("member.jsp");
+                dis = request.getRequestDispatcher("buatMember.jsp");
             }
             if (page.equals("setPengaturanMember")) {//menyimpan hasil perubahan data akun member dari halaman admin
                 controller.setAturAkun();
