@@ -4,6 +4,9 @@
  */
 package controller;
 
+import model.JpaPengajuan;
+import model.JpaBeasiswa;
+import model.JpaMahasiswa;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
