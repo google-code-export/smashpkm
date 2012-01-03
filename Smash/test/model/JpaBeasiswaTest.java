@@ -1,30 +1,43 @@
+
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package model;
 
-import java.util.List;
-import javax.persistence.EntityManager;
-import junit.framework.TestCase;
+import controller.exceptions.PreexistingEntityException;
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import static org.junit.Assert.*;
 
 /**
  *
- * @author ROODHIN
+ * @author yosua
  */
-public class JpaBeasiswaTest extends TestCase {
+public class JpaBeasiswaTest {
+
     private Beasiswa user1;
     private Beasiswa user2;
+    private Beasiswa user3;
     JpaBeasiswa uq = new JpaBeasiswa();
 
-    public JpaBeasiswaTest(String testName) {
-        super(testName);
+    public JpaBeasiswaTest() {
     }
 
-    @Override
-    protected void setUp() throws Exception {
-        super.setUp();
+    @BeforeClass
+    public static void setUpClass() throws Exception {
+    }
+
+    @AfterClass
+    public static void tearDownClass() throws Exception {
+    }
+
+    @Before
+    public void setUp() {
+
         user1 = new Beasiswa();
         user1.setIdbeasiswa("9898");
         user1.setNamabeasiswa("boda");
@@ -33,118 +46,76 @@ public class JpaBeasiswaTest extends TestCase {
         user2 = new Beasiswa();
         user2.setIdbeasiswa("1234");
         user2.setNamabeasiswa("hahaha");
+
+        user3 = new Beasiswa();
+        user3.setIdbeasiswa("AA");
+        user3.setNamabeasiswa("ee");
+
     }
 
-    @Override
-    protected void tearDown() throws Exception {
-        super.tearDown();
-        user1=null;
-        user2=null;
+    @After
+    public void tearDown() {
+        user1 = null;
+        user2 = null;
+        user3 = null;
     }
 
     /**
      * Test of getEntityManager method, of class JpaBeasiswa.
      */
-   //public void testGetEntityManager() {
-     //   System.out.println("getEntityManager");
-       // JpaBeasiswa instance = new JpaBeasiswa();
-        //EntityManager expResult = null;
-        //EntityManager result = instance.getEntityManager();
-        //assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-       // fail("The test case is a prototype.");
-   // }
+  
+
 
     /**
      * Test of create method, of class JpaBeasiswa.
      */
+    @Test
     public void testCreate() throws Exception {
-       uq.create(user1);
-
-
-        //System.out.println("create");
-        //Beasiswa beasiswa = null;
-        //JpaBeasiswa instance = new JpaBeasiswa();
-        //instance.create(beasiswa);
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
+        uq.create(user1);
     }
 
     /**
      * Test of edit method, of class JpaBeasiswa.
      */
+    @Test
     public void testEdit() throws Exception {
-        user1.setNamabeasiswa(user2.getNamabeasiswa());
+         user1.setNamabeasiswa(user2.getNamabeasiswa());
         uq.edit(user1);
         assertEquals(uq.findBeasiswaById(user1.getIdbeasiswa()).getNamabeasiswa(), user2.getNamabeasiswa());
-
-
-        //System.out.println("edit");
+        //user1.getNamabeasiswa()=uq.findBeasiswaById(user1.getIdbeasiswa()).getNamabeasiswa();
         //Beasiswa beasiswa = null;
         //JpaBeasiswa instance = new JpaBeasiswa();
         //instance.edit(beasiswa);
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
+        // TODO review the generated test code
     }
 
     /**
      * Test of destroy method, of class JpaBeasiswa.
      */
+    @Test
     public void testDestroy() throws Exception {
-        uq.destroy(user1.getIdbeasiswa());
-
-
-        //System.out.println("destroy");
-        //String id = "";
-       // JpaBeasiswa instance = new JpaBeasiswa();
-        //instance.destroy(id);
-        // TODO review the generated test code and remove the default call to fail.
-       // fail("The test case is a prototype.");
+         uq.destroy(user1.getIdbeasiswa());
     }
 
     /**
      * Test of findBeasiswa method, of class JpaBeasiswa.
      */
-    //public void testFindBeasiswa() {
-      //  System.out.println("findBeasiswa");
-        //String id = "";
-        //JpaBeasiswa instance = new JpaBeasiswa();
-        //Beasiswa expResult = null;
-        //Beasiswa result = instance.findBeasiswa(id);
-        //assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
-    //}
+
 
     /**
      * Test of getAllBeasiswa method, of class JpaBeasiswa.
      */
+    @Test
     public void testGetAllBeasiswa() {
-       assertNotNull(uq.getAllBeasiswa());
-
-        //System.out.println("getAllBeasiswa");
-       // JpaBeasiswa instance = new JpaBeasiswa();
-       // List expResult = null;
-       // List result = instance.getAllBeasiswa();
-       // assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-       // fail("The test case is a prototype.");
+        assertNotNull(uq.getAllBeasiswa());
     }
 
     /**
      * Test of findBeasiswaById method, of class JpaBeasiswa.
      */
-    public void testFindBeasiswaById() {
-       assertNull(uq.findBeasiswaById(user1.getIdbeasiswa()));
-        
-        // System.out.println("findBeasiswaById");
-       // String idBeasiswa = "";
-       // JpaBeasiswa instance = new JpaBeasiswa();
-       // Beasiswa expResult = null;
-      //  Beasiswa result = instance.findBeasiswaById(idBeasiswa);
-      //  assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-       // fail("The test case is a prototype.");
+    @Test
+    public void testFindBeasiswaById() throws PreexistingEntityException, Exception {
+        uq.create(user3);
+        assertNotNull(uq.findBeasiswaById(user3.getIdbeasiswa()));
     }
-
 }

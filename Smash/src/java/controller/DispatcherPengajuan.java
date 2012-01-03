@@ -27,7 +27,6 @@ public class DispatcherPengajuan extends HttpServlet {
         RequestDispatcher dis = null;
         ControllerPengajuan controller = new ControllerPengajuan(request);
         ControllerBeasiswa controllerBsw = new ControllerBeasiswa(request);
-        Beasiswa beasiswa = new Beasiswa();
         Pengajuan pengajuan = new Pengajuan();
         String pesan = " ";
         request.setAttribute("pesan", pesan);

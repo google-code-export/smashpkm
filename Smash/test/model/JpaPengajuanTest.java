@@ -1,3 +1,4 @@
+
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -5,153 +6,163 @@
 
 package model;
 
-import java.util.List;
-import javax.persistence.EntityManager;
-import junit.framework.TestCase;
+import controller.exceptions.NonexistentEntityException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import static org.junit.Assert.*;
 
 /**
  *
- * @author ROODHIN
+ * @author yosua
  */
-public class JpaPengajuanTest extends TestCase {
-    private Pengajuan peng1;
-    private Pengajuan peng2;
-    JpaPengajuan pg = new JpaPengajuan();
-    
-    public JpaPengajuanTest(String testName) {
-        super(testName);
+public class JpaPengajuanTest {
+    private Pengajuan user1;
+    private Pengajuan user2;
+    private Pengajuan user3;
+    private Beasiswa bsw;
+    private Mahasiswa mhs;
+    JpaBeasiswa b=new JpaBeasiswa();
+    JpaPengajuan p=new JpaPengajuan();
+    JpaMahasiswa m=new JpaMahasiswa();
 
+    public JpaPengajuanTest() {
     }
 
-    @Override
-    protected void setUp() throws Exception {
-        super.setUp();
-        peng1=new Pengajuan();
-        peng1.setIdpengajuan("1234");
-        peng1.setPathsipk("3.5");
-
-        peng2=new Pengajuan();
-        peng2.setIdpengajuan("7634");
-        peng2.setPathsipk("3.2");
-
+    @BeforeClass
+    public static void setUpClass() throws Exception {
     }
 
-    @Override
-    protected void tearDown() throws Exception {
-        super.tearDown();
-        peng1=null;
-        peng2=null;
+    @AfterClass
+    public static void tearDownClass() throws Exception {
+    }
+
+    @Before
+    public void setUp() throws Exception {
+        user1 = new Pengajuan();
+        user1.setIdpengajuan("9898");
+        user1.setPathscv("boda");
+        //user1.setKeterangan(null)
+
+        user2 = new Pengajuan();
+        user2.setIdpengajuan("1234");
+        user2.setPathscv("hahaha");
+
+        user3 = new Pengajuan();
+        user3.setIdpengajuan("AA");
+        user3.setPathscv("ee");
+
+        mhs=new Mahasiswa();
+        mhs.setNrp("1264");
+        m.create(mhs);
+        bsw=new Beasiswa();
+        bsw.setIdbeasiswa("5432");
+        b.create(bsw);
+
+        user1.setNrp(mhs);
+        user1.setIdbeasiswa(bsw);
+
+        user2.setNrp(mhs);
+        user2.setIdbeasiswa(bsw);
+
+        p.create(user2);
+    }
+
+    @After
+    public void tearDown() {
+        try {
+            m.destroy(mhs.getNrp());
+        } catch (NonexistentEntityException ex) {
+            Logger.getLogger(JpaPengajuanTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            b.destroy(bsw.getIdbeasiswa());
+        } catch (NonexistentEntityException ex) {
+            Logger.getLogger(JpaPengajuanTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            p.destroy(user2.getIdpengajuan());
+        } catch (NonexistentEntityException ex) {
+            Logger.getLogger(JpaPengajuanTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
      * Test of getEntityManager method, of class JpaPengajuan.
      */
-    
 
     /**
      * Test of create method, of class JpaPengajuan.
      */
+    @Test
     public void testCreate() throws Exception {
-        pg.create(peng1);
-
-       // System.out.println("create");
-        //Pengajuan pengajuan = null;
-        //JpaPengajuan instance = new JpaPengajuan();
-        //instance.create(pengajuan);
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
+        p.create(user1);
     }
 
     /**
      * Test of edit method, of class JpaPengajuan.
      */
+    @Test
     public void testEdit() throws Exception {
-        peng1.setNrp(peng2.getNrp());
-        pg.edit(peng1);
-        assertEquals(pg.findPengajuanById(peng1.getIdpengajuan()).getNrp(), peng2.getNrp());
-
-        //System.out.println("edit");
-        //Pengajuan pengajuan = null;
-        //JpaPengajuan instance = new JpaPengajuan();
-        //instance.edit(pengajuan);
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
+       user1.setPathscv(user2.getPathscv());
+        p.edit(user1);
+        assertEquals(p.findPengajuanById(user1.getIdpengajuan()).getPathscv(), user2.getPathscv());
     }
 
     /**
      * Test of destroy method, of class JpaPengajuan.
      */
+    @Test
     public void testDestroy() throws Exception {
-        pg.destroy(peng1.getIdpengajuan());
-        //System.out.println("destroy");
-        //String id = "";
-        //JpaPengajuan instance = new JpaPengajuan();
-        //instance.destroy(id);
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
+        p.destroy(user1.getIdpengajuan());
     }
 
     /**
      * Test of findPengajuan method, of class JpaPengajuan.
      */
-    public void testFindPengajuan() {
-       assertNull(pg.findPengajuan(peng1.getIdpengajuan()));
-        //System.out.println("findPengajuan");
-        //String id = "";
-        //JpaPengajuan instance = new JpaPengajuan();
-        //Pengajuan expResult = null;
-        //Pengajuan result = instance.findPengajuan(id);
-        //assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
-    }
-
+ 
     /**
      * Test of getAllPengajuanByNrp method, of class JpaPengajuan.
      */
+    @Test
     public void testGetAllPengajuanByNrp() {
-        assertNull(pg.findPengajuanById(peng1.getIdpengajuan()));
-        //System.out.println("getAllPengajuanByNrp");
-        //String nrp = "";
-        //JpaPengajuan instance = new JpaPengajuan();
-        //List expResult = null;
-        //List result = instance.getAllPengajuanByNrp(nrp);
-        //assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
+      assertNotNull(p.getAllPengajuanByNrp(mhs.getNrp()));
     }
 
     /**
      * Test of getAllPengajuan method, of class JpaPengajuan.
      */
+    @Test
     public void testGetAllPengajuan() {
-        assertNotNull(pg.getAllPengajuan());
-        //System.out.println("getAllPengajuan");
-        //JpaPengajuan instance = new JpaPengajuan();
-        //List expResult = null;
-        //List result = instance.getAllPengajuan();
-        //assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
+         assertNotNull(p.getAllPengajuan());
     }
 
     /**
      * Test of getAllPengajuanByIdBeasiswaOrderByIpk method, of class JpaPengajuan.
      */
-   
+    @Test
+    public void testGetAllPengajuanByIdBeasiswaOrderByIpk() {
+        assertNotNull(p.getAllPengajuanByIdBeasiswaOrderByIpk(bsw.getIdbeasiswa()));
+    }
+
+    /**
+     * Test of getAllPengajuanByIdBeasiswaOrderByGaji method, of class JpaPengajuan.
+     */
+    @Test
+    public void testGetAllPengajuanByIdBeasiswaOrderByGaji() {
+        assertNotNull(p.getAllPengajuanByIdBeasiswaOrderByGaji(bsw.getIdbeasiswa()));
+    }
+
     /**
      * Test of findPengajuanById method, of class JpaPengajuan.
      */
+    @Test
     public void testFindPengajuanById() {
-       assertNull(pg.findPengajuanById(peng1.getIdpengajuan()));
-        //System.out.println("findPengajuanById");
-        //String idPengajuan = "";
-        //JpaPengajuan instance = new JpaPengajuan();
-       // Pengajuan expResult = null;
-       // Pengajuan result = instance.findPengajuanById(idPengajuan);
-       // assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-      //  fail("The test case is a prototype.");
+        assertNotNull(p.findPengajuanById(user2.getIdpengajuan()));
     }
 
 }
