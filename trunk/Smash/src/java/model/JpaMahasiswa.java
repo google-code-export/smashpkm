@@ -14,8 +14,6 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
-import model.Beasiswa;
-import model.Mahasiswa;
 
 /**
  *
@@ -153,26 +151,6 @@ public class JpaMahasiswa {
             }
         }
         return mahasiswa;
-    }
-
-
-    public Beasiswa findBeasiswaById(String idBeasiswa) {
-        EntityManager em = getEntityManager();
-        try {
-            Query query = em.createQuery("SELECT c FROM Beasiswa c WHERE c.idbeasiswa =:idbeasiswa");
-            query.setParameter("idbeasiswa", idBeasiswa);
-            List list = query.getResultList();
-            if (list.size() == 1) {
-
-                return (Beasiswa) list.get(0);
-
-
-            } else {
-                return null;
-            }
-        } finally {
-            em.close();
-        }
     }
 
 }

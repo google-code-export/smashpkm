@@ -1,3 +1,4 @@
+
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -5,131 +6,123 @@
 
 package model;
 
-import java.util.List;
-import javax.persistence.EntityManager;
-import junit.framework.TestCase;
+import controller.exceptions.NonexistentEntityException;
+import controller.exceptions.PreexistingEntityException;
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import static org.junit.Assert.*;
 
 /**
  *
- * @author ROODHIN
+ * @author yosua
  */
-public class JpaMahasiswaTest extends TestCase {
-    private Mahasiswa mah1;
-    private Mahasiswa mah2;
-    JpaMahasiswa mh = new JpaMahasiswa();
-    
-    public JpaMahasiswaTest(String testName) {
-        super(testName);
+public class JpaMahasiswaTest {
+    private Mahasiswa user1;
+    private Mahasiswa user2;
+    private Mahasiswa user3;
+    JpaMahasiswa uq = new JpaMahasiswa();
+
+
+    public JpaMahasiswaTest() {
     }
 
-    @Override
-    protected void setUp() throws Exception {
-        super.setUp();
-        mah1 = new Mahasiswa();
-        mah1.setNama("roodhin");
-        mah1.setNrp("5209100050");
-
-        mah2 = new Mahasiswa();
-        mah2.setNama("sammi");
-        mah2.setNrp("12345");
+    @BeforeClass
+    public static void setUpClass() throws Exception {
     }
 
-    @Override
-    protected void tearDown() throws Exception {
-        super.tearDown();
-        mah1 = null;
-        mah2 = null;
+    @AfterClass
+    public static void tearDownClass() throws Exception {
+    }
+
+    @Before
+    public void setUp() throws  Exception {
+        user1 = new Mahasiswa();
+        user1.setNrp("9898");
+        user1.setNama("boda");
+        //user1.setKeterangan(null)
+
+        user2 = new Mahasiswa();
+        user2.setNrp("1234");
+        user2.setNama("hahaha");
+
+        user3 = new Mahasiswa();
+        user3.setNrp("AA");
+        user3.setNama("ee");
+       
+    }
+
+    @After
+    public void tearDown() throws NonexistentEntityException {
+        user1 = null;
+        user2 = null;
+        user3=null;
+        //uq.destroy(user3.getNrp());
     }
 
     /**
      * Test of getEntityManager method, of class JpaMahasiswa.
      */
-    //public void testGetEntityManager() {
-      //  System.out.println("getEntityManager");
-        //JpaMahasiswa instance = new JpaMahasiswa();
-        //EntityManager expResult = null;
-        //EntityManager result = instance.getEntityManager();
-        //assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
-  //  }
+
+
 
     /**
      * Test of create method, of class JpaMahasiswa.
      */
+    @Test
     public void testCreate() throws Exception {
-        mh.create(mah1);
-
-
-        //System.out.println("create");
-        //Mahasiswa mahasiswa = null;
-        //JpaMahasiswa instance = new JpaMahasiswa();
-        //instance.create(mahasiswa);
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
+        uq.create(user1);
     }
 
     /**
      * Test of edit method, of class JpaMahasiswa.
      */
+    @Test
     public void testEdit() throws Exception {
-        mah1.setNama(mah2.getNama());
-        mh.edit(mah1);
-        assertEquals(mh.findMahasiswaByNrp(mah1.getNrp()).getNama(), mah2.getNama());
-        //System.out.println("edit");
-        //Mahasiswa mahasiswa = null;
-        //JpaMahasiswa instance = new JpaMahasiswa();
-        //instance.edit(mahasiswa);
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
+         user1.setNama(user2.getNama());
+        uq.edit(user1);
+        assertEquals(uq.findMahasiswaByNrp(user1.getNrp()).getNama(), user2.getNama());
+        //user1.getNamabeasiswa()=uq.findBeasiswaById(user1.getIdbeasiswa()).getNamabeasiswa();
+        //Beasiswa beasiswa = null;
+        //JpaBeasiswa instance = new JpaBeasiswa();
+        //instance.edit(beasiswa);
+        // TODO review the generated test code
     }
 
     /**
      * Test of destroy method, of class JpaMahasiswa.
      */
+    @Test
     public void testDestroy() throws Exception {
-        mh.destroy(mah1.getNrp());
-        //System.out.println("destroy");
-        //String id = "";
-        //JpaMahasiswa instance = new JpaMahasiswa();
-        //instance.destroy(id);
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
+        uq.destroy(user1.getNrp());
     }
 
     /**
      * Test of findMahasiswa method, of class JpaMahasiswa.
      */
-    public void testFindMahasiswa() {
-        assertNull(mh.findMahasiswa(mah1.getNrp()));
-    }
+    
+
     /**
      * Test of findMahasiswaByNrp method, of class JpaMahasiswa.
      */
-    public void testFindMahasiswaByNrp() {
-       assertNull(mh.findMahasiswaByNrp(mah1.getNrp()));
-
-        //System.out.println("findMahasiswaByNrp");
-        //String nrp = "";
-       // JpaMahasiswa instance = new JpaMahasiswa();
-        //Mahasiswa expResult = null;
-        //Mahasiswa result = instance.findMahasiswaByNrp(nrp);
-        //assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-       // fail("The test case is a prototype.");
+    @Test
+    public void testFindMahasiswaByNrp() throws PreexistingEntityException, Exception {
+        
+        assertNotNull(uq.findMahasiswaByNrp(user3.getNrp()));
     }
 
     /**
      * Test of getAllMahasiswa method, of class JpaMahasiswa.
      */
+    @Test
     public void testGetAllMahasiswa() {
-        assertNotNull(mh.getAllMahasiswa());
+        assertNotNull(uq.getAllMahasiswa());
     }
 
     /**
      * Test of findBeasiswaById method, of class JpaMahasiswa.
      */
-    
-    
 
 }
