@@ -151,10 +151,15 @@
                             <font color="black">${mhs.penghasilanayah+mhs.penghasilanibu}</font>
                         </td>
                         <td align="center">
-                            none
+                           ${mhs.statuspenerima}
                         </td>
                         <td align="center">
-                            <a href="DispatcherMahasiswa?page=editMember&&nrp_member=${mhs.nrp}"><img src="images/Modify.png"/></a>  <a href="DispatcherMahasiswa?page=deleteMember&&nrp_member=${mhs.nrp}"><img src="images/Delete.png"/></a>
+                            <a href="DispatcherMahasiswa?page=editMember&&nrp_member=${mhs.nrp}"><img src="images/Modify.png"/></a>
+                           
+                        </td>
+                        <td align="center">
+
+                            <a href="DispatcherMahasiswa?page=deleteMember&&nrp_member=${mhs.nrp}"><img src="images/Delete.png"/></a>
                         </td>
                     </tr>
                     <tr>
