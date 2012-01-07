@@ -139,7 +139,8 @@
                                 <font color="black">${bsw.tanggalkadaluarsa}</font>
                             </td>
                             <td align="center">
-                                <a href="DispatcherBeasiswa?page=editPost&&idbeasiswa=${bsw.idbeasiswa}"><img src="images/Modify.png"/></a>  <a href="DispatcherBeasiswa?page=deletePost&&idbeasiswa=${bsw.idbeasiswa}"><img src="images/Delete.png"/></a>
+                                <a href="DispatcherBeasiswa?page=editPost&&idbeasiswa=${bsw.idbeasiswa}"><img src="images/Modify.png"/></a>
+                                <a href="DispatcherBeasiswa?page=deletePost&&idbeasiswa=${bsw.idbeasiswa}"><img src="images/Delete.png" onclick="return confirm('Apakah Anda yakin ingin menghapus Post ${bsw.namabeasiswa}?')"/></a>
                             </td>
                         </tr>
                     </c:forEach>

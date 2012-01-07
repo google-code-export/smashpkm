@@ -46,14 +46,16 @@ public class ControllerPengajuan {
         List<Pengajuan> list = new ArrayList<Pengajuan>();//membuat arraylist
         list = listPengajuan.getAllPengajuanByNrp(nrp);
         Iterator itr = list.listIterator();
-        while (itr.hasNext()) {//melakukan iterasi untuk me-remove objek bernilai status "daftar"
+        if (itr.hasNext()) {//melakukan iterasi untuk me-remove objek bernilai status "daftar"
             Pengajuan pengajuan = (Pengajuan) itr.next();
 
             if (pengajuan.getStatuspengajuan().equals("Daftar")) {
                 itr.remove();//me-remove objek
             }
+            session.setAttribute("list_pengajuan_by_nrp", list);//menyimpan hasil list kedalam session
         }
-        session.setAttribute("list_pengajuan_by_nrp", list);//menyimpan hasil list kedalam session
+
+        else {request.setAttribute("pesan", "Anda belum memiliki record Status Beasiswa");}
     }
 
     /**

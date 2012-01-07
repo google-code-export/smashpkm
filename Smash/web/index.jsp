@@ -70,14 +70,14 @@
 
                 <div id="templatemo_menu" class="ddsmoothmenu">
                     <ul>
-                        <li><a href="index.html" class="selected">Home</a></li>
-                        <li><a href="about.html">About</a>
+                        <li><a href="DispatcherMahasiswa?page=home&&nrp=${mahasiswa.nrp}" class="selected">Home</a></li>
+                        <li><a href="http://www.templatemo.com/page/1">Panduan</a>
                             <ul>
-                                <li><a href="http://www.templatemo.com/page/1">SMASH</a></li>
-                                <li><a href="http://www.templatemo.com/page/2">Our Team</a></li>
+                                <li><a href="http://www.templatemo.com/page/1">Panduan Registrasi</a></li>
+                                <li><a href="http://www.templatemo.com/page/2">Panduan Login</a></li>
                             </ul>
                         </li>
-                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="contact.html">Kontak</a></li>
                     </ul>
                     <br style="clear: left" />
                 </div> <!-- end of templatemo_menu -->

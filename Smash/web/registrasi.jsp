@@ -207,15 +207,15 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="cleaner"></div>
 
-            <div class="cleaner"></div>
-
-            <div id="templatemo_footer_wrapper">
-                <div id="templatemo_footer">
-                    Copyright © 2011 <a href="#">Smash Inc.</a> | Institut Teknologi Sepuluh Nopember
-                    <div class="cleaner"></div>
-                </div>
+        <div id="templatemo_footer_wrapper">
+            <div id="templatemo_footer">
+                Copyright © 2011 <a href="#">Smash Inc.</a> | Institut Teknologi Sepuluh Nopember
+                <div class="cleaner"></div>
             </div>
+        </div>
 
     </body>
 </html>

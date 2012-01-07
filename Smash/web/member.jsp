@@ -70,7 +70,7 @@
 
             <div id="templatemo_header">
 
-                <img src="images/logo.png"/>
+                <img src="images/logo.png">
 
                 <div id="templatemo_menu" class="ddsmoothmenu">
                     <ul>
@@ -151,15 +151,11 @@
                             <font color="black">${mhs.penghasilanayah+mhs.penghasilanibu}</font>
                         </td>
                         <td align="center">
-                           ${mhs.statuspenerima}
+                            <font color="black">${mhs.statuspenerima}</font>
                         </td>
                         <td align="center">
                             <a href="DispatcherMahasiswa?page=editMember&&nrp_member=${mhs.nrp}"><img src="images/Modify.png"/></a>
-                           
-                        </td>
-                        <td align="center">
-
-                            <a href="DispatcherMahasiswa?page=deleteMember&&nrp_member=${mhs.nrp}"><img src="images/Delete.png"/></a>
+                            <a href="DispatcherMahasiswa?page=deleteMember&&nrp=${mhs.nrp}"><img src="images/Delete.png" onclick="return confirm('Apakah Anda yakin ingin menghapus Akun ${mhs.nrp}?')"/></a>
                         </td>
                     </tr>
                     <tr>

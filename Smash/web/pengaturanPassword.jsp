@@ -69,35 +69,38 @@
 
                 <div id="templatemo_menu" class="ddsmoothmenu">
                     <ul>
-                        <li><a href="index.html" class="selected">Home</a></li>
-                        <li><a href="about.html">About</a>
+                        <li><a href="DispatcherMahasiswa?page=home&&nrp=${mahasiswa.nrp}">Home</a></li>
+                        <li><a href="DispatcherMahasiswa?page=home&&nrp=${mahasiswa.nrp}">Menu Utama</a>
                             <ul>
-                                <li><a href="http://www.templatemo.com/page/1">SMASH</a></li>
-                                <li><a href="http://www.templatemo.com/page/2">Our Team</a></li>
+                                <li><a href="DispatcherMahasiswa?page=pengaturanAkun">Pengaturan Akun</a></li>
+                                <li><a href="DispatcherPengajuan?page=statusBeasiswa">Status Beasiswa</a></li>
+                                <li><a href="DispatcherBeasiswa?page=beasiswaYangTersedia">List Beasiswa</a></li>
+                                <li><a href="DispatcherPengajuan?page=listDaftarBeasiswa">Mendaftar Beasiswa</a></li>
                             </ul>
                         </li>
-                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="about.html">Panduan</a>
+                            <ul>
+                                <li><a href="http://www.templatemo.com/page/1">Mengelola Akun</a></li>
+                                <li><a href="http://www.templatemo.com/page/2">Melihat Status</a></li>
+                                <li><a href="http://www.templatemo.com/page/2">Melihat List Beasiswa</a></li>
+                                <li><a href="http://www.templatemo.com/page/2">Mendaftar Beasiswa</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="contact.html">Peraturan</a></li>
+                        <li><a href="contact.html">Kontak</a></li>
                     </ul>
                     <br style="clear: left" />
                 </div> <!-- end of templatemo_menu -->
 
             </div> <!-- end of header -->
+            <br/>
+            <p align="right"><font color="black">Anda login sebagai ${mahasiswa.nama},</font><a style="color: red" href="DispatcherMahasiswa?name=logout">(logout)</a></p>
 
             <div id="templatemo_main">
-                <table border="0">
-                    <tr>
-                        <td>
-                            <a href="DispatcherMahasiswa?page=pengaturanAkun&&nrp=${mahasiswa.nrp}" title="" class="btn medium green">Profil</a>
-                        </td>
-                        <td>
-                            <a href="DispatcherMahasiswa?page=pengaturanPassword&&nrp=${mahasiswa.nrp}" title="" class="btn medium green">Ganti Password</a>
-                        </td>
-                        <td>
-                            <a href="DispatcherMahasiswa?page=home&&nrp=${mahasiswa.nrp}" title="" class="btn medium green">Menu Utama</a>
-                        </td>
-                    </tr>
-                </table>
 
+                <div class="sb_box">
+                    <h3>Ganti Password</h3>
+                </div>
 
                 <div class="col_w460 float_l">
                     <div class="cleaner h20"></div>
@@ -114,47 +117,79 @@
 
                 <div class="col_w460 float_r">
                     <div class="cleaner h20"></div>
+                    <div id="contact_form">
 
-                    <form method='post'  action='DispatcherMahasiswa?page=setPengaturanPassword&&nrp=${mahasiswa.nrp}'>
-                        <br/>
-                        <fieldset>
-                            <table border=0>
-                                <dd/><font color="green"><%= request.getAttribute("pesan")%></font>
-                                <br/>
-                                <tr>
-                                    <td>
-                                        Password Lama
-                                    </td>
-                                    <td>
-                                        : <input type=text name='password_lama' />
-                                    </td>
-
-                                </tr>
-                                <tr>
-                                    <td>
-                                        Password Baru
-                                    </td>
-                                    <td>
-                                        : <input type=password name='password_baru' />
-                                    </td>
-
-                                </tr>
-                                <tr>
-                                    <td>
-                                        Ulangi Passord Baru
-                                    </td>
-                                    <td>
-                                        : <input type=password name='password_baru_ulangi' />
-                                    </td>
-
-                                </tr>
-
-                            </table>
+                        <form method='post'  action='DispatcherMahasiswa?page=setPengaturanPassword&&nrp=${mahasiswa.nrp}'>
                             <br/>
-                            <input type='submit' value='update'/>
+                            <fieldset>
+                                <table border=0>
+                                    <tr>
+                                        <td width="25px">
+                                        </td>
+                                        <td>
+                                            <font color="#E56717">
+                                                <b><%= request.getAttribute("pesan")%></b>
+                                            </font>
+                                            <br/>
+                                        </td>
+                                    </tr>
+                                </table>
 
-                        </fieldset>
-                    </form>
+                                <table>
+                                    <tr>
+                                        <td width="25px">
+                                        </td>
+                                        <td>
+                                            Password Lama
+                                        </td>
+                                        <td>
+                                            : <input type=text name='password_lama' />
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td width="25px">
+                                        </td>
+                                        <td>
+                                            Password Baru
+                                        </td>
+                                        <td>
+                                            : <input type=password name='password_baru' />
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td width="25px">
+                                        </td>
+                                        <td>
+                                            Ulangi Passord Baru
+                                        </td>
+                                        <td>
+                                            : <input type=password name='password_baru_ulangi' />
+                                        </td>
+
+                                    </tr>
+
+                                </table>
+                                <br/>
+                                <table>
+                                    <tr>
+                                        <td width="25px">
+                                        </td>
+                                        <td>
+                                            <input type="submit" class="submit_btn float_l" name="submit" id="submit" value="Simpan"  />
+                                        </td>
+                                        <td>
+                                            <a href="DispatcherMahasiswa?page=pengaturanAkun"><input type="button" class="submit_btn float_r" value="Kembali"/></a>
+                                        </td>
+
+
+                                    </tr>
+                                </table>
+
+                            </fieldset>
+                        </form>
+                    </div>
                 </div>
                 <div class="cleaner"></div>
             </div>
