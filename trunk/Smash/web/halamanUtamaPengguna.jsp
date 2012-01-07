@@ -50,14 +50,25 @@
 
                 <div id="templatemo_menu" class="ddsmoothmenu">
                     <ul>
-                        <li><a href="index.html" class="selected">Home</a></li>
-                        <li><a href="about.html">About</a>
+                        <li><a href="DispatcherMahasiswa?page=home&&nrp=${mahasiswa.nrp}" class="selected">Home</a></li>
+                        <li><a href="DispatcherMahasiswa?page=home&&nrp=${mahasiswa.nrp}">Menu Utama</a>
                             <ul>
-                                <li><a href="http://www.templatemo.com/page/1">SMASH</a></li>
-                                <li><a href="http://www.templatemo.com/page/2">Our Team</a></li>
+                                <li><a href="DispatcherMahasiswa?page=pengaturanAkun">Pengaturan Akun</a></li>
+                                <li><a href="DispatcherPengajuan?page=statusBeasiswa">Status Beasiswa</a></li>
+                                <li><a href="DispatcherBeasiswa?page=beasiswaYangTersedia">List Beasiswa</a></li>
+                                <li><a href="DispatcherPengajuan?page=listDaftarBeasiswa">Mendaftar Beasiswa</a></li>
                             </ul>
                         </li>
-                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="about.html">Panduan</a>
+                            <ul>
+                                <li><a href="http://www.templatemo.com/page/1">Mengelola Akun</a></li>
+                                <li><a href="http://www.templatemo.com/page/2">Melihat Status</a></li>
+                                <li><a href="http://www.templatemo.com/page/2">Melihat List Beasiswa</a></li>
+                                <li><a href="http://www.templatemo.com/page/2">Mendaftar Beasiswa</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="contact.html">Peraturan</a></li>
+                        <li><a href="contact.html">Kontak</a></li>
                     </ul>
                     <br style="clear: left" />
                 </div> <!-- end of templatemo_menu -->
@@ -100,7 +111,7 @@
                                         </td>
                                         <td>
                                             <a href="DispatcherPengajuan?page=statusBeasiswa&&nrp=${mahasiswa.nrp}"> <h4>Status Beasiswa</h4></a>
-                                            
+
                                         </td>
                                     </tr>
                                 </table>
@@ -115,7 +126,7 @@
                                         </td>
                                         <td>
                                             <a href="DispatcherBeasiswa?page=beasiswaYangTersedia"> <h4>Beasiswa yang Tersedia</h4></a>
-                                            
+
                                         </td>
                                     </tr>
                                 </table>

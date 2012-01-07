@@ -79,12 +79,21 @@
                         <li><a href="DispatcherMahasiswa?page=home&&nrp=${mahasiswa.nrp}">Home</a></li>
                         <li><a href="DispatcherMahasiswa?page=home&&nrp=${mahasiswa.nrp}">Menu Utama</a>
                             <ul>
-                                <li><a href="DispatcherBeasiswa?page=pengaturanPost">Posts</a></li>
-                                <li><a href="DispatcherMahasiswa?page=pengaturanMember">Members</a></li>
-                                <li><a href="DispatcherPengajuan?page=listRekapitulasi">Rekapitulasi</a></li>
+                                <li><a href="DispatcherMahasiswa?page=pengaturanAkun">Pengaturan Akun</a></li>
+                                <li><a href="DispatcherPengajuan?page=statusBeasiswa">Status Beasiswa</a></li>
+                                <li><a href="DispatcherBeasiswa?page=beasiswaYangTersedia">List Beasiswa</a></li>
+                                <li><a href="DispatcherPengajuan?page=listDaftarBeasiswa">Mendaftar Beasiswa</a></li>
                             </ul>
                         </li>
-                        <li><a href="contact.html">Panduan</a></li>
+                        <li><a href="about.html">Panduan</a>
+                            <ul>
+                                <li><a href="http://www.templatemo.com/page/1">Mengelola Data Pribadi</a></li>
+                                <li><a href="http://www.templatemo.com/page/2">Melihat Status</a></li>
+                                <li><a href="http://www.templatemo.com/page/2">Melihat List Beasiswa</a></li>
+                                <li><a href="http://www.templatemo.com/page/2">Mendaftar Beasiswa</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="contact.html">Peraturan</a></li>
                         <li><a href="contact.html">Kontak</a></li>
                     </ul>
                     <br style="clear: left" />
@@ -288,7 +297,7 @@
                         <table>
                             <tr>
                                 <td>
-                                    <input type='submit' value='Update'/>
+                                    <input type='submit' value='Simpan'/>
                                 </td>
                                 <td>
                                     <a href="DispatcherMahasiswa?page=pengaturanMember"><input type="button" class="submit_btn float_r" value="Kembali"/></a>

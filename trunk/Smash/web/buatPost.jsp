@@ -118,34 +118,34 @@
                             <table align="left">
                                 <tr>
                                     <td>
-                                        <font color="black">Tanggal publish</font>
+                                        <font color="black">Tanggal Publish Post</font>
                                     </td>
                                     <td>
-                                        : <input id="demo1" type="text" name="tanggalpublish" size="20" value=""><a href="javascript:NewCal('demo1','ddmmyyyy')"><img src="images/cal.gif" width="16" height="16" border="0" alt="Pick a date"/></a></input>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <font color="black">Tanggal kadaluarsa</font>
-                                    </td>
-                                    <td>
-                                        : <input id="demo2" type="text" name="tanggalkadaluwarsa" size="20" value=""><a href="javascript:NewCal('demo2','ddmmyyyy')"><img src="images/cal.gif" width="16" height="16" border="0" alt="Pick a date"/></a></input>
+                                        : <input id="demo1" type="text" name="tanggalpublish" size="15" value="" disabled="disabled"><a href="javascript:NewCal('demo1','ddmmyyyy')"><img src="images/cal.gif" width="16" height="16" border="0" alt="Pick a date"/></a></input>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <font color="black">Tanggal mulai kontrak</font>
+                                        <font color="black">Tanggal Batas Pendaftaran</font>
                                     </td>
                                     <td>
-                                        : <input id="demo3" type="text" name="tanggalmulai" size="20" value=""><a href="javascript:NewCal('demo3','ddmmyyyy')"><img src="images/cal.gif" width="16" height="16" border="0" alt="Pick a date"/></a></input>
+                                        : <input id="demo2" type="text" name="tanggalkadaluwarsa" size="15" value="" disabled="disabled"><a href="javascript:NewCal('demo2','ddmmyyyy')"><img src="images/cal.gif" width="16" height="16" border="0" alt="Pick a date"/></a></input>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <font color="black">Tanggal berakhir kontrak</font>
+                                        <font color="black">Tanggal Mulai Kontrak</font>
                                     </td>
                                     <td>
-                                        : <input id="demo4" type="text" name="tanggalhabis" size="20" value=""><a href="javascript:NewCal('demo4','ddmmyyyy')"><img src="images/cal.gif" width="16" height="16" border="0" alt="Pick a date"/></a></input>
+                                        : <input id="demo3" type="text" name="tanggalmulai" size="15" value="" disabled="disabled"<a href="javascript:NewCal('demo3','ddmmyyyy')"><img src="images/cal.gif" width="16" height="16" border="0" alt="Pick a date"/></a></input>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <font color="black">Tanggal Batas Kontrak</font>
+                                    </td>
+                                    <td>
+                                        : <input id="demo4" type="text" name="tanggalhabis" size="15" value="" disabled="disabled"><a href="javascript:NewCal('demo4','ddmmyyyy')"><img src="images/cal.gif" width="16" height="16" border="0" alt="Pick a date"/></a></input>
                                     </td>
                                 </tr>
                             </table>
@@ -155,7 +155,7 @@
                                 <label for="author">
                                     <font color="black">Judul Post</font>
                                 </label>
-                                <input type=text name='namabeasiswa' class="input_field"/>
+                                <input type=text name='namabeasiswa' class="input_field" style="font-weight: bold ; text-transform: uppercase"/>
                             </p>
                             <div class="cleaner h10"></div>
 

@@ -70,6 +70,7 @@ public class ControllerMahasiswa {
 
                     try {
                         registrasi.create(mahasiswa);//eksekusi membuat objek baru dan menyimpan
+                        request.setAttribute("pesan", "Akun '"+request.getParameter("nrp")+"' berhasil ditambahkan ke daftar Member SMASH");
 
                     } catch (Exception e) {
                         e.printStackTrace();

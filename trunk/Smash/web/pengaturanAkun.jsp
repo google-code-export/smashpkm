@@ -73,14 +73,25 @@
 
                 <div id="templatemo_menu" class="ddsmoothmenu">
                     <ul>
-                        <li><a href="index.html" class="selected">Home</a></li>
-                        <li><a href="about.html">About</a>
+                        <li><a href="DispatcherMahasiswa?page=home&&nrp=${mahasiswa.nrp}">Home</a></li>
+                        <li><a href="DispatcherMahasiswa?page=home&&nrp=${mahasiswa.nrp}">Menu Utama</a>
                             <ul>
-                                <li><a href="http://www.templatemo.com/page/1">SMASH</a></li>
-                                <li><a href="http://www.templatemo.com/page/2">Our Team</a></li>
+                                <li><a href="DispatcherMahasiswa?page=pengaturanAkun">Pengaturan Akun</a></li>
+                                <li><a href="DispatcherPengajuan?page=statusBeasiswa">Status Beasiswa</a></li>
+                                <li><a href="DispatcherBeasiswa?page=beasiswaYangTersedia">List Beasiswa</a></li>
+                                <li><a href="DispatcherPengajuan?page=listDaftarBeasiswa">Mendaftar Beasiswa</a></li>
                             </ul>
                         </li>
-                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="about.html">Panduan</a>
+                            <ul>
+                                <li><a href="http://www.templatemo.com/page/1">Mengelola Akun</a></li>
+                                <li><a href="http://www.templatemo.com/page/2">Melihat Status</a></li>
+                                <li><a href="http://www.templatemo.com/page/2">Melihat List Beasiswa</a></li>
+                                <li><a href="http://www.templatemo.com/page/2">Mendaftar Beasiswa</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="contact.html">Peraturan</a></li>
+                        <li><a href="contact.html">Kontak</a></li>
                     </ul>
                     <br style="clear: left" />
                 </div> <!-- end of templatemo_menu -->
@@ -89,172 +100,231 @@
             <br/>
             <p align="right"><font color="black">Anda login sebagai ${mahasiswa.nama},</font><a style="color: red" href="DispatcherMahasiswa?name=logout">(logout)</a></p>
 
-            <div class="content">
-                <table border="0">
-                    <tr>
-                        <td>
-                            <a href="DispatcherMahasiswa?page=pengaturanAkun&&nrp=${mahasiswa.nrp}" title="" class="btn medium green">Profil</a>
-                        </td>
-                        <td>
-                            <a href="DispatcherMahasiswa?page=pengaturanPassword&&nrp=${mahasiswa.nrp}" title="" class="btn medium green">Ganti Password</a>
-                        </td>
-                        <td>
-                            <a href="DispatcherMahasiswa?page=home&&nrp=${mahasiswa.nrp}" title="" class="btn medium green">Menu Utama</a>
-                        </td>
-                    </tr>
-                </table>
-            </div>
+            <div id="templatemo_main">
 
-            <br/>
+                <div class="sb_box">
+                    <h3>Pengaturan Akun</h3>
+                </div>
 
-            <form method='post'  action='DispatcherMahasiswa?page=setPengaturanAkun&&nrp=${mahasiswa.nrp}'>
-                <fieldset>
-                    <table border=0>
-                        <font color="red"><%= request.getAttribute("pesan")%></font>
-                        <font color="green"><%= request.getAttribute("pesan1")%></font>
+                <div class="content">
+                    <table border="0">
                         <tr>
                             <td>
-                                <font color="black">Nama</font>
-                            </td>
-                            <td>
-                                : <input type=text name='nama' value='${mahasiswa.nama}' />
-                            </td>
-
-                        </tr>
-
-                        <tr>
-                            <td>
-                                <font color="black">NRP</font>
-                            </td>
-                            <td>
-                                : <font color="black">${mahasiswa.nrp}</font>
+                                <a href="DispatcherMahasiswa?page=pengaturanPassword&&nrp=${mahasiswa.nrp}" title="" class="btn medium green">Ganti Password</a>
                             </td>
                         </tr>
-
-                        <tr>
-                            <td>
-                                <font color="black">No HP</font>
-                            </td>
-
-                            <td>
-                                : <input type=text name='no_hp' value='${mahasiswa.nohp}'/>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>
-                                <font color="black">Alamat Asal</font>
-                            </td>
-                            <td>
-                                <font color="transparent">:  </font><textarea rows="2" cols="20" name='alamat_asal' value="">${ mahasiswa.alamatasal}</textarea>
-                            <td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <font color="black">Alamat Surabaya</font>
-                            </td>
-                            <td>
-                                <font color="transparent">: </font><textarea rows="2" cols="20" name='alamat_surabaya' value=''>${mahasiswa.alamatsurabaya}</textarea>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>
-                                <font color="black">Nilai TOEFL</font>
-                            </td>
-                            <td>
-                                : <input type=text name='nilai_toefl' value='${mahasiswa.nilaitoefl}'/>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>
-                                <font color="black">Semester</font>
-                            </td>
-
-                            <td>
-                                : <input type=text name='semester' value='${mahasiswa.semester}'/>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>
-                                <font color="black">IPK</font>
-                            </td>
-                            <td>
-                                : <input type=text name='ipk' value='${mahasiswa.ipk}'/>
-                            <td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <font color="black">Nama Ayah</font>
-                            </td>
-                            <td>
-                                : <input type=text name='nama_ayah' value='${mahasiswa.namaayah}'/>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>
-                                <font color="black">Pekerjaan Ayah</font>
-                            </td>
-                            <td>
-                                : <input type=text name='pekerjaan_ayah'value='${mahasiswa.pekerjaanayah}'/>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>
-                                <font color="black">Penghasilan Ayah</font>
-                            </td>
-
-                            <td>
-                                : <input type=text name='penghasilan_ayah' value='${mahasiswa.penghasilanayah}'/>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>
-                                <font color="black">Nama Ibu</font>
-                            </td>
-                            <td>
-                                : <input type=text name='nama_ibu' value='${mahasiswa.namaibu}'/>
-                            <td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <font color="black">Pekerjaan Ibu</font>
-                            </td>
-                            <td>
-                                : <input type=text name='pekerjaan_ibu' value='${mahasiswa.pekerjaanibu}'/>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>
-                                <font color="black">Penghasilan Ibu</font>
-                            </td>
-                            <td>
-                                : <input type=text name='penghasilan_ibu' value='${mahasiswa.penghasilanibu}'/>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>
-                                <font color="black">Jumlah Saudara</font>
-                            </td>
-
-                            <td>
-                                : <input type=text name='jumlah_saudara' value='${mahasiswa.jumlahsaudara}'/>
-                            </td>
-                        </tr>
-
                     </table>
+                </div>
 
-                    <input type='submit' value='update'/>
+                <br/>
 
-                </fieldset>
-            </form>
+                <form method='post'  action='DispatcherMahasiswa?page=setPengaturanAkun&&nrp=${mahasiswa.nrp}'>
+                    <fieldset>
+                        <table>
+                            <tr>
+                                <td width="50px">
+                                <td>
+                                    <font color="#E56717">
+                                        <b><%= request.getAttribute("pesan")%></b>
+                                    </font>
+                                    <br/>
+                                </td>
+                            </tr>
+                        </table>
+
+                        <table>
+                            <tr>
+                                <td width="50px">
+                                <td>
+                                    <img src="images/profpic.png">
+                                </td>
+                            </tr>
+
+
+                            <tr>
+                                <td width="50px">
+                                <td>
+                                    <font color="black"><b>Data Pribadi</b></font>
+                                </td>
+                                <td width="350px">
+
+                                </td>
+                                <td>
+                                    <font color="black"><b>Data Akademik</b></font>
+                                </td>
+                            </tr>
+
+
+                            <tr>
+                                <td width="50px">
+                                <td>
+                                    <font color="black">NRP</font>
+                                </td>
+                                <td>
+                                    : <font color="black">${mahasiswa.nrp}</font>
+                                </td>
+
+                                <td>
+                                    <font color="black">Semester</font>
+                                </td>
+
+                                <td>
+                                    : <input type=text name='semester' value='${mahasiswa.semester}'/>
+                                </td>
+                            </tr>
+
+
+                            <tr>
+                                <td width="50px">
+                                <td>
+                                    <font color="black">Nama</font>
+                                </td>
+                                <td>
+                                    : <input type=text name='nama' value='${mahasiswa.nama}' />
+                                </td>
+
+                                <td>
+                                    <font color="black">IPK</font>
+                                </td>
+                                <td>
+                                    : <input type=text name='ipk' value='${mahasiswa.ipk}'/>
+                                <td>
+                            </tr>
+
+
+                            <tr>
+                                <td width="50px">
+                                <td>
+                                    <font color="black">No HP</font>
+                                </td>
+                                <td>
+                                    : <input type=text name='no_hp' value='${mahasiswa.nohp}'/>
+                                </td>
+
+                                <td>
+                                    <font color="black">Nilai TOEFL</font>
+                                </td>
+                                <td>
+                                    : <input type=text name='nilai_toefl' value='${mahasiswa.nilaitoefl}'/>
+                                </td>
+                            </tr>
+
+
+                            <tr>
+                                <td width="50px">
+                                <td>
+                                    <font color="black">Alamat Asal</font>
+                                </td>
+                                <td>
+                                    <font color="transparent">:  </font><textarea rows="2" cols="20" name='alamat_asal' value="${ mahasiswa.alamatasal}">${ mahasiswa.alamatasal}</textarea>
+                                <td>
+                            </tr>
+
+                            <tr>
+                                <td width="50px">
+                                <td>
+                                    <font color="black">Alamat Surabaya</font>
+                                </td>
+                                <td>
+                                    <font color="transparent">: </font><textarea rows="2" cols="20" name='alamat_surabaya' value='${mahasiswa.alamatsurabaya}'>${mahasiswa.alamatsurabaya}</textarea>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td width="50px">
+                                <td>
+                                    <font color="black"><b>Data Keluarga</b></font>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td width="50px">
+                                <td>
+                                    <font color="black">Nama Ayah</font>
+                                </td>
+                                <td>
+                                    : <input type=text name='nama_ayah' value='${mahasiswa.namaayah}'/>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td width="50px">
+                                <td>
+                                    <font color="black">Pekerjaan Ayah</font>
+                                </td>
+                                <td>
+                                    : <input type=text name='pekerjaan_ayah'value='${mahasiswa.pekerjaanayah}'/>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td width="50px">
+                                <td>
+                                    <font color="black">Penghasilan Ayah</font>
+                                </td>
+
+                                <td>
+                                    : <input type=text name='penghasilan_ayah' value='${mahasiswa.penghasilanayah}'/>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td width="50px">
+                                <td>
+                                    <font color="black">Nama Ibu</font>
+                                </td>
+                                <td>
+                                    : <input type=text name='nama_ibu' value='${mahasiswa.namaibu}'/>
+                                <td>
+                            </tr>
+
+                            <tr>
+                                <td width="50px">
+                                <td>
+                                    <font color="black">Pekerjaan Ibu</font>
+                                </td>
+                                <td>
+                                    : <input type=text name='pekerjaan_ibu' value='${mahasiswa.pekerjaanibu}'/>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td width="50px">
+                                <td>
+                                    <font color="black">Penghasilan Ibu</font>
+                                </td>
+                                <td>
+                                    : <input type=text name='penghasilan_ibu' value='${mahasiswa.penghasilanibu}'/>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td width="50px">
+                                <td>
+                                    <font color="black">Jumlah Saudara</font>
+                                </td>
+
+                                <td>
+                                    : <input type=text name='jumlah_saudara' value='${mahasiswa.jumlahsaudara}'/>
+                                </td>
+                            </tr>
+
+                        </table>
+
+                        <br/>
+
+                        <table>
+                            <tr>
+                                <td width="50px">
+                                <td>
+                                    <input type='submit' value='Simpan'/>
+                                </td>
+                            </tr>
+                        </table>
+
+                    </fieldset>
+                </form>
+            </div>
         </div>
         <div id="templatemo_footer_wrapper">
             <div id="templatemo_footer">
