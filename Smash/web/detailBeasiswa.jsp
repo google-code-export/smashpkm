@@ -100,7 +100,7 @@
             <div id="templatemo_main">
 
                 <div class="sb_box">
-                    <h3>Detail Beasiswa</h3>
+                    <h3>Detail ${beasiswa.namabeasiswa}</h3>
                 </div>
 
                 <div class="col_w630 float_l">
@@ -126,9 +126,18 @@
                                 <br/>
                                 <textarea id="text" name="keterangan" rows="0" cols="0" value="${beasiswa.keterangan}" disabled="disabled">${beasiswa.keterangan}</textarea>
                             </p>
-                            <div class="cleaner h10"></div>
-                        </form>
+                        
+                        <br/>
+                        <table>
+                            <tr>
+                                <td>
+                                    <a href="DispatcherBeasiswa?page=beasiswaYangTersedia"><input type="button" class="submit_btn float_r" value="Kembali"/></a>
+                                </td>
+                            </tr>
+                        </table>
 
+                        </form>
+                        <div class="cleaner h10"></div>
                     </div>
                 </div>
 
@@ -152,10 +161,10 @@
                             </td>
                         </tr>
                     </table>
+                    <div class="cleaner"></div>
 
                 </div>
             </div>
-        </div>
         </div>
 
         <div id="templatemo_footer_wrapper">

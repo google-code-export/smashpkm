@@ -101,7 +101,7 @@
                 </div>
 
                 <div class="col_w280 float_l">
-                    <img src="images/track_Member.png"/>
+                    <img src="images/track_Rekapitulasi.png"/>
                 </div>
 
                 <div id="contact_form">
@@ -168,10 +168,14 @@
                             <font color="black"><b> Verifikasi </b></font>
                         </td>
                     </tr>
+                    <%int i = 1;%>
                     <c:forEach items="${list_all_pengajuan}" var="bsw">
                         <tr>
-                            <td>
-                                <%int i = 1;%>
+                            <td align="center">
+                                <font color="black">
+                                    <%out.print(i);%>
+                                    <%i++;%>
+                                </font>
                             </td>
                             <td>
                                 <font color="black">${bsw.nrp.nama}</font>
@@ -180,7 +184,7 @@
                                 <font color="black">${bsw.nrp.nrp}</font>
                             </td>
                             <td align="center">
-                                <font color="black">${mhs.semester}</font>
+                                <font color="black">${bsw.nrp.semester}</font>
                             </td>
                             <td align="center">
                                 <font color="black">${bsw.nrp.ipk}</font>

@@ -131,7 +131,7 @@
                                 <td>
                                     <font color="black"><b>Data Pribadi</b></font>
                                 </td>
-                                <td width="230px">
+                                <td width="210px">
 
                                 </td>
                                 <td>

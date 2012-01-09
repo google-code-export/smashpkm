@@ -39,6 +39,7 @@ public class DispatcherPengajuan extends HttpServlet {
             }
 
             if (page.equals("listDaftarBeasiswa")) {//melakuakn list pengajuan berdasarkan nrp member
+                controllerBsw.setListBeasiswaBerlaku();
                 controller.setListPengajuanByNrp();
                 dis = request.getRequestDispatcher("listDaftarBeasiswa.jsp");
 

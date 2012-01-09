@@ -80,76 +80,74 @@
             <div id="templatemo_main">
                 <div class="sb_box">
                 </div>
-                <div class="col_fw">
-                    <div class="col_w460 float_l">
-                        <h5> </h5>
-                        <img src="images/utama.png"/>
-                        <div class="cleaner h20"></div>
-                    </div>
-                    <div class="col_w460 float_r">
-                        <h2>Menu Utama</h2>
-                        <div class="col_w460">
-                            <div class="fp_service_box fp_c1">
-                                <table>
-                                    <tr>
-                                        <td>
-                                            <img src="images/1_64x64.png" alt="Image 1" />
-                                        </td>
-                                        <td>
-                                            <a href="DispatcherMahasiswa?page=pengaturanAkun&&nrp=${mahasiswa.nrp}"><h4>Pengaturan Akun</h4></a>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </div>
-                        </div>
-                        <div class="col_w460">
-                            <div class="fp_service_box fp_c2">
-                                <table>
-                                    <tr>
-                                        <td>
-                                            <img src="images/32_64x64.png" alt="Image 2" />
-                                        </td>
-                                        <td>
-                                            <a href="DispatcherPengajuan?page=statusBeasiswa&&nrp=${mahasiswa.nrp}"> <h4>Status Beasiswa</h4></a>
-
-                                        </td>
-                                    </tr>
-                                </table>
-                            </div>
-                        </div>
-                        <div class="col_w460">
-                            <div class="fp_service_box fp_c3">
-                                <table>
-                                    <tr>
-                                        <td>
-                                            <img src="images/list.png" alt="Image 3"/>
-                                        </td>
-                                        <td>
-                                            <a href="DispatcherBeasiswa?page=beasiswaYangTersedia"> <h4>Beasiswa yang Tersedia</h4></a>
-
-                                        </td>
-                                    </tr>
-                                </table>
-                            </div>
-                        </div>
-                        <div class="col_w460">
-                            <div class="fp_service_box fp_c4">
-                                <table>
-                                    <tr>
-                                        <td>
-                                            <img src="images/50_64x64.png" alt="Image 4" />
-                                        </td>
-                                        <td>
-
-                                            <a href="DispatcherPengajuan?page=listDaftarBeasiswa&&nrp=${mahasiswa.nrp}"<h4>Daftar Beasiswa</h4> </a>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="cleaner"></div>
+                <div class="col_w460 float_l">
+                    <h5> </h5>
+                    <img src="images/utama.png"/>
+                    <div class="cleaner h20"></div>
                 </div>
+                <div class="col_w460 float_r">
+                    <h2>Menu Utama</h2>
+                    <div class="col_w460">
+                        <div class="fp_service_box fp_c1">
+                            <table>
+                                <tr>
+                                    <td>
+                                        <img src="images/1_64x64.png" alt="Image 1" />
+                                    </td>
+                                    <td>
+                                        <a href="DispatcherMahasiswa?page=pengaturanAkun&&nrp=${mahasiswa.nrp}"><h4>Pengaturan Akun</h4></a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col_w460">
+                        <div class="fp_service_box fp_c2">
+                            <table>
+                                <tr>
+                                    <td>
+                                        <img src="images/32_64x64.png" alt="Image 2" />
+                                    </td>
+                                    <td>
+                                        <a href="DispatcherPengajuan?page=statusBeasiswa&&nrp=${mahasiswa.nrp}"> <h4>Status Beasiswa</h4></a>
+
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col_w460">
+                        <div class="fp_service_box fp_c3">
+                            <table>
+                                <tr>
+                                    <td>
+                                        <img src="images/list.png" alt="Image 3"/>
+                                    </td>
+                                    <td>
+                                        <a href="DispatcherBeasiswa?page=beasiswaYangTersedia"> <h4>Beasiswa yang Tersedia</h4></a>
+
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col_w460">
+                        <div class="fp_service_box fp_c4">
+                            <table>
+                                <tr>
+                                    <td>
+                                        <img src="images/50_64x64.png" alt="Image 4" />
+                                    </td>
+                                    <td>
+
+                                        <a href="DispatcherPengajuan?page=listDaftarBeasiswa&&nrp=${mahasiswa.nrp}"<h4>Daftar Beasiswa</h4> </a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="cleaner"></div>
             </div>
         </div>
         <div id="templatemo_footer_wrapper">

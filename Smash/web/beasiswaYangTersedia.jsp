@@ -109,16 +109,16 @@
 
                 <table border="1">
                     <tr>
-                        <td>
+                        <td align="center">
                             <font color="black"><b> No </b></font>
                         </td>
-                        <td >
+                        <td align="center">
                             <font color="black"><b> Nama Beasiswa </b></font>
                         </td>
-                        <td>
+                        <td align="center">
                             <font color="black"><b> Tanggal Posting </b></font>
                         </td>
-                        <td>
+                        <td align="center">
                             <font color="black"><b> Batas Pendaftaran </b></font>
                         </td>
                         <td >
@@ -128,18 +128,18 @@
                     <%int i = 1;%>
                     <c:forEach items="${list_beasiswa}" var="bsw">
                         <tr>
-                            <td>
+                            <td align="center">
                                 <font color="black"> <%out.print(i);%>
                                     <%i++;%></font>
                             </td>
-                            <td align="center">
+                            <td>
                                 <font color="black">${bsw.namabeasiswa}</font>
                             </td>
                             <td align="center">
-                                <font color="black">${tanggalpublish}</font>
+                                <font color="black">${bsw.tanggalpublish}</font>
                             </td>
                             <td align="center">
-                                <font color="black">${tanggalkadaluarsa}</font>
+                                <font color="black">${bsw.tanggalkadaluarsa}</font>
                             </td>
                             <td align="center">
                                 <a href='DispatcherBeasiswa?page=detailBeasiswa&&idbeasiswa=${bsw.idbeasiswa}'>
@@ -147,9 +147,21 @@
                                 </a>
                             </td>
                         </tr>
-                        <tr>
-                        </c:forEach>
+                    </c:forEach>
                 </table>
+
+                <table>
+                    <tr>
+                        <td width="35px">
+                        </td>
+                        <td>
+                            <font color="black" >
+                                <b><i><%= request.getAttribute("pesan")%></i></b>
+                            </font>
+                        </td>
+                    </tr>
+                </table>
+
             </div>
         </div>
         <div id="templatemo_footer_wrapper">

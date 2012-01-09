@@ -167,7 +167,7 @@
                     <tr>
                         <td>
                             <font color="#E56717">
-                                <b><%= request.getAttribute("pesan")%></b>
+                                <b><i><%= request.getAttribute("pesan")%></i></b>
                             </font>
                         </td>
                     </tr>
